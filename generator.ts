@@ -112,6 +112,7 @@ function generateImportLines(
   fileDir: string,
   currentFilePath: string,
   localTypeName: string,
+  appendExtension: boolean = false,
 ): string {
   const byPath = new Map<string, string[]>();
 
@@ -132,7 +133,9 @@ function generateImportLines(
       rel = `./${rel}`;
     }
     const uniqueNames = [...new Set(names)];
-    lines.push(`import { ${uniqueNames.join(", ")} } from "${rel}";`);
+    lines.push(
+      `import { ${uniqueNames.join(", ")} } from "${rel}${appendExtension ? ".ts" : ""}";`,
+    );
   }
   return lines.join("\n");
 }
@@ -185,10 +188,15 @@ async function writeTsFile({
 /**
  * Generates an index file that re-exports all TypeScript files in a directory.
  */
-async function writeIndexFileForFolder(folderPath: string, filenames: string[], config: Config) {
+async function writeIndexFileForFolder(
+  folderPath: string,
+  filenames: string[],
+  config: Config,
+  appendExtension: boolean = false,
+) {
   const lines = filenames.map((fn) => {
     const baseNoExt = fn.replace(/\.ts$/, "");
-    return `export * from './${baseNoExt}';`;
+    return `export * from './${baseNoExt}${appendExtension ? ".ts" : ""}';`;
   });
   const indexPath = resolvePath(folderPath, "index.ts");
   const content = lines.join("\n");
@@ -438,7 +446,7 @@ export type ${mappedName} = typeof ${mappedName}[keyof typeof ${mappedName}];
 
       const fileDir = resolvePath(outputDir, "models");
       const currentFilePath = resolvePath(fileDir, `${mapped}.ts`);
-      const imports = generateImportLines(references, fileDir, currentFilePath, mapped);
+      const imports = generateImportLines(references, fileDir, currentFilePath, mapped, true);
       const content = [imports, body].filter(Boolean).join("\n\n");
 
       const filePath = resolvePath(fileDir, `${mapped}.ts`);
@@ -506,7 +514,7 @@ export type ${mappedName} = typeof ${mappedName}[keyof typeof ${mappedName}];
       const lines = [...linesMap.values()];
       const fileDir = resolvePath(outputDir, "inputTypes");
       const currentFilePath = resolvePath(fileDir, `${mapped}.ts`);
-      const importLines = generateImportLines(references, fileDir, currentFilePath, mapped);
+      const importLines = generateImportLines(references, fileDir, currentFilePath, mapped, true);
 
       const body = `export interface ${mapped} {\n${lines.join("\n")}\n}`;
       const content = [importLines, body].filter(Boolean).join("\n\n");
@@ -569,7 +577,7 @@ export type ${mappedName} = typeof ${mappedName}[keyof typeof ${mappedName}];
 
       const fileDir = resolvePath(outputDir, "outputTypes");
       const currentFilePath = resolvePath(fileDir, `${mapped}.ts`);
-      const importLines = generateImportLines(references, fileDir, currentFilePath, mapped);
+      const importLines = generateImportLines(references, fileDir, currentFilePath, mapped, true);
 
       const body = `export interface ${mapped} {\n${lines.join("\n")}\n}`;
       const content = [importLines, body].filter(Boolean).join("\n\n");
@@ -627,16 +635,16 @@ export type ${mappedName} = typeof ${mappedName}[keyof typeof ${mappedName}];
 
     // Subfolder indexes
     const utilityDir = resolvePath(outputDir, "utility");
-    await writeIndexFileForFolder(utilityDir, enumFiles, config);
+    await writeIndexFileForFolder(utilityDir, enumFiles, config, true);
 
     const modelsDir = resolvePath(outputDir, "models");
-    await writeIndexFileForFolder(modelsDir, modelFiles, config);
+    await writeIndexFileForFolder(modelsDir, modelFiles, config, true);
 
     const inputDir = resolvePath(outputDir, "inputTypes");
-    await writeIndexFileForFolder(inputDir, inputFiles, config);
+    await writeIndexFileForFolder(inputDir, inputFiles, config, true);
 
     const outputDir_ = resolvePath(outputDir, "outputTypes");
-    await writeIndexFileForFolder(outputDir_, outputFiles, config);
+    await writeIndexFileForFolder(outputDir_, outputFiles, config, true);
 
     // Root index
     await writeRootIndexFile(
