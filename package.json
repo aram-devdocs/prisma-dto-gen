@@ -27,7 +27,8 @@
     "prepare": "node .husky/install.mjs"
   },
   "dependencies": {
-    "@prisma/generator-helper": "^5.0.0"
+    "@prisma/generator-helper": "^5.0.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

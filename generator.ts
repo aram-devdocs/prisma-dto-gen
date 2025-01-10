@@ -2,7 +2,6 @@ import type { DMMF } from "@prisma/generator-helper";
 import generatorHelper from "@prisma/generator-helper";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve as resolvePath, relative } from "node:path";
-
 const { generatorHandler } = generatorHelper;
 
 /** Configuration options for the DTO generator */
@@ -26,7 +25,12 @@ interface Config {
   prettier: boolean;
   resolvePrettierConfig: boolean;
   appendExtensions: boolean;
+  schema: "zod" | null;
+  schemaPrefix: string;
+  schemaSuffix: string;
 }
+
+const DEFAULT_SCHEMA_SUFFIX = "Schema";
 
 /** Maps Prisma scalar types to their corresponding TypeScript types */
 const SCALAR_TYPE_GETTERS: Record<string, (config: Config) => string> = {
@@ -39,6 +43,18 @@ const SCALAR_TYPE_GETTERS: Record<string, (config: Config) => string> = {
   BigInt: (c) => c.bigIntType,
   Decimal: (c) => c.decimalType,
   Bytes: (c) => c.bytesType,
+};
+
+const ZOD_SCALAR_TYPE_GETTERS: Record<string, (config: Config) => string> = {
+  String: () => "z.string()",
+  Boolean: () => "z.boolean()",
+  Int: () => "z.number()",
+  Float: () => "z.number()",
+  Json: () => "z.any()",
+  DateTime: (c) => (c.dateType === "Date" ? "z.date()" : "z.string()"),
+  BigInt: (c) => (c.bigIntType === "bigint" ? "z.bigint()" : "z.string()"),
+  Decimal: () => "z.any()",
+  Bytes: () => "z.instanceof(Buffer)",
 };
 
 /** Core TypeScript type definitions required by the generated DTOs */
@@ -119,6 +135,16 @@ function generateImportLines(
 
   for (const ref of references) {
     if (ref.name === localTypeName) continue; // skip self
+
+    // Special handling for zod imports
+    if (ref.importPath === "zod") {
+      if (!byPath.has("zod")) {
+        byPath.set("zod", []);
+      }
+      byPath.get("zod")!.push(ref.name);
+      continue;
+    }
+
     const refAbs = resolvePath(fileDir, "..", ref.importPath) + ".ts";
     if (refAbs === currentFilePath) continue; // same file
     if (!byPath.has(ref.importPath)) {
@@ -129,14 +155,22 @@ function generateImportLines(
 
   const lines: string[] = [];
   for (const [importPath, names] of byPath.entries()) {
-    let rel = relative(fileDir, resolvePath(fileDir, "..", importPath));
-    if (!rel.startsWith(".")) {
-      rel = `./${rel}`;
-    }
     const uniqueNames = [...new Set(names)];
-    lines.push(
-      `import { ${uniqueNames.join(", ")} } from "${rel}${config.appendExtensions ? ".ts" : ""}";`,
-    );
+    if (importPath === "zod") {
+      lines.push(`import { ${uniqueNames.join(", ")} } from "zod";`);
+    } else {
+      let rel = relative(fileDir, resolvePath(fileDir, "..", importPath));
+      if (!rel.startsWith(".")) {
+        rel = `./${rel}`;
+      }
+      // Remove any potential double extensions
+      const cleanPath = rel.replace(/\.ts\.ts$/, ".ts");
+      lines.push(
+        `import { ${uniqueNames.join(", ")} } from "${cleanPath}${
+          config.appendExtensions ? ".ts" : ""
+        }";`,
+      );
+    }
   }
   return lines.join("\n");
 }
@@ -244,6 +278,72 @@ function flattenRelationFieldName(fieldName: string): string {
   return fieldName + "_id";
 }
 
+/**
+ * Helper function to fix import paths for schema files
+ */
+function getSchemaImportPath(
+  currentDir: string,
+  targetType: string,
+  targetFolder: string,
+  outputDir: string,
+  config: Config,
+): string {
+  if (!config) console.log(config); // Placeholder, dont sweat it. Also dont remove it. Trust me.
+  // If target folder is the same as the current directory's folder name,
+  // use relative path within same directory
+  const currentFolder = currentDir.split("/").pop();
+  if (currentFolder === targetFolder) {
+    return `./${targetType}.schema`;
+  }
+
+  // Otherwise calculate relative path from current directory to target folder
+  const relativePath = relative(currentDir, resolvePath(outputDir, targetFolder));
+  const path = relativePath.startsWith(".") ? relativePath : "./" + relativePath;
+  return `${path}/${targetType}.schema`;
+}
+
+/**
+ * Generate import lines with special handling for zod and schema files
+ */
+function generateSchemaImportLines(
+  references: Set<Ref>,
+  fileDir: string,
+  currentFilePath: string,
+  localTypeName: string,
+  config: Config,
+): string {
+  const lines: string[] = [];
+  const byPath = new Map<string, string[]>();
+
+  for (const ref of references) {
+    if (ref.name === localTypeName) continue;
+
+    if (ref.importPath === "zod") {
+      lines.unshift(`import { z } from "zod";`); // Ensure zod import is first
+      continue;
+    }
+
+    // For other imports
+    if (!byPath.has(ref.importPath)) {
+      byPath.set(ref.importPath, []);
+    }
+    byPath.get(ref.importPath)!.push(ref.name);
+  }
+
+  // Handle schema imports
+  for (const [importPath, names] of byPath.entries()) {
+    const uniqueNames = [...new Set(names)];
+    const cleanPath = importPath.replace(/\.ts\.ts$/, ".ts");
+    lines.push(
+      `import { ${uniqueNames.join(", ")} } from "${cleanPath}${
+        config.appendExtensions ? ".ts" : ""
+      }";`,
+    );
+  }
+
+  return lines.join("\n");
+}
+
 generatorHandler({
   onManifest() {
     return {
@@ -275,6 +375,9 @@ generatorHandler({
       prettier: baseConfig.prettier === "true",
       resolvePrettierConfig: baseConfig.resolvePrettierConfig !== "false",
       appendExtensions: baseConfig.appendExtensions === "true",
+      schema: baseConfig.schema === "zod" ? "zod" : null,
+      schemaPrefix: String(baseConfig.schemaPrefix || ""),
+      schemaSuffix: String(baseConfig.schemaSuffix || DEFAULT_SCHEMA_SUFFIX),
     };
 
     validateConfig(config);
@@ -589,6 +692,218 @@ export type ${mappedName} = typeof ${mappedName}[keyof typeof ${mappedName}];
       return `${mapped}.ts`;
     }
 
+    async function generateModelSchemaFile(m: DMMF.Model, isComposite: boolean, config: Config) {
+      const modelName =
+        (isComposite ? typeNameMap.get(m.name) : modelNameMap.get(m.name)) ?? m.name;
+      const schemaName = `${config.schemaPrefix}${modelName}${config.schemaSuffix}`;
+      const references = new Set<Ref>();
+
+      // Add zod import
+      references.add({ name: "z", importPath: "zod" });
+
+      const fields = m.fields.map((field) => {
+        const { name, kind, type, isList, isRequired } = field;
+
+        let zodType = "z.any()";
+        if (kind === "scalar") {
+          const getter = ZOD_SCALAR_TYPE_GETTERS[type];
+          if (getter) {
+            zodType = getter(config);
+          }
+        } else if (kind === "enum") {
+          const enumName = enumNameMap.get(type);
+          if (enumName) {
+            const ref = globalTypeToPath.get(enumName);
+            if (ref) {
+              references.add({
+                name: `${enumName}${config.schemaSuffix}`,
+                importPath: `${ref}.schema`,
+              });
+            }
+            zodType = `${enumName}${config.schemaSuffix}`;
+          }
+        } else if (kind === "object") {
+          if (!config.omitRelations) {
+            const refName = modelNameMap.get(type) ?? typeNameMap.get(type);
+            if (refName) {
+              const ref = globalTypeToPath.get(refName);
+              if (ref) {
+                references.add({
+                  name: `${refName}${config.schemaSuffix}`,
+                  importPath: `${ref}.schema`,
+                });
+              }
+              zodType = `${refName}${config.schemaSuffix}`;
+            }
+          } else {
+            return null;
+          }
+        }
+
+        if (isList) {
+          zodType = `z.array(${zodType})`;
+        }
+
+        if (!isRequired) {
+          zodType = `${zodType}.nullable()`;
+        }
+
+        return `  ${name}: ${zodType}`;
+      });
+
+      const filteredFields = fields.filter((x): x is string => x !== null);
+
+      const body = `export const ${schemaName} = z.object({\n${filteredFields.join(",\n")}\n});`;
+
+      const fileDir = resolvePath(outputDir, "models");
+      const currentFilePath = resolvePath(fileDir, `${modelName}.schema.ts`);
+      const imports = generateImportLines(references, fileDir, currentFilePath, modelName, config);
+      const content = [imports, body].filter(Boolean).join("\n\n");
+
+      const filePath = resolvePath(fileDir, `${modelName}.schema.ts`);
+      await writeTsFile({ filePath, content, config });
+      return `${modelName}.schema.ts`;
+    }
+
+    async function generateEnumSchemaFile(e: DMMF.DatamodelEnum) {
+      const mapped = enumNameMap.get(e.name) ?? e.name;
+      const schemaName = `${config.schemaPrefix}${mapped}${config.schemaSuffix}`;
+
+      // Generate enum values
+      const enumValues = e.values.map((v) => `"${v.name}"`).join(", ");
+
+      const content = `import { z } from 'zod';
+  
+  export const ${schemaName} = z.enum([${enumValues}]);`;
+
+      const filePath = resolvePath(outputDir, `utility/${mapped}.schema.ts`);
+      await writeTsFile({ filePath, content, config });
+      return `${mapped}.schema.ts`;
+    }
+
+    async function generateInputTypeSchemaFile(io: DMMF.InputType) {
+      const mapped = inputNameMap.get(io.name) ?? io.name;
+      const schemaName = `${config.schemaPrefix}${mapped}${config.schemaSuffix}`;
+      const references = new Set<Ref>();
+      const fileDir = resolvePath(outputDir, "inputTypes");
+
+      // Add zod import
+      references.add({ name: "z", importPath: "zod" });
+
+      const fields = io.fields.map((field) => {
+        const { name, isRequired } = field;
+        let zodType = "z.any()";
+
+        // Handle field types
+        const typeInfo = field.inputTypes[0]; // Take first type as primary
+        if (typeInfo.location === "scalar") {
+          const getter = ZOD_SCALAR_TYPE_GETTERS[String(typeInfo.type)];
+          if (getter) zodType = getter(config);
+        } else if (typeInfo.location === "enumTypes") {
+          const enumName = enumNameMap.get(String(typeInfo.type));
+          if (enumName) {
+            const importPath = getSchemaImportPath(fileDir, enumName, "utility", outputDir, config);
+            references.add({
+              name: `${enumName}${config.schemaSuffix}`,
+              importPath,
+            });
+            zodType = `${enumName}${config.schemaSuffix}`;
+          }
+        }
+
+        if (typeInfo.isList) {
+          zodType = `z.array(${zodType})`;
+        }
+
+        if (!isRequired) {
+          zodType = `${zodType}.nullable()`;
+        }
+
+        return `  ${name}: ${zodType}`;
+      });
+
+      const body = `export const ${schemaName} = z.object({\n${fields.join(",\n")}\n});`;
+
+      const currentFilePath = resolvePath(fileDir, `${mapped}.schema.ts`);
+      const imports = generateImportLines(references, fileDir, currentFilePath, mapped, config);
+      const content = [imports, body].filter(Boolean).join("\n\n");
+
+      const filePath = resolvePath(fileDir, `${mapped}.schema.ts`);
+      await writeTsFile({ filePath, content, config });
+      return `${mapped}.schema.ts`;
+    }
+
+    async function generateOutputTypeSchemaFile(oo: DMMF.OutputType) {
+      const mapped = outputNameMap.get(oo.name) ?? oo.name;
+      const schemaName = `${config.schemaPrefix}${mapped}${config.schemaSuffix}`;
+      const references = new Set<Ref>();
+      const fileDir = resolvePath(outputDir, "outputTypes");
+
+      // Add zod import properly
+      references.add({ name: "z", importPath: "zod" });
+
+      const fields = oo.fields.map((field) => {
+        const {
+          isNullable,
+          outputType: { isList, location, type: rawType },
+        } = field;
+        let zodType = "z.any()";
+
+        if (location === "scalar") {
+          const getter = ZOD_SCALAR_TYPE_GETTERS[String(rawType)];
+          if (getter) zodType = getter(config);
+        } else if (location === "enumTypes") {
+          const enumName = enumNameMap.get(String(rawType));
+          if (enumName) {
+            const importPath = getSchemaImportPath(fileDir, enumName, "utility", outputDir, config);
+            references.add({
+              name: `${enumName}${config.schemaSuffix}`,
+              importPath,
+            });
+            zodType = `${enumName}${config.schemaSuffix}`;
+          }
+        } else if (location === "outputObjectTypes") {
+          const outName = outputNameMap.get(String(rawType));
+          if (outName) {
+            // Always use local directory for output type schemas
+            const importPath = `./${outName}.schema`;
+            references.add({
+              name: `${outName}${config.schemaSuffix}`,
+              importPath,
+            });
+            zodType = `${outName}${config.schemaSuffix}`;
+          }
+        }
+
+        if (isList) {
+          zodType = `z.array(${zodType})`;
+        }
+
+        if (isNullable) {
+          zodType = `${zodType}.nullable()`;
+        }
+
+        return `  ${field.name}: ${zodType}`;
+      });
+
+      const body = `export const ${schemaName} = z.object({\n${fields.join(",\n")}\n});`;
+
+      const currentFilePath = resolvePath(fileDir, `${mapped}.schema.ts`);
+      // Use new schema-specific import generator
+      const imports = generateSchemaImportLines(
+        references,
+        fileDir,
+        currentFilePath,
+        mapped,
+        config,
+      );
+      const content = [imports, body].filter(Boolean).join("\n\n");
+
+      const filePath = resolvePath(fileDir, `${mapped}.schema.ts`);
+      await writeTsFile({ filePath, content, config });
+      return `${mapped}.schema.ts`;
+    }
+
     // --- Generate everything ---
     const enumFiles: string[] = [];
     const modelFiles: string[] = [];
@@ -633,6 +948,37 @@ export type ${mappedName} = typeof ${mappedName}[keyof typeof ${mappedName}];
       const ctPath = resolvePath(outputDir, "utility", "CustomTypes.ts");
       await writeTsFile({ filePath: ctPath, content: lines.join("\n\n"), config });
       enumFiles.push("CustomTypes.ts");
+    }
+
+    // After generating model files, generate schema files if enabled
+    if (config.schema === "zod") {
+      // Generate schema files for enums
+      for (const e of enums) {
+        const f = await generateEnumSchemaFile(e);
+        if (f) enumFiles.push(f);
+      }
+
+      // Generate schema files for models and types
+      for (const m of models) {
+        const f = await generateModelSchemaFile(m, false, config);
+        if (f) modelFiles.push(f);
+      }
+      for (const t of types) {
+        const f = await generateModelSchemaFile(t, true, config);
+        if (f) modelFiles.push(f);
+      }
+
+      // Generate schema files for input types
+      for (const io of inputObjectTypes) {
+        const f = await generateInputTypeSchemaFile(io);
+        if (f) inputFiles.push(f);
+      }
+
+      // Generate schema files for output types
+      for (const oo of outputObjectTypes) {
+        const f = await generateOutputTypeSchemaFile(oo);
+        if (f) outputFiles.push(f);
+      }
     }
 
     // Subfolder indexes
