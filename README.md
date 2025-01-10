@@ -7,6 +7,10 @@ This repository is an evolution of code originally written by [Morgan Zolob](htt
 **Disclaimer**  
 This project is still in early development. Use it at your own risk until a production-ready release is made.
 
+## Prisma Version Support
+
+This project has been built and tested with Prisma 5.x.x. It has not yet been tested with Prisma 6.x.x. While we expect most functionality to remain compatible, please report any issues you encounter with newer Prisma versions.
+
 ## Why This Project?
 
 Modern IDEs can bog down or fail entirely when faced with the complexity of Prisma’s built-in types (especially for large schemas). This can disrupt developer productivity, particularly in monorepo setups or front-end frameworks handling heavy schema validations.  
