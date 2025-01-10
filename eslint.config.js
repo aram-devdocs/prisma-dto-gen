@@ -6,6 +6,7 @@ import eslintConfigPrettier from "eslint-config-prettier";
 
 export default tseslint.config({
   files: ["*.ts"],
+  ignores: ["example/hello_world/index.js"],
   extends: [
     eslint.configs.recommended,
     eslintConfigPrettier,

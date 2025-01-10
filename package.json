@@ -24,7 +24,10 @@
     "lint": "prettier --check . && eslint . && echo 'Linting complete.'",
     "lint:fix": "prettier --write . && eslint . --fix && echo 'Linting complete.'",
     "test": "node --loader ts-node/esm test.ts",
-    "prepare": "node .husky/install.mjs"
+    "prepare": "node .husky/install.mjs",
+    "hello-world:dev": "cd example/hello_world && npm run dev",
+    "hello-world:generate": "cd example/hello_world && npm run generate",
+    "hello-world:build": "cd example/hello_world && npm run build"
   },
   "dependencies": {
     "@prisma/generator-helper": "^5.0.0",
