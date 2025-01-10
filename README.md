@@ -78,6 +78,16 @@ You’ll find a new folder (default is “./generated”) containing TypeScript 
 | optionalNullables     | `boolean`                             | `false`                                                      | Makes nullable fields also optional.                       |
 | prettier              | `boolean`                             | `false`                                                      | Formats the output with Prettier if set to true.           |
 | resolvePrettierConfig | `boolean`                             | `true`                                                       | Locates a Prettier config for advanced formatting options. |
+| appendExtensions      | `boolean`                             | `false`                                                      | Add `.ts` extensions to imports for ESM compatibility      |
+
+### TypeScript ESM Compatibility
+
+When using TypeScript with ESM modules (`"type": "module"` in package.json) or certain module resolution strategies (`NodeNext`/`Node16`), you'll need file extensions in import statements. Enable this with:
+
+```prisma
+appendExtensions = true
+
+```
 
 ## Future Plans
 

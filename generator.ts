@@ -25,6 +25,7 @@ interface Config {
   optionalNullables: boolean;
   prettier: boolean;
   resolvePrettierConfig: boolean;
+  appendExtensions: boolean;
 }
 
 /** Maps Prisma scalar types to their corresponding TypeScript types */
@@ -112,7 +113,7 @@ function generateImportLines(
   fileDir: string,
   currentFilePath: string,
   localTypeName: string,
-  appendExtension: boolean = false,
+  config: Config, // Add config parameter
 ): string {
   const byPath = new Map<string, string[]>();
 
@@ -134,7 +135,7 @@ function generateImportLines(
     }
     const uniqueNames = [...new Set(names)];
     lines.push(
-      `import { ${uniqueNames.join(", ")} } from "${rel}${appendExtension ? ".ts" : ""}";`,
+      `import { ${uniqueNames.join(", ")} } from "${rel}${config.appendExtensions ? ".ts" : ""}";`,
     );
   }
   return lines.join("\n");
@@ -273,6 +274,7 @@ generatorHandler({
       optionalNullables: baseConfig.optionalNullables === "true",
       prettier: baseConfig.prettier === "true",
       resolvePrettierConfig: baseConfig.resolvePrettierConfig !== "false",
+      appendExtensions: baseConfig.appendExtensions === "true",
     };
 
     validateConfig(config);
@@ -446,7 +448,7 @@ export type ${mappedName} = typeof ${mappedName}[keyof typeof ${mappedName}];
 
       const fileDir = resolvePath(outputDir, "models");
       const currentFilePath = resolvePath(fileDir, `${mapped}.ts`);
-      const imports = generateImportLines(references, fileDir, currentFilePath, mapped, true);
+      const imports = generateImportLines(references, fileDir, currentFilePath, mapped, config);
       const content = [imports, body].filter(Boolean).join("\n\n");
 
       const filePath = resolvePath(fileDir, `${mapped}.ts`);
@@ -514,7 +516,7 @@ export type ${mappedName} = typeof ${mappedName}[keyof typeof ${mappedName}];
       const lines = [...linesMap.values()];
       const fileDir = resolvePath(outputDir, "inputTypes");
       const currentFilePath = resolvePath(fileDir, `${mapped}.ts`);
-      const importLines = generateImportLines(references, fileDir, currentFilePath, mapped, true);
+      const importLines = generateImportLines(references, fileDir, currentFilePath, mapped, config);
 
       const body = `export interface ${mapped} {\n${lines.join("\n")}\n}`;
       const content = [importLines, body].filter(Boolean).join("\n\n");
@@ -577,7 +579,7 @@ export type ${mappedName} = typeof ${mappedName}[keyof typeof ${mappedName}];
 
       const fileDir = resolvePath(outputDir, "outputTypes");
       const currentFilePath = resolvePath(fileDir, `${mapped}.ts`);
-      const importLines = generateImportLines(references, fileDir, currentFilePath, mapped, true);
+      const importLines = generateImportLines(references, fileDir, currentFilePath, mapped, config);
 
       const body = `export interface ${mapped} {\n${lines.join("\n")}\n}`;
       const content = [importLines, body].filter(Boolean).join("\n\n");
