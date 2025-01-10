@@ -1,0 +1,2 @@
+npm run lint || { echo "Linting failed, run 'npm run lint:fix' to try and fix linting errors." && exit 1; }
+npm test || { echo "Tests failed" && exit 1; }

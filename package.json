@@ -1,0 +1,54 @@
+{
+  "name": "prisma-dto-gen",
+  "version": "0.0.1",
+  "description": "Generate performant zero-dependency native TS interfaces and schemas for the client. (Sourced from https://github.com/mogzol/prisma-generator-typescript-interfaces)",
+  "author": "Aram Hammoudeh, Morgan Zolob (Source)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aram-devdocs/prisma-dto-gen"
+  },
+  "type": "module",
+  "main": "generator.js",
+  "files": [
+    "generator.js"
+  ],
+  "bin": {
+    "prisma-generator-typescript-interfaces": "generator.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "postbuild": "node -e \"g='generator.js';f=require('fs');f.writeFileSync(g,'#!/usr/bin/env node\\n'+f.readFileSync(g))\"",
+    "clean": "rimraf --glob generator.js **/__TEST_TMP__",
+    "generate": "prisma generate --schema=prisma/example.prisma",
+    "lint": "prettier --check . && eslint . && echo 'Linting complete.'",
+    "lint:fix": "prettier --write . && eslint . --fix && echo 'Linting complete.'",
+    "test": "node --loader ts-node/esm test.ts",
+    "prepare": "node .husky/install.mjs"
+  },
+  "dependencies": {
+    "@prisma/generator-helper": "^5.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@prisma/client": "^5.21.1",
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.1.6",
+    "prettier": "^3.3.3",
+    "prisma": "^5.21.1",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.12.2"
+  },
+  "keywords": [
+    "prisma",
+    "generator",
+    "typescript",
+    "interface",
+    "json",
+    "dto"
+  ]
+}

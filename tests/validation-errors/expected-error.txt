@@ -1,0 +1,7 @@
+Error:
+Invalid modelType: bad
+Invalid enumType: incorrect
+Invalid dateType: wrong
+Invalid bigIntType: values
+Invalid decimalType: go
+Invalid bytesType: here

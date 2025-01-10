@@ -1,0 +1,8 @@
+node_modules
+__TEST_TMP__
+generator.js
+*.tgz
+
+# Ignore eventyrhing in the prisma folder except the example
+prisma/*
+!prisma/example.prisma
