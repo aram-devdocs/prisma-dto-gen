@@ -3,7 +3,7 @@
 export const Gender = {
   Male: "Male",
   Female: "Female",
-  Other: "Other"
+  Other: "Other",
 } as const;
 
 export type Gender = (typeof Gender)[keyof typeof Gender];
@@ -12,7 +12,7 @@ export const DataTest = {
   Apple: "Apple",
   Banana: "Banana",
   Orange: "Orange",
-  Pear: "Pear"
+  Pear: "Pear",
 } as const;
 
 export type DataTest = (typeof DataTest)[keyof typeof DataTest];
@@ -77,4 +77,10 @@ export interface Data {
 
 type Decimal = { valueOf(): string };
 
-type JsonValue = string | number | boolean | { [key in string]?: JsonValue } | Array<JsonValue> | null;
+type JsonValue =
+  | string
+  | number
+  | boolean
+  | { [key in string]?: JsonValue }
+  | Array<JsonValue>
+  | null;

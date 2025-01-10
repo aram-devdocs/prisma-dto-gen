@@ -1,4 +1,10 @@
 {
-  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2021",
+    "strict": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "dist"
+  },
   "include": ["generator.ts"]
 }

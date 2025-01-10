@@ -3,14 +3,14 @@
 export enum Gender {
   Male = "Male",
   Female = "Female",
-  Other = "Other"
+  Other = "Other",
 }
 
 export enum DataTest {
   Apple = "Apple",
   Banana = "Banana",
   Orange = "Orange",
-  Pear = "Pear"
+  Pear = "Pear",
 }
 
 export interface Person {
@@ -73,4 +73,10 @@ export interface Data {
 
 type Decimal = { valueOf(): string };
 
-type JsonValue = string | number | boolean | { [key in string]?: JsonValue } | Array<JsonValue> | null;
+type JsonValue =
+  | string
+  | number
+  | boolean
+  | { [key in string]?: JsonValue }
+  | Array<JsonValue>
+  | null;

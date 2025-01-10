@@ -3,7 +3,7 @@
 export const eGenderEnum = {
   Male: "Male",
   Female: "Female",
-  Other: "Other"
+  Other: "Other",
 } as const;
 
 export type eGenderEnum = (typeof eGenderEnum)[keyof typeof eGenderEnum];
@@ -12,7 +12,7 @@ export const eDataTestEnum = {
   Apple: "Apple",
   Banana: "Banana",
   Orange: "Orange",
-  Pear: "Pear"
+  Pear: "Pear",
 } as const;
 
 export type eDataTestEnum = (typeof eDataTestEnum)[keyof typeof eDataTestEnum];
@@ -77,4 +77,10 @@ export interface Data {
 
 type Decimal = { valueOf(): string };
 
-type JsonValue = string | number | boolean | { [key in string]?: JsonValue } | Array<JsonValue> | null;
+type JsonValue =
+  | string
+  | number
+  | boolean
+  | { [key in string]?: JsonValue }
+  | Array<JsonValue>
+  | null;

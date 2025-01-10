@@ -67,4 +67,10 @@ export interface Data {
 
 type Decimal = { valueOf(): string };
 
-type JsonValue = string | number | boolean | { [key in string]?: JsonValue } | Array<JsonValue> | null;
+type JsonValue =
+  | string
+  | number
+  | boolean
+  | { [key in string]?: JsonValue }
+  | Array<JsonValue>
+  | null;

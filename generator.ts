@@ -196,10 +196,17 @@ async function writeIndexFileForFolder(folderPath: string, filenames: string[], 
 }
 
 /**
- * Generates the root index.ts file that exports all submodules.
+ * Generates the root index.ts file that exports all submodules. We can append /index.ts optionally
  */
-async function writeRootIndexFile(rootDir: string, config: Config, subfolders: string[]) {
-  const lines = subfolders.map((sf) => `export * as ${sf} from './${sf}';`);
+async function writeRootIndexFile(
+  rootDir: string,
+  config: Config,
+  subfolders: string[],
+  appendIndexFile = false,
+) {
+  const lines = subfolders.map(
+    (sf) => `export * as ${sf} from './${sf}${appendIndexFile ? "/index.ts" : ""}';`,
+  );
   const filePath = resolvePath(rootDir, "index.ts");
   const content = lines.join("\n");
   await writeTsFile({ filePath, content, config });
@@ -632,6 +639,11 @@ export type ${mappedName} = typeof ${mappedName}[keyof typeof ${mappedName}];
     await writeIndexFileForFolder(outputDir_, outputFiles, config);
 
     // Root index
-    await writeRootIndexFile(outputDir, config, ["utility", "models", "inputTypes", "outputTypes"]);
+    await writeRootIndexFile(
+      outputDir,
+      config,
+      ["utility", "models", "inputTypes", "outputTypes"],
+      true,
+    );
   },
 });
