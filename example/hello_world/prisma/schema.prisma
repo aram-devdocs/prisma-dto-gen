@@ -47,7 +47,7 @@ model UserProfile {
     created_timestamp DateTime      @default(now())
     updated_timestamp DateTime?
     deactivated       Boolean?      @default(false)
-    full_name         String
+    full_name         String /// z.string().min(1).max(100)
     email_address     String?       @unique
     phone_number      String?
     password_hash     String?

@@ -96,6 +96,12 @@ generator dto {
 }
 ```
 
+## Custom Zod Comments (In Progress)
+
+When a field in your Prisma model includes a doc comment starting with a valid Zod expression (for example, /// z.string().min(1).max(100)), the generator will use that snippet in the generated schema. If the base type does not match, a warning will be printed.
+
+Note: Currently, this feature only works for model generation. Support for input and output type validation is under development and will be included in a future release.
+
 ## Future Plans
 
 • Expanded zero-dependency Zod schema generation that won’t bloat your front-end or hamper the TypeScript server.  

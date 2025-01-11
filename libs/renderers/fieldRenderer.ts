@@ -54,6 +54,25 @@ export function renderFieldTypeInline(
   return tsType;
 }
 
+function getFieldDoc(field: any): string | undefined {
+  // Some fields have 'documentation' (models), some have 'comment' (input/output)
+  return typeof field.documentation === "string"
+    ? field.documentation
+    : typeof field.comment === "string"
+      ? field.comment
+      : undefined;
+}
+
+function getCustomZodSnippet(documentation?: string): string | undefined {
+  if (!documentation) return undefined;
+  const trimmed = documentation.trim();
+  // Simple check if doc starts with "z."
+  if (trimmed.startsWith("z.")) {
+    return trimmed;
+  }
+  return undefined;
+}
+
 /**
  * Renders Zod type for a single Prisma field (scalar, enum, or object).
  */
@@ -66,6 +85,15 @@ export function renderZodFieldInline(
 ): string {
   const { config } = context;
   if (!config.schema) return "z.any()";
+
+  // Check for custom Zod snippet
+  const docString = getFieldDoc(field);
+  const customZod = getCustomZodSnippet(docString);
+  if (customZod) {
+    // (Optional) check type mismatch and log warning if needed
+    // console.warn(`Warning: Custom Zod for '${field.name}' may not match underlying type.`);
+    return customZod;
+  }
 
   const { kind, type, isList } = field;
   let zodType = "z.any()";

@@ -13,6 +13,24 @@ import { ZOD_SCALAR_TYPE_GETTERS } from "../consts/ZOD_SCALAR_TYPE_GETTERS.js";
  * Generates a TS type (or interface) for input/output object types,
  * plus optional zod schema if `config.schema = "zod"`.
  */
+
+function getFieldDoc(field: any): string | undefined {
+  return typeof field.documentation === "string"
+    ? field.documentation
+    : typeof field.comment === "string"
+      ? field.comment
+      : undefined;
+}
+
+function getCustomZodSnippet(documentation?: string): string | undefined {
+  if (!documentation) return undefined;
+  const trimmed = documentation.trim();
+  if (trimmed.startsWith("z.")) {
+    return trimmed;
+  }
+  return undefined;
+}
+
 export function generateComplexTypeInline(
   io: DMMF.InputType | DMMF.OutputType,
   allModels: DMMF.Model[],
@@ -197,6 +215,16 @@ export function generateComplexTypeInline(
             );
           }
         }
+      }
+
+      // Check for custom doc-based Zod
+      const docString = getFieldDoc(field);
+      const customZod = getCustomZodSnippet(docString);
+      if (customZod) {
+        zodField = customZod;
+        // console.warn(`Warning: Overriding type for '${field.name}' with custom Zod snippet.`);
+      } else {
+        // ...existing auto-generated zod logic...
       }
 
       // If list => wrap in z.array()
