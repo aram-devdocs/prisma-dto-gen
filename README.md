@@ -64,7 +64,6 @@ npx prisma generate
 ```
 
 You’ll find a new folder (default is “./generated”) containing TypeScript definitions for your entire Prisma client (models, inputTypes, outputTypes), plus an index.ts aggregator.
-
 ## Configuration Options
 
 | Option                | Type                                  | Default                                                      | Description                                                |
@@ -78,19 +77,21 @@ You’ll find a new folder (default is “./generated”) containing TypeScript 
 | decimalType           | `"Decimal" \| "string" \| "number"`   | `"Decimal"`                                                  | Mapping used for Decimal fields.                           |
 | bytesType             | `"Buffer" \| "BufferObject" \| ...`   | `"Buffer"`                                                   | Mapping used for Bytes fields.                             |
 | optionalRelations     | `boolean`                             | `true`                                                       | Makes relational fields optional if enabled.               |
-| omitRelations         | `boolean`                             | `false`                                                      | Omits relational fields entirely.                          |
+| omitRelations        | `boolean`                             | `false`                                                      | Omits relational fields entirely.                          |
 | optionalNullables     | `boolean`                             | `false`                                                      | Makes nullable fields also optional.                       |
 | prettier              | `boolean`                             | `false`                                                      | Formats the output with Prettier if set to true.           |
 | resolvePrettierConfig | `boolean`                             | `true`                                                       | Locates a Prettier config for advanced formatting options. |
-| appendExtensions      | `boolean`                             | `false`                                                      | Add `.ts` extensions to imports for ESM compatibility      |
+| fileExtension        | `".ts" \| ".mts" \| ".cts" \| ".js" \| ".mjs" \| ".cjs" \| null` | `".js"`                        | File extension for generated files and imports. Set null to omit. |
 
 ### TypeScript ESM Compatibility
 
-When using TypeScript with ESM modules (`"type": "module"` in package.json) or certain module resolution strategies (`NodeNext`/`Node16`), you'll need file extensions in import statements. Enable this with:
+When using TypeScript with ESM modules (`"type": "module"` in package.json) or certain module resolution strategies (`NodeNext`/`Node16`), you'll need appropriate file extensions in import statements. Configure this with the `fileExtension` option:
 
 ```prisma
-appendExtensions = true
-
+generator dto {
+  provider = "prisma-dto-gen"
+  fileExtension = ".js" // or .mjs, .ts, etc.
+}
 ```
 
 ## Future Plans
