@@ -35,6 +35,8 @@ cd "$SCRIPT_DIR/tests" || exit 1
 for dir in */; do
     if [ -d "${dir}expected" ] && [ -d "${dir}__TEST_TMP__" ]; then
         echo "Processing ${dir}..."
+        # Delete schema.prisma if it exists in __TEST_TMP__
+        rm -f "${dir}__TEST_TMP__/schema.prisma"
         rm -rf "${dir}expected"
         mv "${dir}__TEST_TMP__" "${dir}expected"
     fi
