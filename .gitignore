@@ -6,3 +6,4 @@ generator.js
 # Ignore eventyrhing in the prisma folder except the example
 prisma/*
 !prisma/example.prisma
+/dist

@@ -4,6 +4,8 @@
     "strict": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "outDir": "dist"
   },
   "include": ["generator.ts"]
