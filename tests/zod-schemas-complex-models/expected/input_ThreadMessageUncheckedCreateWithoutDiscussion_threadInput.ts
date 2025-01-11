@@ -5,8 +5,8 @@ export interface ThreadMessageUncheckedCreateWithoutDiscussion_threadInput {
   sender_id: string;
   content: string;
   sent_at: Date;
-  updated_at?: any | null;
-  is_archived?: any | null;
+  updated_at?: any;
+  is_archived?: any;
 }
 
 import { z } from "zod";
@@ -16,6 +16,6 @@ export const ThreadMessageUncheckedCreateWithoutDiscussion_threadInputSchema = z
   sender_id: z.string(),
   content: z.string(),
   sent_at: z.date(),
-  updated_at: z.date().nullable(),
-  is_archived: z.boolean().nullable(),
+  updated_at: z.date().optional(),
+  is_archived: z.boolean().optional(),
 });

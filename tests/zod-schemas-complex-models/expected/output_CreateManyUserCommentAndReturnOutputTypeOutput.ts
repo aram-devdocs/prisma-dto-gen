@@ -8,8 +8,8 @@ export interface CreateManyUserCommentAndReturnOutputTypeOutput {
   commenter_id: string;
   text: string;
   created_at: Date;
-  edited_at?: Date | null;
-  is_deleted?: boolean | null;
+  edited_at?: Date;
+  is_deleted?: boolean;
   user_document: {
     document_id: string;
     owner_profile_id: string;
@@ -160,8 +160,8 @@ export const CreateManyUserCommentAndReturnOutputTypeOutputSchema = z.object({
   commenter_id: z.string(),
   text: z.string(),
   created_at: z.date(),
-  edited_at: z.date().nullable(),
-  is_deleted: z.boolean().nullable(),
+  edited_at: z.date().optional(),
+  is_deleted: z.boolean().optional(),
   user_document: z.object({
     document_id: z.string(),
     owner_profile_id: z.string(),

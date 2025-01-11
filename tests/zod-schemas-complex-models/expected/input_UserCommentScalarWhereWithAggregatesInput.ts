@@ -9,8 +9,8 @@ export interface UserCommentScalarWhereWithAggregatesInput {
   commenter_id: any;
   text: any;
   created_at: any;
-  edited_at?: any | null;
-  is_deleted?: any | null;
+  edited_at?: any;
+  is_deleted?: any;
 }
 
 import { z } from "zod";
@@ -24,6 +24,6 @@ export const UserCommentScalarWhereWithAggregatesInputSchema = z.object({
   commenter_id: z.any(),
   text: z.any(),
   created_at: z.any(),
-  edited_at: z.any().nullable(),
-  is_deleted: z.any().nullable(),
+  edited_at: z.any().optional(),
+  is_deleted: z.any().optional(),
 });

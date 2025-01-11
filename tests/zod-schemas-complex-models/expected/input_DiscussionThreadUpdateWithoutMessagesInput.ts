@@ -3,9 +3,9 @@
 export interface DiscussionThreadUpdateWithoutMessagesInput {
   thread_id: any;
   created_on: any;
-  closed_on?: any | null;
-  is_flagged?: any | null;
-  flagged_reason?: any | null;
+  closed_on?: any;
+  is_flagged?: any;
+  flagged_reason?: any;
   participant_one: any;
   participant_two: any;
 }
@@ -15,9 +15,9 @@ import { z } from "zod";
 export const DiscussionThreadUpdateWithoutMessagesInputSchema = z.object({
   thread_id: z.string(),
   created_on: z.date(),
-  closed_on: z.date().nullable(),
-  is_flagged: z.boolean().nullable(),
-  flagged_reason: z.string().nullable(),
+  closed_on: z.date().optional(),
+  is_flagged: z.boolean().optional(),
+  flagged_reason: z.string().optional(),
   participant_one: z.any(),
   participant_two: z.any(),
 });

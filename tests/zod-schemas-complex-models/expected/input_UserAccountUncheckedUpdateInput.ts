@@ -5,7 +5,7 @@ export interface UserAccountUncheckedUpdateInput {
   owner_profile_id: any;
   name: any;
   created_at: any;
-  modified_at?: any | null;
+  modified_at?: any;
   is_active: any;
 }
 
@@ -16,6 +16,6 @@ export const UserAccountUncheckedUpdateInputSchema = z.object({
   owner_profile_id: z.string(),
   name: z.string(),
   created_at: z.date(),
-  modified_at: z.date().nullable(),
+  modified_at: z.date().optional(),
   is_active: z.boolean(),
 });

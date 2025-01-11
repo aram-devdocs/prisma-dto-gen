@@ -7,8 +7,8 @@ export interface CreateManyOrgEventAndReturnOutputTypeOutput {
   organization_id: string;
   event_name: string;
   start_time: Date;
-  end_time?: Date | null;
-  location?: string | null;
+  end_time?: Date;
+  location?: string;
   organization: {
     organization_id: string;
     name: string;
@@ -157,8 +157,8 @@ export const CreateManyOrgEventAndReturnOutputTypeOutputSchema = z.object({
   organization_id: z.string(),
   event_name: z.string(),
   start_time: z.date(),
-  end_time: z.date().nullable(),
-  location: z.string().nullable(),
+  end_time: z.date().optional(),
+  location: z.string().optional(),
   organization: z.object({
     organization_id: z.string(),
     name: z.string(),

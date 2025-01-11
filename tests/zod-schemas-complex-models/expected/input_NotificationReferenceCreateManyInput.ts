@@ -5,7 +5,7 @@ export interface NotificationReferenceCreateManyInput {
   notification_id: string;
   referenced_entity_id: string;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
-  archived?: any | null;
+  archived?: any;
 }
 
 import { z } from "zod";
@@ -15,5 +15,5 @@ export const NotificationReferenceCreateManyInputSchema = z.object({
   notification_id: z.string(),
   referenced_entity_id: z.string(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
-  archived: z.boolean().nullable(),
+  archived: z.boolean().optional(),
 });

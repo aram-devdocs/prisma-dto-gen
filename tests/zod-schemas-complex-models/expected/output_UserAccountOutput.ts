@@ -7,7 +7,7 @@ export interface UserAccountOutput {
   owner_profile_id: string;
   name: string;
   created_at: Date;
-  modified_at?: Date | null;
+  modified_at?: Date;
   is_active: boolean;
   user_profile: {
     profile_id: string;
@@ -157,7 +157,7 @@ export const UserAccountOutputSchema = z.object({
   owner_profile_id: z.string(),
   name: z.string(),
   created_at: z.date(),
-  modified_at: z.date().nullable(),
+  modified_at: z.date().optional(),
   is_active: z.boolean(),
   user_profile: z.object({
     profile_id: z.string(),

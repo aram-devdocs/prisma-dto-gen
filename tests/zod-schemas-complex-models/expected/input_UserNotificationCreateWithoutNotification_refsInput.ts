@@ -3,7 +3,7 @@
 export interface UserNotificationCreateWithoutNotification_refsInput {
   notification_id: string;
   sent_timestamp: Date;
-  read_timestamp?: any | null;
+  read_timestamp?: any;
   message: string;
   user_profile: any;
 }
@@ -13,7 +13,7 @@ import { z } from "zod";
 export const UserNotificationCreateWithoutNotification_refsInputSchema = z.object({
   notification_id: z.string(),
   sent_timestamp: z.date(),
-  read_timestamp: z.date().nullable(),
+  read_timestamp: z.date().optional(),
   message: z.string(),
   user_profile: z.any(),
 });

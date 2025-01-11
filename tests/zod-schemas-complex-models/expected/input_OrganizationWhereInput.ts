@@ -6,10 +6,10 @@ export interface OrganizationWhereInput {
   NOT: any;
   organization_id: any;
   name: any;
-  description?: any | null;
+  description?: any;
   created_on: any;
-  updated_on?: any | null;
-  is_active?: any | null;
+  updated_on?: any;
+  is_active?: any;
   events: any;
   members: any;
   records: any;
@@ -23,10 +23,10 @@ export const OrganizationWhereInputSchema = z.object({
   NOT: z.any(),
   organization_id: z.any(),
   name: z.any(),
-  description: z.any().nullable(),
+  description: z.any().optional(),
   created_on: z.any(),
-  updated_on: z.any().nullable(),
-  is_active: z.any().nullable(),
+  updated_on: z.any().optional(),
+  is_active: z.any().optional(),
   events: z.any(),
   members: z.any(),
   records: z.any(),

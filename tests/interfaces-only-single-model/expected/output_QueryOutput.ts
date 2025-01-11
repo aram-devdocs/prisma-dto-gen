@@ -5,11 +5,11 @@ export interface QueryOutput {
   id: number;
   name: string;
   email: string;
-} | null;
-  findFirstUserOrThrow?: any /* circular reference to User */ | null;
+};
+  findFirstUserOrThrow?: any /* circular reference to User */;
   findManyUser: any /* circular reference to User */;
   aggregateUser: any;
   groupByUser: any;
-  findUniqueUser?: any /* circular reference to User */ | null;
-  findUniqueUserOrThrow?: any /* circular reference to User */ | null;
+  findUniqueUser?: any /* circular reference to User */;
+  findUniqueUserOrThrow?: any /* circular reference to User */;
 }

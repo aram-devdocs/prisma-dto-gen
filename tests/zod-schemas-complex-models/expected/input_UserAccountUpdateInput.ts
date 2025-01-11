@@ -4,7 +4,7 @@ export interface UserAccountUpdateInput {
   account_id: any;
   name: any;
   created_at: any;
-  modified_at?: any | null;
+  modified_at?: any;
   is_active: any;
   user_profile: any;
 }
@@ -15,7 +15,7 @@ export const UserAccountUpdateInputSchema = z.object({
   account_id: z.string(),
   name: z.string(),
   created_at: z.date(),
-  modified_at: z.date().nullable(),
+  modified_at: z.date().optional(),
   is_active: z.boolean(),
   user_profile: z.any(),
 });

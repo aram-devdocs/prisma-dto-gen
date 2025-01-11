@@ -6,7 +6,7 @@ export interface UserNotificationOutput {
   notification_id: string;
   recipient_profile_id: string;
   sent_timestamp: Date;
-  read_timestamp?: Date | null;
+  read_timestamp?: Date;
   message: string;
   notification_refs?: {
     notification_reference_id: string;
@@ -146,7 +146,7 @@ export interface UserNotificationOutput {
         }[];
       };
     };
-  } | null;
+  };
   user_profile: any /* circular reference to UserProfile */;
   _count: any;
 }
@@ -157,7 +157,7 @@ export const UserNotificationOutputSchema = z.object({
   notification_id: z.string(),
   recipient_profile_id: z.string(),
   sent_timestamp: z.date(),
-  read_timestamp: z.date().nullable(),
+  read_timestamp: z.date().optional(),
   message: z.string(),
   notification_refs: z
     .array(
@@ -170,7 +170,7 @@ export const UserNotificationOutputSchema = z.object({
         notification: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   user_profile: z.object({
     profile_id: z.string(),
     created_timestamp: z.date(),

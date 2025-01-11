@@ -4,7 +4,7 @@ export interface OrgMembershipCreateManyUser_profileInput {
   membership_id: string;
   organization_id: string;
   joined_on: Date;
-  is_active?: any | null;
+  is_active?: any;
 }
 
 import { z } from "zod";
@@ -13,5 +13,5 @@ export const OrgMembershipCreateManyUser_profileInputSchema = z.object({
   membership_id: z.string(),
   organization_id: z.string(),
   joined_on: z.date(),
-  is_active: z.boolean().nullable(),
+  is_active: z.boolean().optional(),
 });

@@ -3,7 +3,7 @@
 export interface UserNotificationUpdateWithoutUser_profileInput {
   notification_id: any;
   sent_timestamp: any;
-  read_timestamp?: any | null;
+  read_timestamp?: any;
   message: any;
   notification_refs: any;
 }
@@ -13,7 +13,7 @@ import { z } from "zod";
 export const UserNotificationUpdateWithoutUser_profileInputSchema = z.object({
   notification_id: z.string(),
   sent_timestamp: z.date(),
-  read_timestamp: z.date().nullable(),
+  read_timestamp: z.date().optional(),
   message: z.string(),
   notification_refs: z.any(),
 });

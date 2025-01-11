@@ -10,8 +10,8 @@ export interface UserDocumentWhereUniqueInput {
   content: any;
   status: any;
   created_at: any;
-  updated_at?: any | null;
-  archived?: any | null;
+  updated_at?: any;
+  archived?: any;
   user_profile: any;
   comments: any;
 }
@@ -28,8 +28,8 @@ export const UserDocumentWhereUniqueInputSchema = z.object({
   content: z.any(),
   status: z.any(),
   created_at: z.any(),
-  updated_at: z.any().nullable(),
-  archived: z.any().nullable(),
+  updated_at: z.any().optional(),
+  archived: z.any().optional(),
   user_profile: z.any(),
   comments: z.any(),
 });

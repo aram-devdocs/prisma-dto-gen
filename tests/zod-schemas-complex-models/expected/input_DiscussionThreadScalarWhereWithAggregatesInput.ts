@@ -6,11 +6,11 @@ export interface DiscussionThreadScalarWhereWithAggregatesInput {
   NOT: any;
   thread_id: any;
   primary_participant: any;
-  secondary_participant?: any | null;
+  secondary_participant?: any;
   created_on: any;
-  closed_on?: any | null;
-  is_flagged?: any | null;
-  flagged_reason?: any | null;
+  closed_on?: any;
+  is_flagged?: any;
+  flagged_reason?: any;
 }
 
 import { z } from "zod";
@@ -21,9 +21,9 @@ export const DiscussionThreadScalarWhereWithAggregatesInputSchema = z.object({
   NOT: z.any(),
   thread_id: z.any(),
   primary_participant: z.any(),
-  secondary_participant: z.any().nullable(),
+  secondary_participant: z.any().optional(),
   created_on: z.any(),
-  closed_on: z.any().nullable(),
-  is_flagged: z.any().nullable(),
-  flagged_reason: z.any().nullable(),
+  closed_on: z.any().optional(),
+  is_flagged: z.any().optional(),
+  flagged_reason: z.any().optional(),
 });

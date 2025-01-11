@@ -3,21 +3,21 @@
 type Decimal = { valueOf(): string };
 
 export interface PaymentMinAggregateOutputTypeOutput {
-  payment_id?: string | null;
-  payer_id?: string | null;
-  amount?: Decimal | null;
-  paid_at?: Date | null;
-  status?: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED" | null;
-  reference_note?: string | null;
+  payment_id?: string;
+  payer_id?: string;
+  amount?: Decimal;
+  paid_at?: Date;
+  status?: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
+  reference_note?: string;
 }
 
 import { z } from "zod";
 
 export const PaymentMinAggregateOutputTypeOutputSchema = z.object({
-  payment_id: z.string().nullable(),
-  payer_id: z.string().nullable(),
-  amount: z.any().nullable(),
-  paid_at: z.date().nullable(),
-  status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]).nullable(),
-  reference_note: z.string().nullable(),
+  payment_id: z.string().optional(),
+  payer_id: z.string().optional(),
+  amount: z.any().optional(),
+  paid_at: z.date().optional(),
+  status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]).optional(),
+  reference_note: z.string().optional(),
 });

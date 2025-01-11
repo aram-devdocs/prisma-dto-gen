@@ -4,9 +4,9 @@ export interface DiscussionThreadUncheckedUpdateWithoutParticipant_twoInput {
   thread_id: any;
   primary_participant: any;
   created_on: any;
-  closed_on?: any | null;
-  is_flagged?: any | null;
-  flagged_reason?: any | null;
+  closed_on?: any;
+  is_flagged?: any;
+  flagged_reason?: any;
   messages: any;
 }
 
@@ -16,8 +16,8 @@ export const DiscussionThreadUncheckedUpdateWithoutParticipant_twoInputSchema = 
   thread_id: z.string(),
   primary_participant: z.string(),
   created_on: z.date(),
-  closed_on: z.date().nullable(),
-  is_flagged: z.boolean().nullable(),
-  flagged_reason: z.string().nullable(),
+  closed_on: z.date().optional(),
+  is_flagged: z.boolean().optional(),
+  flagged_reason: z.string().optional(),
   messages: z.any(),
 });

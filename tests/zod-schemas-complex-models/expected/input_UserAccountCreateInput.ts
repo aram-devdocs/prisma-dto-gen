@@ -4,7 +4,7 @@ export interface UserAccountCreateInput {
   account_id: string;
   name: string;
   created_at: Date;
-  modified_at?: any | null;
+  modified_at?: any;
   is_active: boolean;
   user_profile: any;
 }
@@ -15,7 +15,7 @@ export const UserAccountCreateInputSchema = z.object({
   account_id: z.string(),
   name: z.string(),
   created_at: z.date(),
-  modified_at: z.date().nullable(),
+  modified_at: z.date().optional(),
   is_active: z.boolean(),
   user_profile: z.any(),
 });

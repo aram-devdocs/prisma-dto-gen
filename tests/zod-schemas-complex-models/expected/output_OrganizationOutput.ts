@@ -5,10 +5,10 @@ type Decimal = { valueOf(): string };
 export interface OrganizationOutput {
   organization_id: string;
   name: string;
-  description?: string | null;
+  description?: string;
   created_on: Date;
-  updated_on?: Date | null;
-  is_active?: boolean | null;
+  updated_on?: Date;
+  is_active?: boolean;
   events?: {
     org_event_id: string;
     organization_id: string;
@@ -147,9 +147,9 @@ export interface OrganizationOutput {
         organization: any /* circular reference to Organization */;
       }[];
     };
-  } | null;
-  members?: any /* circular reference to OrgMembership */ | null;
-  records?: any /* circular reference to OrgRecord */ | null;
+  };
+  members?: any /* circular reference to OrgMembership */;
+  records?: any /* circular reference to OrgRecord */;
   _count: any;
 }
 
@@ -158,10 +158,10 @@ import { z } from "zod";
 export const OrganizationOutputSchema = z.object({
   organization_id: z.string(),
   name: z.string(),
-  description: z.string().nullable(),
+  description: z.string().optional(),
   created_on: z.date(),
-  updated_on: z.date().nullable(),
-  is_active: z.boolean().nullable(),
+  updated_on: z.date().optional(),
+  is_active: z.boolean().optional(),
   events: z
     .array(
       z.object({
@@ -174,7 +174,7 @@ export const OrganizationOutputSchema = z.object({
         organization: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   members: z
     .array(
       z.object({
@@ -187,7 +187,7 @@ export const OrganizationOutputSchema = z.object({
         user_profile: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   records: z
     .array(
       z.object({
@@ -200,6 +200,6 @@ export const OrganizationOutputSchema = z.object({
         organization: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   _count: z.any(),
 });

@@ -2,20 +2,20 @@
 
 export interface DiscussionThreadCreateManyParticipant_oneInput {
   thread_id: string;
-  secondary_participant?: any | null;
+  secondary_participant?: any;
   created_on: Date;
-  closed_on?: any | null;
-  is_flagged?: any | null;
-  flagged_reason?: any | null;
+  closed_on?: any;
+  is_flagged?: any;
+  flagged_reason?: any;
 }
 
 import { z } from "zod";
 
 export const DiscussionThreadCreateManyParticipant_oneInputSchema = z.object({
   thread_id: z.string(),
-  secondary_participant: z.string().nullable(),
+  secondary_participant: z.string().optional(),
   created_on: z.date(),
-  closed_on: z.date().nullable(),
-  is_flagged: z.boolean().nullable(),
-  flagged_reason: z.string().nullable(),
+  closed_on: z.date().optional(),
+  is_flagged: z.boolean().optional(),
+  flagged_reason: z.string().optional(),
 });

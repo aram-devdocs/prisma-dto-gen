@@ -8,7 +8,7 @@ export interface NotificationReferenceWhereInput {
   notification_id: any;
   referenced_entity_id: any;
   status: any;
-  archived?: any | null;
+  archived?: any;
   notification: any;
 }
 
@@ -22,6 +22,6 @@ export const NotificationReferenceWhereInputSchema = z.object({
   notification_id: z.any(),
   referenced_entity_id: z.any(),
   status: z.any(),
-  archived: z.any().nullable(),
+  archived: z.any().optional(),
   notification: z.any(),
 });

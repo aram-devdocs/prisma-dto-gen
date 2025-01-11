@@ -3,7 +3,7 @@
 export interface UserNotificationCreateInput {
   notification_id: string;
   sent_timestamp: Date;
-  read_timestamp?: any | null;
+  read_timestamp?: any;
   message: string;
   notification_refs: any;
   user_profile: any;
@@ -14,7 +14,7 @@ import { z } from "zod";
 export const UserNotificationCreateInputSchema = z.object({
   notification_id: z.string(),
   sent_timestamp: z.date(),
-  read_timestamp: z.date().nullable(),
+  read_timestamp: z.date().optional(),
   message: z.string(),
   notification_refs: z.any(),
   user_profile: z.any(),

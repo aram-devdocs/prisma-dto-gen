@@ -7,8 +7,8 @@ export interface UserDocumentUncheckedUpdateManyInput {
   content: any;
   status: any;
   created_at: any;
-  updated_at?: any | null;
-  archived?: any | null;
+  updated_at?: any;
+  archived?: any;
 }
 
 import { z } from "zod";
@@ -20,6 +20,6 @@ export const UserDocumentUncheckedUpdateManyInputSchema = z.object({
   content: z.string(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
   created_at: z.date(),
-  updated_at: z.date().nullable(),
-  archived: z.boolean().nullable(),
+  updated_at: z.date().optional(),
+  archived: z.boolean().optional(),
 });

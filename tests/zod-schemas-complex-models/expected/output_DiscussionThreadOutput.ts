@@ -5,11 +5,11 @@ type Decimal = { valueOf(): string };
 export interface DiscussionThreadOutput {
   thread_id: string;
   primary_participant: string;
-  secondary_participant?: string | null;
+  secondary_participant?: string;
   created_on: Date;
-  closed_on?: Date | null;
-  is_flagged?: boolean | null;
-  flagged_reason?: string | null;
+  closed_on?: Date;
+  is_flagged?: boolean;
+  flagged_reason?: string;
   participant_one: {
     profile_id: string;
     created_timestamp: Date;
@@ -149,8 +149,8 @@ export interface DiscussionThreadOutput {
       payer: any /* circular reference to UserProfile */;
     }[];
   };
-  participant_two?: any /* circular reference to UserProfile */ | null;
-  messages?: any /* circular reference to ThreadMessage */ | null;
+  participant_two?: any /* circular reference to UserProfile */;
+  messages?: any /* circular reference to ThreadMessage */;
   _count: any;
 }
 
@@ -159,11 +159,11 @@ import { z } from "zod";
 export const DiscussionThreadOutputSchema = z.object({
   thread_id: z.string(),
   primary_participant: z.string(),
-  secondary_participant: z.string().nullable(),
+  secondary_participant: z.string().optional(),
   created_on: z.date(),
-  closed_on: z.date().nullable(),
-  is_flagged: z.boolean().nullable(),
-  flagged_reason: z.string().nullable(),
+  closed_on: z.date().optional(),
+  is_flagged: z.boolean().optional(),
+  flagged_reason: z.string().optional(),
   participant_one: z.object({
     profile_id: z.string(),
     created_timestamp: z.date(),
@@ -213,7 +213,7 @@ export const DiscussionThreadOutputSchema = z.object({
       org_memberships: z.array(z.any()),
       payments: z.array(z.any()),
     })
-    .nullable(),
+    .optional(),
   messages: z
     .array(
       z.object({
@@ -228,6 +228,6 @@ export const DiscussionThreadOutputSchema = z.object({
         sender: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   _count: z.any(),
 });

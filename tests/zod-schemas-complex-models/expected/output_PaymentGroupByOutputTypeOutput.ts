@@ -8,12 +8,12 @@ export interface PaymentGroupByOutputTypeOutput {
   amount: Decimal;
   paid_at: Date;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
-  reference_note?: string | null;
-  _count?: any | null;
-  _avg?: any | null;
-  _sum?: any | null;
-  _min?: any | null;
-  _max?: any | null;
+  reference_note?: string;
+  _count?: any;
+  _avg?: any;
+  _sum?: any;
+  _min?: any;
+  _max?: any;
 }
 
 import { z } from "zod";
@@ -24,10 +24,10 @@ export const PaymentGroupByOutputTypeOutputSchema = z.object({
   amount: z.any(),
   paid_at: z.date(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
-  reference_note: z.string().nullable(),
-  _count: z.any().nullable(),
-  _avg: z.any().nullable(),
-  _sum: z.any().nullable(),
-  _min: z.any().nullable(),
-  _max: z.any().nullable(),
+  reference_note: z.string().optional(),
+  _count: z.any().optional(),
+  _avg: z.any().optional(),
+  _sum: z.any().optional(),
+  _min: z.any().optional(),
+  _max: z.any().optional(),
 });

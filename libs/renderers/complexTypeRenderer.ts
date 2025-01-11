@@ -45,7 +45,8 @@ export function generateComplexTypeInline(
     }
 
     const linePrefix = isRequired ? ":" : "?:";
-    const orNull = !isRequired ? " | null" : "";
+    // Remove the orNull logic as nullable properties are treated as optional
+    // const orNull = !isRequired ? " | null" : "";
 
     // Build a union of possible TS types for this field
     let unionTypes: string[] = [];
@@ -113,7 +114,7 @@ export function generateComplexTypeInline(
       unionTypes.push("any");
     }
 
-    const union = buildUnionType(unionTypes) + orNull;
+    const union = buildUnionType(unionTypes); // + orNull;
     lines.push(`  ${field.name}${linePrefix} ${union};`);
   }
 
@@ -195,9 +196,9 @@ export function generateComplexTypeInline(
       if (fieldIsList) {
         zodField = `z.array(${zodField})`;
       }
-      // If nullable => .nullable()
+      // If nullable => .optional() instead of .nullable()
       if (fieldIsNullable) {
-        zodField += `.nullable()`;
+        zodField += `.optional()`;
       }
 
       zodLines.push(`${field.name}: ${zodField},`);

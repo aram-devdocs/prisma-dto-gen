@@ -5,8 +5,8 @@ export interface OrgEventCreateManyInput {
   organization_id: string;
   event_name: string;
   start_time: Date;
-  end_time?: any | null;
-  location?: any | null;
+  end_time?: any;
+  location?: any;
 }
 
 import { z } from "zod";
@@ -16,6 +16,6 @@ export const OrgEventCreateManyInputSchema = z.object({
   organization_id: z.string(),
   event_name: z.string(),
   start_time: z.date(),
-  end_time: z.date().nullable(),
-  location: z.string().nullable(),
+  end_time: z.date().optional(),
+  location: z.string().optional(),
 });

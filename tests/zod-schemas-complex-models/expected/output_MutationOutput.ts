@@ -13,8 +13,8 @@ export interface MutationOutput {
   upsertOneChangeLog: any /* circular reference to ChangeLog */;
   createManyChangeLog: any;
   createManyChangeLogAndReturn: any;
-  deleteOneChangeLog?: any /* circular reference to ChangeLog */ | null;
-  updateOneChangeLog?: any /* circular reference to ChangeLog */ | null;
+  deleteOneChangeLog?: any /* circular reference to ChangeLog */;
+  updateOneChangeLog?: any /* circular reference to ChangeLog */;
   updateManyChangeLog: any;
   deleteManyChangeLog: any;
   createOneUserProfile: {
@@ -159,112 +159,112 @@ export interface MutationOutput {
   upsertOneUserProfile: any /* circular reference to UserProfile */;
   createManyUserProfile: any;
   createManyUserProfileAndReturn: any;
-  deleteOneUserProfile?: any /* circular reference to UserProfile */ | null;
-  updateOneUserProfile?: any /* circular reference to UserProfile */ | null;
+  deleteOneUserProfile?: any /* circular reference to UserProfile */;
+  updateOneUserProfile?: any /* circular reference to UserProfile */;
   updateManyUserProfile: any;
   deleteManyUserProfile: any;
   createOneUserAccount: any /* circular reference to UserAccount */;
   upsertOneUserAccount: any /* circular reference to UserAccount */;
   createManyUserAccount: any;
   createManyUserAccountAndReturn: any;
-  deleteOneUserAccount?: any /* circular reference to UserAccount */ | null;
-  updateOneUserAccount?: any /* circular reference to UserAccount */ | null;
+  deleteOneUserAccount?: any /* circular reference to UserAccount */;
+  updateOneUserAccount?: any /* circular reference to UserAccount */;
   updateManyUserAccount: any;
   deleteManyUserAccount: any;
   createOneUserNotification: any /* circular reference to UserNotification */;
   upsertOneUserNotification: any /* circular reference to UserNotification */;
   createManyUserNotification: any;
   createManyUserNotificationAndReturn: any;
-  deleteOneUserNotification?: any /* circular reference to UserNotification */ | null;
-  updateOneUserNotification?: any /* circular reference to UserNotification */ | null;
+  deleteOneUserNotification?: any /* circular reference to UserNotification */;
+  updateOneUserNotification?: any /* circular reference to UserNotification */;
   updateManyUserNotification: any;
   deleteManyUserNotification: any;
   createOneNotificationReference: any /* circular reference to NotificationReference */;
   upsertOneNotificationReference: any /* circular reference to NotificationReference */;
   createManyNotificationReference: any;
   createManyNotificationReferenceAndReturn: any;
-  deleteOneNotificationReference?: any /* circular reference to NotificationReference */ | null;
-  updateOneNotificationReference?: any /* circular reference to NotificationReference */ | null;
+  deleteOneNotificationReference?: any /* circular reference to NotificationReference */;
+  updateOneNotificationReference?: any /* circular reference to NotificationReference */;
   updateManyNotificationReference: any;
   deleteManyNotificationReference: any;
   createOneUserDocument: any /* circular reference to UserDocument */;
   upsertOneUserDocument: any /* circular reference to UserDocument */;
   createManyUserDocument: any;
   createManyUserDocumentAndReturn: any;
-  deleteOneUserDocument?: any /* circular reference to UserDocument */ | null;
-  updateOneUserDocument?: any /* circular reference to UserDocument */ | null;
+  deleteOneUserDocument?: any /* circular reference to UserDocument */;
+  updateOneUserDocument?: any /* circular reference to UserDocument */;
   updateManyUserDocument: any;
   deleteManyUserDocument: any;
   createOneUserComment: any /* circular reference to UserComment */;
   upsertOneUserComment: any /* circular reference to UserComment */;
   createManyUserComment: any;
   createManyUserCommentAndReturn: any;
-  deleteOneUserComment?: any /* circular reference to UserComment */ | null;
-  updateOneUserComment?: any /* circular reference to UserComment */ | null;
+  deleteOneUserComment?: any /* circular reference to UserComment */;
+  updateOneUserComment?: any /* circular reference to UserComment */;
   updateManyUserComment: any;
   deleteManyUserComment: any;
   createOneDiscussionThread: any /* circular reference to DiscussionThread */;
   upsertOneDiscussionThread: any /* circular reference to DiscussionThread */;
   createManyDiscussionThread: any;
   createManyDiscussionThreadAndReturn: any;
-  deleteOneDiscussionThread?: any /* circular reference to DiscussionThread */ | null;
-  updateOneDiscussionThread?: any /* circular reference to DiscussionThread */ | null;
+  deleteOneDiscussionThread?: any /* circular reference to DiscussionThread */;
+  updateOneDiscussionThread?: any /* circular reference to DiscussionThread */;
   updateManyDiscussionThread: any;
   deleteManyDiscussionThread: any;
   createOneThreadMessage: any /* circular reference to ThreadMessage */;
   upsertOneThreadMessage: any /* circular reference to ThreadMessage */;
   createManyThreadMessage: any;
   createManyThreadMessageAndReturn: any;
-  deleteOneThreadMessage?: any /* circular reference to ThreadMessage */ | null;
-  updateOneThreadMessage?: any /* circular reference to ThreadMessage */ | null;
+  deleteOneThreadMessage?: any /* circular reference to ThreadMessage */;
+  updateOneThreadMessage?: any /* circular reference to ThreadMessage */;
   updateManyThreadMessage: any;
   deleteManyThreadMessage: any;
   createOneTwoStepVerification: any /* circular reference to TwoStepVerification */;
   upsertOneTwoStepVerification: any /* circular reference to TwoStepVerification */;
   createManyTwoStepVerification: any;
   createManyTwoStepVerificationAndReturn: any;
-  deleteOneTwoStepVerification?: any /* circular reference to TwoStepVerification */ | null;
-  updateOneTwoStepVerification?: any /* circular reference to TwoStepVerification */ | null;
+  deleteOneTwoStepVerification?: any /* circular reference to TwoStepVerification */;
+  updateOneTwoStepVerification?: any /* circular reference to TwoStepVerification */;
   updateManyTwoStepVerification: any;
   deleteManyTwoStepVerification: any;
   createOneOrganization: any /* circular reference to Organization */;
   upsertOneOrganization: any /* circular reference to Organization */;
   createManyOrganization: any;
   createManyOrganizationAndReturn: any;
-  deleteOneOrganization?: any /* circular reference to Organization */ | null;
-  updateOneOrganization?: any /* circular reference to Organization */ | null;
+  deleteOneOrganization?: any /* circular reference to Organization */;
+  updateOneOrganization?: any /* circular reference to Organization */;
   updateManyOrganization: any;
   deleteManyOrganization: any;
   createOneOrgEvent: any /* circular reference to OrgEvent */;
   upsertOneOrgEvent: any /* circular reference to OrgEvent */;
   createManyOrgEvent: any;
   createManyOrgEventAndReturn: any;
-  deleteOneOrgEvent?: any /* circular reference to OrgEvent */ | null;
-  updateOneOrgEvent?: any /* circular reference to OrgEvent */ | null;
+  deleteOneOrgEvent?: any /* circular reference to OrgEvent */;
+  updateOneOrgEvent?: any /* circular reference to OrgEvent */;
   updateManyOrgEvent: any;
   deleteManyOrgEvent: any;
   createOneOrgMembership: any /* circular reference to OrgMembership */;
   upsertOneOrgMembership: any /* circular reference to OrgMembership */;
   createManyOrgMembership: any;
   createManyOrgMembershipAndReturn: any;
-  deleteOneOrgMembership?: any /* circular reference to OrgMembership */ | null;
-  updateOneOrgMembership?: any /* circular reference to OrgMembership */ | null;
+  deleteOneOrgMembership?: any /* circular reference to OrgMembership */;
+  updateOneOrgMembership?: any /* circular reference to OrgMembership */;
   updateManyOrgMembership: any;
   deleteManyOrgMembership: any;
   createOneOrgRecord: any /* circular reference to OrgRecord */;
   upsertOneOrgRecord: any /* circular reference to OrgRecord */;
   createManyOrgRecord: any;
   createManyOrgRecordAndReturn: any;
-  deleteOneOrgRecord?: any /* circular reference to OrgRecord */ | null;
-  updateOneOrgRecord?: any /* circular reference to OrgRecord */ | null;
+  deleteOneOrgRecord?: any /* circular reference to OrgRecord */;
+  updateOneOrgRecord?: any /* circular reference to OrgRecord */;
   updateManyOrgRecord: any;
   deleteManyOrgRecord: any;
   createOnePayment: any /* circular reference to Payment */;
   upsertOnePayment: any /* circular reference to Payment */;
   createManyPayment: any;
   createManyPaymentAndReturn: any;
-  deleteOnePayment?: any /* circular reference to Payment */ | null;
-  updateOnePayment?: any /* circular reference to Payment */ | null;
+  deleteOnePayment?: any /* circular reference to Payment */;
+  updateOnePayment?: any /* circular reference to Payment */;
   updateManyPayment: any;
   deleteManyPayment: any;
   executeRaw: JsonValue;
@@ -292,14 +292,14 @@ export const MutationOutputSchema = z.object({
       applied_at: z.date(),
       description: z.string(),
     })
-    .nullable(),
+    .optional(),
   updateOneChangeLog: z
     .object({
       change_log_id: z.string(),
       applied_at: z.date(),
       description: z.string(),
     })
-    .nullable(),
+    .optional(),
   updateManyChangeLog: z.any(),
   deleteManyChangeLog: z.any(),
   createOneUserProfile: z.object({
@@ -377,7 +377,7 @@ export const MutationOutputSchema = z.object({
       org_memberships: z.array(z.any()),
       payments: z.array(z.any()),
     })
-    .nullable(),
+    .optional(),
   updateOneUserProfile: z
     .object({
       profile_id: z.string(),
@@ -403,7 +403,7 @@ export const MutationOutputSchema = z.object({
       org_memberships: z.array(z.any()),
       payments: z.array(z.any()),
     })
-    .nullable(),
+    .optional(),
   updateManyUserProfile: z.any(),
   deleteManyUserProfile: z.any(),
   createOneUserAccount: z.object({
@@ -436,7 +436,7 @@ export const MutationOutputSchema = z.object({
       is_active: z.boolean(),
       user_profile: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateOneUserAccount: z
     .object({
       account_id: z.string(),
@@ -447,7 +447,7 @@ export const MutationOutputSchema = z.object({
       is_active: z.boolean(),
       user_profile: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateManyUserAccount: z.any(),
   deleteManyUserAccount: z.any(),
   createOneUserNotification: z.object({
@@ -480,7 +480,7 @@ export const MutationOutputSchema = z.object({
       notification_refs: z.array(z.any()),
       user_profile: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateOneUserNotification: z
     .object({
       notification_id: z.string(),
@@ -491,7 +491,7 @@ export const MutationOutputSchema = z.object({
       notification_refs: z.array(z.any()),
       user_profile: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateManyUserNotification: z.any(),
   deleteManyUserNotification: z.any(),
   createOneNotificationReference: z.object({
@@ -521,7 +521,7 @@ export const MutationOutputSchema = z.object({
       archived: z.boolean().nullable(),
       notification: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateOneNotificationReference: z
     .object({
       notification_reference_id: z.string(),
@@ -531,7 +531,7 @@ export const MutationOutputSchema = z.object({
       archived: z.boolean().nullable(),
       notification: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateManyNotificationReference: z.any(),
   deleteManyNotificationReference: z.any(),
   createOneUserDocument: z.object({
@@ -573,7 +573,7 @@ export const MutationOutputSchema = z.object({
       user_profile: z.any(),
       comments: z.array(z.any()),
     })
-    .nullable(),
+    .optional(),
   updateOneUserDocument: z
     .object({
       document_id: z.string(),
@@ -587,7 +587,7 @@ export const MutationOutputSchema = z.object({
       user_profile: z.any(),
       comments: z.array(z.any()),
     })
-    .nullable(),
+    .optional(),
   updateManyUserDocument: z.any(),
   deleteManyUserDocument: z.any(),
   createOneUserComment: z.object({
@@ -626,7 +626,7 @@ export const MutationOutputSchema = z.object({
       user_document: z.any(),
       user_profile: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateOneUserComment: z
     .object({
       comment_id: z.string(),
@@ -639,7 +639,7 @@ export const MutationOutputSchema = z.object({
       user_document: z.any(),
       user_profile: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateManyUserComment: z.any(),
   deleteManyUserComment: z.any(),
   createOneDiscussionThread: z.object({
@@ -681,7 +681,7 @@ export const MutationOutputSchema = z.object({
       participant_two: z.any().nullable(),
       messages: z.array(z.any()),
     })
-    .nullable(),
+    .optional(),
   updateOneDiscussionThread: z
     .object({
       thread_id: z.string(),
@@ -695,7 +695,7 @@ export const MutationOutputSchema = z.object({
       participant_two: z.any().nullable(),
       messages: z.array(z.any()),
     })
-    .nullable(),
+    .optional(),
   updateManyDiscussionThread: z.any(),
   deleteManyDiscussionThread: z.any(),
   createOneThreadMessage: z.object({
@@ -734,7 +734,7 @@ export const MutationOutputSchema = z.object({
       discussion_thread: z.any(),
       sender: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateOneThreadMessage: z
     .object({
       message_id: z.string(),
@@ -747,7 +747,7 @@ export const MutationOutputSchema = z.object({
       discussion_thread: z.any(),
       sender: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateManyThreadMessage: z.any(),
   deleteManyThreadMessage: z.any(),
   createOneTwoStepVerification: z.object({
@@ -780,7 +780,7 @@ export const MutationOutputSchema = z.object({
       verification_type: z.enum(["EMAIL", "SMS", "PUSH"]),
       user_profile: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateOneTwoStepVerification: z
     .object({
       verification_id: z.string(),
@@ -791,7 +791,7 @@ export const MutationOutputSchema = z.object({
       verification_type: z.enum(["EMAIL", "SMS", "PUSH"]),
       user_profile: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateManyTwoStepVerification: z.any(),
   deleteManyTwoStepVerification: z.any(),
   createOneOrganization: z.object({
@@ -830,7 +830,7 @@ export const MutationOutputSchema = z.object({
       members: z.array(z.any()),
       records: z.array(z.any()),
     })
-    .nullable(),
+    .optional(),
   updateOneOrganization: z
     .object({
       organization_id: z.string(),
@@ -843,7 +843,7 @@ export const MutationOutputSchema = z.object({
       members: z.array(z.any()),
       records: z.array(z.any()),
     })
-    .nullable(),
+    .optional(),
   updateManyOrganization: z.any(),
   deleteManyOrganization: z.any(),
   createOneOrgEvent: z.object({
@@ -876,7 +876,7 @@ export const MutationOutputSchema = z.object({
       location: z.string().nullable(),
       organization: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateOneOrgEvent: z
     .object({
       org_event_id: z.string(),
@@ -887,7 +887,7 @@ export const MutationOutputSchema = z.object({
       location: z.string().nullable(),
       organization: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateManyOrgEvent: z.any(),
   deleteManyOrgEvent: z.any(),
   createOneOrgMembership: z.object({
@@ -920,7 +920,7 @@ export const MutationOutputSchema = z.object({
       organization: z.any(),
       user_profile: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateOneOrgMembership: z
     .object({
       membership_id: z.string(),
@@ -931,7 +931,7 @@ export const MutationOutputSchema = z.object({
       organization: z.any(),
       user_profile: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateManyOrgMembership: z.any(),
   deleteManyOrgMembership: z.any(),
   createOneOrgRecord: z.object({
@@ -964,7 +964,7 @@ export const MutationOutputSchema = z.object({
       updated_on: z.date().nullable(),
       organization: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateOneOrgRecord: z
     .object({
       record_id: z.string(),
@@ -975,7 +975,7 @@ export const MutationOutputSchema = z.object({
       updated_on: z.date().nullable(),
       organization: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateManyOrgRecord: z.any(),
   deleteManyOrgRecord: z.any(),
   createOnePayment: z.object({
@@ -1008,7 +1008,7 @@ export const MutationOutputSchema = z.object({
       reference_note: z.string().nullable(),
       payer: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateOnePayment: z
     .object({
       payment_id: z.string(),
@@ -1019,7 +1019,7 @@ export const MutationOutputSchema = z.object({
       reference_note: z.string().nullable(),
       payer: z.any(),
     })
-    .nullable(),
+    .optional(),
   updateManyPayment: z.any(),
   deleteManyPayment: z.any(),
   executeRaw: z.any(),

@@ -10,8 +10,8 @@ export interface UserDocumentScalarWhereInput {
   content: any;
   status: any;
   created_at: any;
-  updated_at?: any | null;
-  archived?: any | null;
+  updated_at?: any;
+  archived?: any;
 }
 
 import { z } from "zod";
@@ -26,6 +26,6 @@ export const UserDocumentScalarWhereInputSchema = z.object({
   content: z.any(),
   status: z.any(),
   created_at: z.any(),
-  updated_at: z.any().nullable(),
-  archived: z.any().nullable(),
+  updated_at: z.any().optional(),
+  archived: z.any().optional(),
 });

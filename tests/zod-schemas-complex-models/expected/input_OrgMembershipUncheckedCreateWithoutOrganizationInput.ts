@@ -4,7 +4,7 @@ export interface OrgMembershipUncheckedCreateWithoutOrganizationInput {
   membership_id: string;
   profile_id: string;
   joined_on: Date;
-  is_active?: any | null;
+  is_active?: any;
 }
 
 import { z } from "zod";
@@ -13,5 +13,5 @@ export const OrgMembershipUncheckedCreateWithoutOrganizationInputSchema = z.obje
   membership_id: z.string(),
   profile_id: z.string(),
   joined_on: z.date(),
-  is_active: z.boolean().nullable(),
+  is_active: z.boolean().optional(),
 });

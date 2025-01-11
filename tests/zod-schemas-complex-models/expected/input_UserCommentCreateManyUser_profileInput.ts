@@ -5,8 +5,8 @@ export interface UserCommentCreateManyUser_profileInput {
   document_id: string;
   text: string;
   created_at: Date;
-  edited_at?: any | null;
-  is_deleted?: any | null;
+  edited_at?: any;
+  is_deleted?: any;
 }
 
 import { z } from "zod";
@@ -16,6 +16,6 @@ export const UserCommentCreateManyUser_profileInputSchema = z.object({
   document_id: z.string(),
   text: z.string(),
   created_at: z.date(),
-  edited_at: z.date().nullable(),
-  is_deleted: z.boolean().nullable(),
+  edited_at: z.date().optional(),
+  is_deleted: z.boolean().optional(),
 });

@@ -4,8 +4,8 @@ export interface OrgEventUpdateInput {
   org_event_id: any;
   event_name: any;
   start_time: any;
-  end_time?: any | null;
-  location?: any | null;
+  end_time?: any;
+  location?: any;
   organization: any;
 }
 
@@ -15,7 +15,7 @@ export const OrgEventUpdateInputSchema = z.object({
   org_event_id: z.string(),
   event_name: z.string(),
   start_time: z.date(),
-  end_time: z.date().nullable(),
-  location: z.string().nullable(),
+  end_time: z.date().optional(),
+  location: z.string().optional(),
   organization: z.any(),
 });

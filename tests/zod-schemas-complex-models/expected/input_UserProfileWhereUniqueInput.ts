@@ -7,19 +7,19 @@ export interface UserProfileWhereUniqueInput {
   OR: any;
   NOT: any;
   created_timestamp: any;
-  updated_timestamp?: any | null;
-  deactivated?: any | null;
+  updated_timestamp?: any;
+  deactivated?: any;
   full_name: any;
-  phone_number?: any | null;
-  password_hash?: any | null;
-  account_level?: any | null;
-  created_by_id?: any | null;
+  phone_number?: any;
+  password_hash?: any;
+  account_level?: any;
+  created_by_id?: any;
   user_documents: any;
   user_notifications: any;
   user_accounts: any;
   user_two_step_codes: any;
   user_comments: any;
-  created_by_profile?: any | null;
+  created_by_profile?: any;
   profiles_created: any;
   threads_as_primary_participant: any;
   threads_as_secondary_participant: any;
@@ -37,19 +37,19 @@ export const UserProfileWhereUniqueInputSchema = z.object({
   OR: z.array(z.any()),
   NOT: z.any(),
   created_timestamp: z.any(),
-  updated_timestamp: z.any().nullable(),
-  deactivated: z.any().nullable(),
+  updated_timestamp: z.any().optional(),
+  deactivated: z.any().optional(),
   full_name: z.any(),
-  phone_number: z.any().nullable(),
-  password_hash: z.any().nullable(),
-  account_level: z.any().nullable(),
-  created_by_id: z.any().nullable(),
+  phone_number: z.any().optional(),
+  password_hash: z.any().optional(),
+  account_level: z.any().optional(),
+  created_by_id: z.any().optional(),
   user_documents: z.any(),
   user_notifications: z.any(),
   user_accounts: z.any(),
   user_two_step_codes: z.any(),
   user_comments: z.any(),
-  created_by_profile: z.any().nullable(),
+  created_by_profile: z.any().optional(),
   profiles_created: z.any(),
   threads_as_primary_participant: z.any(),
   threads_as_secondary_participant: z.any(),

@@ -6,7 +6,7 @@ export interface TwoStepVerificationScalarWhereWithAggregatesInput {
   NOT: any;
   verification_id: any;
   profile_id: any;
-  code?: any | null;
+  code?: any;
   is_verified: any;
   created_at: any;
   verification_type: any;
@@ -20,7 +20,7 @@ export const TwoStepVerificationScalarWhereWithAggregatesInputSchema = z.object(
   NOT: z.any(),
   verification_id: z.any(),
   profile_id: z.any(),
-  code: z.any().nullable(),
+  code: z.any().optional(),
   is_verified: z.any(),
   created_at: z.any(),
   verification_type: z.any(),

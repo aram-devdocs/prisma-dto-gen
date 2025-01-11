@@ -7,9 +7,9 @@ export interface OrgRecordWhereInput {
   record_id: any;
   organization_id: any;
   title: any;
-  details?: any | null;
+  details?: any;
   created_on: any;
-  updated_on?: any | null;
+  updated_on?: any;
   organization: any;
 }
 
@@ -22,8 +22,8 @@ export const OrgRecordWhereInputSchema = z.object({
   record_id: z.any(),
   organization_id: z.any(),
   title: z.any(),
-  details: z.any().nullable(),
+  details: z.any().optional(),
   created_on: z.any(),
-  updated_on: z.any().nullable(),
+  updated_on: z.any().optional(),
   organization: z.any(),
 });

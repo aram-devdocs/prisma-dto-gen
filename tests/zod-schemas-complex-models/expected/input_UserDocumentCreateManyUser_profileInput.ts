@@ -6,8 +6,8 @@ export interface UserDocumentCreateManyUser_profileInput {
   content: string;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
   created_at: Date;
-  updated_at?: any | null;
-  archived?: any | null;
+  updated_at?: any;
+  archived?: any;
 }
 
 import { z } from "zod";
@@ -18,6 +18,6 @@ export const UserDocumentCreateManyUser_profileInputSchema = z.object({
   content: z.string(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
   created_at: z.date(),
-  updated_at: z.date().nullable(),
-  archived: z.boolean().nullable(),
+  updated_at: z.date().optional(),
+  archived: z.boolean().optional(),
 });

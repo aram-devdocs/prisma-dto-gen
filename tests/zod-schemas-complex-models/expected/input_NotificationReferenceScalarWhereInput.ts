@@ -8,7 +8,7 @@ export interface NotificationReferenceScalarWhereInput {
   notification_id: any;
   referenced_entity_id: any;
   status: any;
-  archived?: any | null;
+  archived?: any;
 }
 
 import { z } from "zod";
@@ -21,5 +21,5 @@ export const NotificationReferenceScalarWhereInputSchema = z.object({
   notification_id: z.any(),
   referenced_entity_id: z.any(),
   status: z.any(),
-  archived: z.any().nullable(),
+  archived: z.any().optional(),
 });

@@ -7,7 +7,7 @@ export interface PaymentCreateInput {
   amount: Decimal;
   paid_at: Date;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
-  reference_note?: any | null;
+  reference_note?: any;
   payer: any;
 }
 
@@ -18,6 +18,6 @@ export const PaymentCreateInputSchema = z.object({
   amount: z.any(),
   paid_at: z.date(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
-  reference_note: z.string().nullable(),
+  reference_note: z.string().optional(),
   payer: z.any(),
 });

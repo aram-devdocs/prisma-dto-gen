@@ -4,8 +4,8 @@ export interface UserCommentCreateWithoutUser_documentInput {
   comment_id: string;
   text: string;
   created_at: Date;
-  edited_at?: any | null;
-  is_deleted?: any | null;
+  edited_at?: any;
+  is_deleted?: any;
   user_profile: any;
 }
 
@@ -15,7 +15,7 @@ export const UserCommentCreateWithoutUser_documentInputSchema = z.object({
   comment_id: z.string(),
   text: z.string(),
   created_at: z.date(),
-  edited_at: z.date().nullable(),
-  is_deleted: z.boolean().nullable(),
+  edited_at: z.date().optional(),
+  is_deleted: z.boolean().optional(),
   user_profile: z.any(),
 });

@@ -3,17 +3,17 @@
 export interface UserProfileGroupByOutputTypeOutput {
   profile_id: string;
   created_timestamp: Date;
-  updated_timestamp?: Date | null;
-  deactivated?: boolean | null;
+  updated_timestamp?: Date;
+  deactivated?: boolean;
   full_name: string;
-  email_address?: string | null;
-  phone_number?: string | null;
-  password_hash?: string | null;
-  account_level?: "BASIC" | "PREMIUM" | "ADMIN" | null;
-  created_by_id?: string | null;
-  _count?: any | null;
-  _min?: any | null;
-  _max?: any | null;
+  email_address?: string;
+  phone_number?: string;
+  password_hash?: string;
+  account_level?: "BASIC" | "PREMIUM" | "ADMIN";
+  created_by_id?: string;
+  _count?: any;
+  _min?: any;
+  _max?: any;
 }
 
 import { z } from "zod";
@@ -21,15 +21,15 @@ import { z } from "zod";
 export const UserProfileGroupByOutputTypeOutputSchema = z.object({
   profile_id: z.string(),
   created_timestamp: z.date(),
-  updated_timestamp: z.date().nullable(),
-  deactivated: z.boolean().nullable(),
+  updated_timestamp: z.date().optional(),
+  deactivated: z.boolean().optional(),
   full_name: z.string(),
-  email_address: z.string().nullable(),
-  phone_number: z.string().nullable(),
-  password_hash: z.string().nullable(),
-  account_level: z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable(),
-  created_by_id: z.string().nullable(),
-  _count: z.any().nullable(),
-  _min: z.any().nullable(),
-  _max: z.any().nullable(),
+  email_address: z.string().optional(),
+  phone_number: z.string().optional(),
+  password_hash: z.string().optional(),
+  account_level: z.enum(["BASIC", "PREMIUM", "ADMIN"]).optional(),
+  created_by_id: z.string().optional(),
+  _count: z.any().optional(),
+  _min: z.any().optional(),
+  _max: z.any().optional(),
 });

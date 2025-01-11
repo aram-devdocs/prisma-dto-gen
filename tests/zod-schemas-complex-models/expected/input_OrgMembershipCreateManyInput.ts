@@ -5,7 +5,7 @@ export interface OrgMembershipCreateManyInput {
   organization_id: string;
   profile_id: string;
   joined_on: Date;
-  is_active?: any | null;
+  is_active?: any;
 }
 
 import { z } from "zod";
@@ -15,5 +15,5 @@ export const OrgMembershipCreateManyInputSchema = z.object({
   organization_id: z.string(),
   profile_id: z.string(),
   joined_on: z.date(),
-  is_active: z.boolean().nullable(),
+  is_active: z.boolean().optional(),
 });

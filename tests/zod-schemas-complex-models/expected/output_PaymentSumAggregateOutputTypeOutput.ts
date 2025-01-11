@@ -3,11 +3,11 @@
 type Decimal = { valueOf(): string };
 
 export interface PaymentSumAggregateOutputTypeOutput {
-  amount?: Decimal | null;
+  amount?: Decimal;
 }
 
 import { z } from "zod";
 
 export const PaymentSumAggregateOutputTypeOutputSchema = z.object({
-  amount: z.any().nullable(),
+  amount: z.any().optional(),
 });

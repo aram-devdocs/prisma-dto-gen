@@ -5,7 +5,7 @@ export interface UserAccountCreateManyInput {
   owner_profile_id: string;
   name: string;
   created_at: Date;
-  modified_at?: any | null;
+  modified_at?: any;
   is_active: boolean;
 }
 
@@ -16,6 +16,6 @@ export const UserAccountCreateManyInputSchema = z.object({
   owner_profile_id: z.string(),
   name: z.string(),
   created_at: z.date(),
-  modified_at: z.date().nullable(),
+  modified_at: z.date().optional(),
   is_active: z.boolean(),
 });

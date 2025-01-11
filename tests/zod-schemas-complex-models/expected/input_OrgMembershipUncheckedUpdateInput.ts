@@ -5,7 +5,7 @@ export interface OrgMembershipUncheckedUpdateInput {
   organization_id: any;
   profile_id: any;
   joined_on: any;
-  is_active?: any | null;
+  is_active?: any;
 }
 
 import { z } from "zod";
@@ -15,5 +15,5 @@ export const OrgMembershipUncheckedUpdateInputSchema = z.object({
   organization_id: z.string(),
   profile_id: z.string(),
   joined_on: z.date(),
-  is_active: z.boolean().nullable(),
+  is_active: z.boolean().optional(),
 });

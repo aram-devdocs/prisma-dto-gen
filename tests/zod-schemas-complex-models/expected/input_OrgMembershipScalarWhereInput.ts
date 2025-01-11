@@ -8,7 +8,7 @@ export interface OrgMembershipScalarWhereInput {
   organization_id: any;
   profile_id: any;
   joined_on: any;
-  is_active?: any | null;
+  is_active?: any;
 }
 
 import { z } from "zod";
@@ -21,5 +21,5 @@ export const OrgMembershipScalarWhereInputSchema = z.object({
   organization_id: z.any(),
   profile_id: z.any(),
   joined_on: z.any(),
-  is_active: z.any().nullable(),
+  is_active: z.any().optional(),
 });

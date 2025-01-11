@@ -11,8 +11,8 @@ export interface MutationOutput {
   upsertOneUser: any /* circular reference to User */;
   createManyUser: any;
   createManyUserAndReturn: any;
-  deleteOneUser?: any /* circular reference to User */ | null;
-  updateOneUser?: any /* circular reference to User */ | null;
+  deleteOneUser?: any /* circular reference to User */;
+  updateOneUser?: any /* circular reference to User */;
   updateManyUser: any;
   deleteManyUser: any;
   executeRaw: JsonValue;
@@ -40,14 +40,14 @@ export const MutationOutputSchema = z.object({
       name: z.string(),
       email: z.string(),
     })
-    .nullable(),
+    .optional(),
   updateOneUser: z
     .object({
       id: z.number(),
       name: z.string(),
       email: z.string(),
     })
-    .nullable(),
+    .optional(),
   updateManyUser: z.any(),
   deleteManyUser: z.any(),
   executeRaw: z.any(),

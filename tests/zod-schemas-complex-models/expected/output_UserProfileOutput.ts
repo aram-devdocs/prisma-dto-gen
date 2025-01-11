@@ -5,14 +5,14 @@ type Decimal = { valueOf(): string };
 export interface UserProfileOutput {
   profile_id: string;
   created_timestamp: Date;
-  updated_timestamp?: Date | null;
-  deactivated?: boolean | null;
+  updated_timestamp?: Date;
+  deactivated?: boolean;
   full_name: string;
-  email_address?: string | null;
-  phone_number?: string | null;
-  password_hash?: string | null;
-  account_level?: "BASIC" | "PREMIUM" | "ADMIN" | null;
-  created_by_id?: string | null;
+  email_address?: string;
+  phone_number?: string;
+  password_hash?: string;
+  account_level?: "BASIC" | "PREMIUM" | "ADMIN";
+  created_by_id?: string;
   user_documents?: {
     document_id: string;
     owner_profile_id: string;
@@ -151,18 +151,18 @@ export interface UserProfileOutput {
       }[];
     };
     comments: any /* circular reference to UserComment */[];
-  } | null;
-  user_notifications?: any /* circular reference to UserNotification */ | null;
-  user_accounts?: any /* circular reference to UserAccount */ | null;
-  user_two_step_codes?: any /* circular reference to TwoStepVerification */ | null;
-  user_comments?: any /* circular reference to UserComment */ | null;
-  created_by_profile?: any /* circular reference to UserProfile */ | null;
-  profiles_created?: any /* circular reference to UserProfile */ | null;
-  threads_as_primary_participant?: any /* circular reference to DiscussionThread */ | null;
-  threads_as_secondary_participant?: any /* circular reference to DiscussionThread */ | null;
-  sent_messages?: any /* circular reference to ThreadMessage */ | null;
-  org_memberships?: any /* circular reference to OrgMembership */ | null;
-  payments?: any /* circular reference to Payment */ | null;
+  };
+  user_notifications?: any /* circular reference to UserNotification */;
+  user_accounts?: any /* circular reference to UserAccount */;
+  user_two_step_codes?: any /* circular reference to TwoStepVerification */;
+  user_comments?: any /* circular reference to UserComment */;
+  created_by_profile?: any /* circular reference to UserProfile */;
+  profiles_created?: any /* circular reference to UserProfile */;
+  threads_as_primary_participant?: any /* circular reference to DiscussionThread */;
+  threads_as_secondary_participant?: any /* circular reference to DiscussionThread */;
+  sent_messages?: any /* circular reference to ThreadMessage */;
+  org_memberships?: any /* circular reference to OrgMembership */;
+  payments?: any /* circular reference to Payment */;
   _count: any;
 }
 
@@ -171,14 +171,14 @@ import { z } from "zod";
 export const UserProfileOutputSchema = z.object({
   profile_id: z.string(),
   created_timestamp: z.date(),
-  updated_timestamp: z.date().nullable(),
-  deactivated: z.boolean().nullable(),
+  updated_timestamp: z.date().optional(),
+  deactivated: z.boolean().optional(),
   full_name: z.string(),
-  email_address: z.string().nullable(),
-  phone_number: z.string().nullable(),
-  password_hash: z.string().nullable(),
-  account_level: z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable(),
-  created_by_id: z.string().nullable(),
+  email_address: z.string().optional(),
+  phone_number: z.string().optional(),
+  password_hash: z.string().optional(),
+  account_level: z.enum(["BASIC", "PREMIUM", "ADMIN"]).optional(),
+  created_by_id: z.string().optional(),
   user_documents: z
     .array(
       z.object({
@@ -194,7 +194,7 @@ export const UserProfileOutputSchema = z.object({
         comments: z.array(z.any()),
       }),
     )
-    .nullable(),
+    .optional(),
   user_notifications: z
     .array(
       z.object({
@@ -207,7 +207,7 @@ export const UserProfileOutputSchema = z.object({
         user_profile: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   user_accounts: z
     .array(
       z.object({
@@ -220,7 +220,7 @@ export const UserProfileOutputSchema = z.object({
         user_profile: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   user_two_step_codes: z
     .array(
       z.object({
@@ -233,7 +233,7 @@ export const UserProfileOutputSchema = z.object({
         user_profile: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   user_comments: z
     .array(
       z.object({
@@ -248,7 +248,7 @@ export const UserProfileOutputSchema = z.object({
         user_profile: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   created_by_profile: z
     .object({
       profile_id: z.string(),
@@ -274,7 +274,7 @@ export const UserProfileOutputSchema = z.object({
       org_memberships: z.array(z.any()),
       payments: z.array(z.any()),
     })
-    .nullable(),
+    .optional(),
   profiles_created: z
     .array(
       z.object({
@@ -302,7 +302,7 @@ export const UserProfileOutputSchema = z.object({
         payments: z.array(z.any()),
       }),
     )
-    .nullable(),
+    .optional(),
   threads_as_primary_participant: z
     .array(
       z.object({
@@ -318,7 +318,7 @@ export const UserProfileOutputSchema = z.object({
         messages: z.array(z.any()),
       }),
     )
-    .nullable(),
+    .optional(),
   threads_as_secondary_participant: z
     .array(
       z.object({
@@ -334,7 +334,7 @@ export const UserProfileOutputSchema = z.object({
         messages: z.array(z.any()),
       }),
     )
-    .nullable(),
+    .optional(),
   sent_messages: z
     .array(
       z.object({
@@ -349,7 +349,7 @@ export const UserProfileOutputSchema = z.object({
         sender: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   org_memberships: z
     .array(
       z.object({
@@ -362,7 +362,7 @@ export const UserProfileOutputSchema = z.object({
         user_profile: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   payments: z
     .array(
       z.object({
@@ -375,6 +375,6 @@ export const UserProfileOutputSchema = z.object({
         payer: z.any(),
       }),
     )
-    .nullable(),
+    .optional(),
   _count: z.any(),
 });

@@ -4,7 +4,7 @@ export interface UserNotificationUncheckedCreateInput {
   notification_id: string;
   recipient_profile_id: string;
   sent_timestamp: Date;
-  read_timestamp?: any | null;
+  read_timestamp?: any;
   message: string;
   notification_refs: any;
 }
@@ -15,7 +15,7 @@ export const UserNotificationUncheckedCreateInputSchema = z.object({
   notification_id: z.string(),
   recipient_profile_id: z.string(),
   sent_timestamp: z.date(),
-  read_timestamp: z.date().nullable(),
+  read_timestamp: z.date().optional(),
   message: z.string(),
   notification_refs: z.any(),
 });

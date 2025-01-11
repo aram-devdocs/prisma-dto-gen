@@ -6,11 +6,11 @@ export interface UserCommentGroupByOutputTypeOutput {
   commenter_id: string;
   text: string;
   created_at: Date;
-  edited_at?: Date | null;
-  is_deleted?: boolean | null;
-  _count?: any | null;
-  _min?: any | null;
-  _max?: any | null;
+  edited_at?: Date;
+  is_deleted?: boolean;
+  _count?: any;
+  _min?: any;
+  _max?: any;
 }
 
 import { z } from "zod";
@@ -21,9 +21,9 @@ export const UserCommentGroupByOutputTypeOutputSchema = z.object({
   commenter_id: z.string(),
   text: z.string(),
   created_at: z.date(),
-  edited_at: z.date().nullable(),
-  is_deleted: z.boolean().nullable(),
-  _count: z.any().nullable(),
-  _min: z.any().nullable(),
-  _max: z.any().nullable(),
+  edited_at: z.date().optional(),
+  is_deleted: z.boolean().optional(),
+  _count: z.any().optional(),
+  _min: z.any().optional(),
+  _max: z.any().optional(),
 });

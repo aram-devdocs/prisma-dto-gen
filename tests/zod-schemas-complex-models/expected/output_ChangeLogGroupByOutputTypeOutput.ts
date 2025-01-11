@@ -4,9 +4,9 @@ export interface ChangeLogGroupByOutputTypeOutput {
   change_log_id: string;
   applied_at: Date;
   description: string;
-  _count?: any | null;
-  _min?: any | null;
-  _max?: any | null;
+  _count?: any;
+  _min?: any;
+  _max?: any;
 }
 
 import { z } from "zod";
@@ -15,7 +15,7 @@ export const ChangeLogGroupByOutputTypeOutputSchema = z.object({
   change_log_id: z.string(),
   applied_at: z.date(),
   description: z.string(),
-  _count: z.any().nullable(),
-  _min: z.any().nullable(),
-  _max: z.any().nullable(),
+  _count: z.any().optional(),
+  _min: z.any().optional(),
+  _max: z.any().optional(),
 });

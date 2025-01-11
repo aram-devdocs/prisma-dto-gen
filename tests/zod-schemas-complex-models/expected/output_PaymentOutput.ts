@@ -8,7 +8,7 @@ export interface PaymentOutput {
   amount: Decimal;
   paid_at: Date;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
-  reference_note?: string | null;
+  reference_note?: string;
   payer: {
     profile_id: string;
     created_timestamp: Date;
@@ -158,7 +158,7 @@ export const PaymentOutputSchema = z.object({
   amount: z.any(),
   paid_at: z.date(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
-  reference_note: z.string().nullable(),
+  reference_note: z.string().optional(),
   payer: z.object({
     profile_id: z.string(),
     created_timestamp: z.date(),

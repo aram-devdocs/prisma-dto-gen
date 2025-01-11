@@ -4,7 +4,7 @@ export interface UserNotificationCreateManyInput {
   notification_id: string;
   recipient_profile_id: string;
   sent_timestamp: Date;
-  read_timestamp?: any | null;
+  read_timestamp?: any;
   message: string;
 }
 
@@ -14,6 +14,6 @@ export const UserNotificationCreateManyInputSchema = z.object({
   notification_id: z.string(),
   recipient_profile_id: z.string(),
   sent_timestamp: z.date(),
-  read_timestamp: z.date().nullable(),
+  read_timestamp: z.date().optional(),
   message: z.string(),
 });

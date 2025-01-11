@@ -8,11 +8,11 @@ generator client {
 }
 
 generator dtogen {
-    provider         = "node --loader ts-node/esm ../../generator.ts"
-    output           = "../types"
-    schema           = "zod"
-    prettier         = true
-    appendExtensions = true
+    provider      = "node --loader ts-node/esm ../../generator.ts"
+    output        = "../types"
+    schema        = "zod"
+    prettier      = true
+    fileExtension = ".ts"
 }
 
 enum DocumentStatus {

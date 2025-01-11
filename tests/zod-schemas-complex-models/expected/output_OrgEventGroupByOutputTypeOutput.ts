@@ -5,11 +5,11 @@ export interface OrgEventGroupByOutputTypeOutput {
   organization_id: string;
   event_name: string;
   start_time: Date;
-  end_time?: Date | null;
-  location?: string | null;
-  _count?: any | null;
-  _min?: any | null;
-  _max?: any | null;
+  end_time?: Date;
+  location?: string;
+  _count?: any;
+  _min?: any;
+  _max?: any;
 }
 
 import { z } from "zod";
@@ -19,9 +19,9 @@ export const OrgEventGroupByOutputTypeOutputSchema = z.object({
   organization_id: z.string(),
   event_name: z.string(),
   start_time: z.date(),
-  end_time: z.date().nullable(),
-  location: z.string().nullable(),
-  _count: z.any().nullable(),
-  _min: z.any().nullable(),
-  _max: z.any().nullable(),
+  end_time: z.date().optional(),
+  location: z.string().optional(),
+  _count: z.any().optional(),
+  _min: z.any().optional(),
+  _max: z.any().optional(),
 });

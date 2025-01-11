@@ -7,7 +7,7 @@ export interface OrgMembershipOutput {
   organization_id: string;
   profile_id: string;
   joined_on: Date;
-  is_active?: boolean | null;
+  is_active?: boolean;
   organization: {
     organization_id: string;
     name: string;
@@ -157,7 +157,7 @@ export const OrgMembershipOutputSchema = z.object({
   organization_id: z.string(),
   profile_id: z.string(),
   joined_on: z.date(),
-  is_active: z.boolean().nullable(),
+  is_active: z.boolean().optional(),
   organization: z.object({
     organization_id: z.string(),
     name: z.string(),

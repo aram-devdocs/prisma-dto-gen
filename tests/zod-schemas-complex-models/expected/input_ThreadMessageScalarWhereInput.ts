@@ -9,8 +9,8 @@ export interface ThreadMessageScalarWhereInput {
   sender_id: any;
   content: any;
   sent_at: any;
-  updated_at?: any | null;
-  is_archived?: any | null;
+  updated_at?: any;
+  is_archived?: any;
 }
 
 import { z } from "zod";
@@ -24,6 +24,6 @@ export const ThreadMessageScalarWhereInputSchema = z.object({
   sender_id: z.any(),
   content: z.any(),
   sent_at: z.any(),
-  updated_at: z.any().nullable(),
-  is_archived: z.any().nullable(),
+  updated_at: z.any().optional(),
+  is_archived: z.any().optional(),
 });

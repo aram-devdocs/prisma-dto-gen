@@ -7,7 +7,7 @@ export interface UserNotificationWhereUniqueInput {
   NOT: any;
   recipient_profile_id: any;
   sent_timestamp: any;
-  read_timestamp?: any | null;
+  read_timestamp?: any;
   message: any;
   notification_refs: any;
   user_profile: any;
@@ -22,7 +22,7 @@ export const UserNotificationWhereUniqueInputSchema = z.object({
   NOT: z.any(),
   recipient_profile_id: z.any(),
   sent_timestamp: z.any(),
-  read_timestamp: z.any().nullable(),
+  read_timestamp: z.any().optional(),
   message: z.any(),
   notification_refs: z.any(),
   user_profile: z.any(),

@@ -11,7 +11,7 @@ export interface PaymentWhereInput {
   amount: any;
   paid_at: any;
   status: any;
-  reference_note?: any | null;
+  reference_note?: any;
   payer: any;
 }
 
@@ -26,6 +26,6 @@ export const PaymentWhereInputSchema = z.object({
   amount: z.any(),
   paid_at: z.any(),
   status: z.any(),
-  reference_note: z.any().nullable(),
+  reference_note: z.any().optional(),
   payer: z.any(),
 });

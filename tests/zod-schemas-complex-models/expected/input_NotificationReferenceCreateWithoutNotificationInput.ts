@@ -4,7 +4,7 @@ export interface NotificationReferenceCreateWithoutNotificationInput {
   notification_reference_id: string;
   referenced_entity_id: string;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
-  archived?: any | null;
+  archived?: any;
 }
 
 import { z } from "zod";
@@ -13,5 +13,5 @@ export const NotificationReferenceCreateWithoutNotificationInputSchema = z.objec
   notification_reference_id: z.string(),
   referenced_entity_id: z.string(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
-  archived: z.boolean().nullable(),
+  archived: z.boolean().optional(),
 });

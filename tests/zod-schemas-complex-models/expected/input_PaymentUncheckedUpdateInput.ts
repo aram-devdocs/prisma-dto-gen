@@ -8,7 +8,7 @@ export interface PaymentUncheckedUpdateInput {
   amount: any;
   paid_at: any;
   status: any;
-  reference_note?: any | null;
+  reference_note?: any;
 }
 
 import { z } from "zod";
@@ -19,5 +19,5 @@ export const PaymentUncheckedUpdateInputSchema = z.object({
   amount: z.any(),
   paid_at: z.date(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
-  reference_note: z.string().nullable(),
+  reference_note: z.string().optional(),
 });

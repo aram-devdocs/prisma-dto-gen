@@ -4,7 +4,7 @@ export interface UserNotificationUncheckedUpdateWithoutNotification_refsInput {
   notification_id: any;
   recipient_profile_id: any;
   sent_timestamp: any;
-  read_timestamp?: any | null;
+  read_timestamp?: any;
   message: any;
 }
 
@@ -14,6 +14,6 @@ export const UserNotificationUncheckedUpdateWithoutNotification_refsInputSchema 
   notification_id: z.string(),
   recipient_profile_id: z.string(),
   sent_timestamp: z.date(),
-  read_timestamp: z.date().nullable(),
+  read_timestamp: z.date().optional(),
   message: z.string(),
 });

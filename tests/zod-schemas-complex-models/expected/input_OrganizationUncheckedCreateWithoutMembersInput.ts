@@ -3,10 +3,10 @@
 export interface OrganizationUncheckedCreateWithoutMembersInput {
   organization_id: string;
   name: string;
-  description?: any | null;
+  description?: any;
   created_on: Date;
-  updated_on?: any | null;
-  is_active?: any | null;
+  updated_on?: any;
+  is_active?: any;
   events: any;
   records: any;
 }
@@ -16,10 +16,10 @@ import { z } from "zod";
 export const OrganizationUncheckedCreateWithoutMembersInputSchema = z.object({
   organization_id: z.string(),
   name: z.string(),
-  description: z.string().nullable(),
+  description: z.string().optional(),
   created_on: z.date(),
-  updated_on: z.date().nullable(),
-  is_active: z.boolean().nullable(),
+  updated_on: z.date().optional(),
+  is_active: z.boolean().optional(),
   events: z.any(),
   records: z.any(),
 });

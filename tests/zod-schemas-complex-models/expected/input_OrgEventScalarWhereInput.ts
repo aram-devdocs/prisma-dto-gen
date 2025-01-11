@@ -8,8 +8,8 @@ export interface OrgEventScalarWhereInput {
   organization_id: any;
   event_name: any;
   start_time: any;
-  end_time?: any | null;
-  location?: any | null;
+  end_time?: any;
+  location?: any;
 }
 
 import { z } from "zod";
@@ -22,6 +22,6 @@ export const OrgEventScalarWhereInputSchema = z.object({
   organization_id: z.any(),
   event_name: z.any(),
   start_time: z.any(),
-  end_time: z.any().nullable(),
-  location: z.any().nullable(),
+  end_time: z.any().optional(),
+  location: z.any().optional(),
 });

@@ -8,7 +8,7 @@ export interface UserAccountWhereUniqueInput {
   owner_profile_id: any;
   name: any;
   created_at: any;
-  modified_at?: any | null;
+  modified_at?: any;
   is_active: any;
   user_profile: any;
 }
@@ -23,7 +23,7 @@ export const UserAccountWhereUniqueInputSchema = z.object({
   owner_profile_id: z.any(),
   name: z.any(),
   created_at: z.any(),
-  modified_at: z.any().nullable(),
+  modified_at: z.any().optional(),
   is_active: z.any(),
   user_profile: z.any(),
 });

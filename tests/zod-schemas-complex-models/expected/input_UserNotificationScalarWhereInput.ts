@@ -7,7 +7,7 @@ export interface UserNotificationScalarWhereInput {
   notification_id: any;
   recipient_profile_id: any;
   sent_timestamp: any;
-  read_timestamp?: any | null;
+  read_timestamp?: any;
   message: any;
 }
 
@@ -20,6 +20,6 @@ export const UserNotificationScalarWhereInputSchema = z.object({
   notification_id: z.any(),
   recipient_profile_id: z.any(),
   sent_timestamp: z.any(),
-  read_timestamp: z.any().nullable(),
+  read_timestamp: z.any().optional(),
   message: z.any(),
 });

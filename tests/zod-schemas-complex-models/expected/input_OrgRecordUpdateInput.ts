@@ -3,9 +3,9 @@
 export interface OrgRecordUpdateInput {
   record_id: any;
   title: any;
-  details?: any | null;
+  details?: any;
   created_on: any;
-  updated_on?: any | null;
+  updated_on?: any;
   organization: any;
 }
 
@@ -14,8 +14,8 @@ import { z } from "zod";
 export const OrgRecordUpdateInputSchema = z.object({
   record_id: z.string(),
   title: z.string(),
-  details: z.string().nullable(),
+  details: z.string().optional(),
   created_on: z.date(),
-  updated_on: z.date().nullable(),
+  updated_on: z.date().optional(),
   organization: z.any(),
 });

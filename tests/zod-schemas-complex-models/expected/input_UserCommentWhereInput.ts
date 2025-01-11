@@ -9,8 +9,8 @@ export interface UserCommentWhereInput {
   commenter_id: any;
   text: any;
   created_at: any;
-  edited_at?: any | null;
-  is_deleted?: any | null;
+  edited_at?: any;
+  is_deleted?: any;
   user_document: any;
   user_profile: any;
 }
@@ -26,8 +26,8 @@ export const UserCommentWhereInputSchema = z.object({
   commenter_id: z.any(),
   text: z.any(),
   created_at: z.any(),
-  edited_at: z.any().nullable(),
-  is_deleted: z.any().nullable(),
+  edited_at: z.any().optional(),
+  is_deleted: z.any().optional(),
   user_document: z.any(),
   user_profile: z.any(),
 });
