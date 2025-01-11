@@ -1,0 +1,22 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:./dev.db"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator dtogen {
+    provider      = "node --loader ts-node/esm generator.ts"
+    output        = "."
+    schema        = "zod"
+    prettier      = true
+    fileExtension = ".js"
+}
+
+model User {
+    id    Int    @id @default(autoincrement())
+    name  String
+    email String
+}

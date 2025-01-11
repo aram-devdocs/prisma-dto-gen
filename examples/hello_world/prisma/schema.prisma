@@ -1,0 +1,255 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator dtogen {
+    provider      = "node --loader ts-node/esm ../../generator.ts"
+    output        = "../types"
+    schema        = "zod"
+    prettier      = true
+    fileExtension = ".ts"
+}
+
+enum DocumentStatus {
+    DRAFT
+    REVIEW
+    PUBLISHED
+    ARCHIVED
+}
+
+enum AccountLevel {
+    BASIC
+    PREMIUM
+    ADMIN
+}
+
+enum TwoStepVerificationType {
+    EMAIL
+    SMS
+    PUSH
+}
+
+model ChangeLog {
+    change_log_id String   @id @default(uuid())
+    applied_at    DateTime
+    description   String
+
+    @@index([change_log_id], map: "change_log_id_pkey")
+}
+
+model UserProfile {
+    profile_id        String        @id @default(uuid())
+    created_timestamp DateTime      @default(now())
+    updated_timestamp DateTime?
+    deactivated       Boolean?      @default(false)
+    full_name         String /// z.string().min(1).max(100)
+    email_address     String?       @unique
+    phone_number      String?
+    password_hash     String?
+    account_level     AccountLevel? @default(BASIC)
+
+    user_documents      UserDocument[]
+    user_notifications  UserNotification[]
+    user_accounts       UserAccount[]
+    user_two_step_codes TwoStepVerification[]
+    user_comments       UserComment[]
+
+    created_by_profile UserProfile?  @relation("CreatedByRelation", fields: [created_by_id], references: [profile_id])
+    created_by_id      String?
+    profiles_created   UserProfile[] @relation("CreatedByRelation")
+
+    threads_as_primary_participant   DiscussionThread[] @relation("ThreadsAsPrimaryParticipant")
+    threads_as_secondary_participant DiscussionThread[] @relation("ThreadsAsSecondaryParticipant")
+
+    sent_messages ThreadMessage[] @relation("SentMessages")
+
+    org_memberships OrgMembership[]
+
+    payments Payment[]
+
+    @@index([profile_id], map: "user_profile_id_pkey")
+}
+
+model UserAccount {
+    account_id       String    @id @default(uuid())
+    owner_profile_id String
+    name             String
+    created_at       DateTime  @default(now())
+    modified_at      DateTime?
+    is_active        Boolean   @default(true)
+
+    user_profile UserProfile @relation(fields: [owner_profile_id], references: [profile_id])
+
+    @@index([account_id], map: "user_account_id_pkey")
+}
+
+model UserNotification {
+    notification_id      String                  @id @default(uuid())
+    recipient_profile_id String
+    sent_timestamp       DateTime                @default(now())
+    read_timestamp       DateTime?
+    message              String
+    notification_refs    NotificationReference[]
+
+    user_profile UserProfile @relation(fields: [recipient_profile_id], references: [profile_id])
+
+    @@index([notification_id], map: "user_notification_id_pkey")
+}
+
+model NotificationReference {
+    notification_reference_id String         @id @default(uuid())
+    notification_id           String
+    referenced_entity_id      String
+    status                    DocumentStatus @default(DRAFT)
+    archived                  Boolean?       @default(false)
+
+    notification UserNotification @relation(fields: [notification_id], references: [notification_id])
+
+    @@index([notification_reference_id], map: "notification_reference_id_pkey")
+}
+
+model UserDocument {
+    document_id      String         @id @default(uuid())
+    owner_profile_id String
+    title            String
+    content          String
+    status           DocumentStatus @default(DRAFT)
+    created_at       DateTime       @default(now())
+    updated_at       DateTime?
+    archived         Boolean?       @default(false)
+
+    user_profile UserProfile @relation(fields: [owner_profile_id], references: [profile_id])
+
+    comments UserComment[]
+
+    @@index([document_id], map: "user_document_id_pkey")
+}
+
+model UserComment {
+    comment_id   String    @id @default(uuid())
+    document_id  String
+    commenter_id String
+    text         String
+    created_at   DateTime  @default(now())
+    edited_at    DateTime?
+    is_deleted   Boolean?  @default(false)
+
+    user_document UserDocument @relation(fields: [document_id], references: [document_id])
+    user_profile  UserProfile  @relation(fields: [commenter_id], references: [profile_id])
+
+    @@index([comment_id], map: "user_comment_id_pkey")
+}
+
+model DiscussionThread {
+    thread_id             String    @id @default(uuid())
+    primary_participant   String
+    secondary_participant String?
+    created_on            DateTime  @default(now())
+    closed_on             DateTime?
+    is_flagged            Boolean?  @default(false)
+    flagged_reason        String?
+
+    participant_one UserProfile     @relation("ThreadsAsPrimaryParticipant", fields: [primary_participant], references: [profile_id])
+    participant_two UserProfile?    @relation("ThreadsAsSecondaryParticipant", fields: [secondary_participant], references: [profile_id])
+    messages        ThreadMessage[]
+
+    @@index([thread_id], map: "discussion_thread_id_pkey")
+}
+
+model ThreadMessage {
+    message_id  String    @id @default(uuid())
+    thread_id   String
+    sender_id   String
+    content     String
+    sent_at     DateTime  @default(now())
+    updated_at  DateTime?
+    is_archived Boolean?  @default(false)
+
+    discussion_thread DiscussionThread @relation(fields: [thread_id], references: [thread_id])
+    sender            UserProfile      @relation("SentMessages", fields: [sender_id], references: [profile_id])
+
+    @@index([message_id], map: "thread_message_id_pkey")
+}
+
+model TwoStepVerification {
+    verification_id   String                  @id @default(uuid())
+    profile_id        String
+    code              String?
+    is_verified       Boolean                 @default(false)
+    created_at        DateTime                @default(now())
+    verification_type TwoStepVerificationType
+
+    user_profile UserProfile @relation(fields: [profile_id], references: [profile_id])
+
+    @@index([verification_id], map: "two_step_verification_id_pkey")
+}
+
+model Organization {
+    organization_id String    @id @default(uuid())
+    name            String
+    description     String?
+    created_on      DateTime  @default(now())
+    updated_on      DateTime?
+    is_active       Boolean?  @default(true)
+
+    events  OrgEvent[]
+    members OrgMembership[]
+    records OrgRecord[]
+}
+
+model OrgEvent {
+    org_event_id    String    @id @default(uuid())
+    organization_id String
+    event_name      String
+    start_time      DateTime
+    end_time        DateTime?
+    location        String?
+
+    organization Organization @relation(fields: [organization_id], references: [organization_id])
+
+    @@index([org_event_id], map: "org_event_id_pkey")
+}
+
+model OrgMembership {
+    membership_id   String   @id @default(uuid())
+    organization_id String
+    profile_id      String
+    joined_on       DateTime @default(now())
+    is_active       Boolean? @default(true)
+
+    organization Organization @relation(fields: [organization_id], references: [organization_id])
+    user_profile UserProfile  @relation(fields: [profile_id], references: [profile_id])
+
+    @@index([membership_id], map: "org_membership_id_pkey")
+}
+
+model OrgRecord {
+    record_id       String    @id @default(uuid())
+    organization_id String
+    title           String
+    details         String?
+    created_on      DateTime  @default(now())
+    updated_on      DateTime?
+
+    organization Organization @relation(fields: [organization_id], references: [organization_id])
+
+    @@index([record_id], map: "org_record_id_pkey")
+}
+
+model Payment {
+    payment_id     String         @id @default(uuid())
+    payer_id       String
+    amount         Decimal
+    paid_at        DateTime       @default(now())
+    status         DocumentStatus @default(DRAFT)
+    reference_note String?
+
+    payer UserProfile @relation(fields: [payer_id], references: [profile_id])
+
+    @@index([payment_id], map: "payment_id_pkey")
+}
