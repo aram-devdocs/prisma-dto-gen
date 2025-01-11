@@ -3,7 +3,7 @@
 export interface UserProfileUpsertWithoutProfiles_createdInput {
   update: any;
   create: any;
-  where: any;
+  where?: any;
 }
 
 import { z } from "zod";
@@ -11,5 +11,5 @@ import { z } from "zod";
 export const UserProfileUpsertWithoutProfiles_createdInputSchema = z.object({
   update: z.any(),
   create: z.any(),
-  where: z.any(),
+  where: z.any().optional(),
 });

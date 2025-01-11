@@ -7,7 +7,7 @@ export interface NotificationReferenceOutput {
   notification_id: string;
   referenced_entity_id: string;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
-  archived?: boolean;
+  archived: boolean;
   notification: {
     notification_id: string;
     recipient_profile_id: string;
@@ -156,7 +156,7 @@ export const NotificationReferenceOutputSchema = z.object({
   notification_id: z.string(),
   referenced_entity_id: z.string(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
-  archived: z.boolean().optional(),
+  archived: z.boolean().nullable(),
   notification: z.object({
     notification_id: z.string(),
     recipient_profile_id: z.string(),

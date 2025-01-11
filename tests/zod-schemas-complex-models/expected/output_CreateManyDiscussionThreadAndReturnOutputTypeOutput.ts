@@ -5,11 +5,11 @@ type Decimal = { valueOf(): string };
 export interface CreateManyDiscussionThreadAndReturnOutputTypeOutput {
   thread_id: string;
   primary_participant: string;
-  secondary_participant?: string;
+  secondary_participant: string;
   created_on: Date;
-  closed_on?: Date;
-  is_flagged?: boolean;
-  flagged_reason?: string;
+  closed_on: Date;
+  is_flagged: boolean;
+  flagged_reason: string;
   participant_one: {
     profile_id: string;
     created_timestamp: Date;
@@ -149,7 +149,7 @@ export interface CreateManyDiscussionThreadAndReturnOutputTypeOutput {
       payer: any /* circular reference to UserProfile */;
     }[];
   };
-  participant_two?: any /* circular reference to UserProfile */;
+  participant_two: any /* circular reference to UserProfile */;
 }
 
 import { z } from "zod";
@@ -157,11 +157,11 @@ import { z } from "zod";
 export const CreateManyDiscussionThreadAndReturnOutputTypeOutputSchema = z.object({
   thread_id: z.string(),
   primary_participant: z.string(),
-  secondary_participant: z.string().optional(),
+  secondary_participant: z.string().nullable(),
   created_on: z.date(),
-  closed_on: z.date().optional(),
-  is_flagged: z.boolean().optional(),
-  flagged_reason: z.string().optional(),
+  closed_on: z.date().nullable(),
+  is_flagged: z.boolean().nullable(),
+  flagged_reason: z.string().nullable(),
   participant_one: z.object({
     profile_id: z.string(),
     created_timestamp: z.date(),
@@ -211,5 +211,5 @@ export const CreateManyDiscussionThreadAndReturnOutputTypeOutputSchema = z.objec
       org_memberships: z.array(z.any()),
       payments: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
 });

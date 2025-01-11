@@ -7,11 +7,11 @@ export interface UserDocumentGroupByOutputTypeOutput {
   content: string;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
   created_at: Date;
-  updated_at?: Date;
-  archived?: boolean;
-  _count?: any;
-  _min?: any;
-  _max?: any;
+  updated_at: Date;
+  archived: boolean;
+  _count: any;
+  _min: any;
+  _max: any;
 }
 
 import { z } from "zod";
@@ -23,9 +23,9 @@ export const UserDocumentGroupByOutputTypeOutputSchema = z.object({
   content: z.string(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
   created_at: z.date(),
-  updated_at: z.date().optional(),
-  archived: z.boolean().optional(),
-  _count: z.any().optional(),
-  _min: z.any().optional(),
-  _max: z.any().optional(),
+  updated_at: z.date().nullable(),
+  archived: z.boolean().nullable(),
+  _count: z.any().nullable(),
+  _min: z.any().nullable(),
+  _max: z.any().nullable(),
 });

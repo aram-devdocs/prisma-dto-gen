@@ -3,35 +3,35 @@
 type Decimal = { valueOf(): string };
 
 export interface DecimalWithAggregatesFilter {
-  equals: any;
-  in: any;
-  notIn: any;
-  lt: any;
-  lte: any;
-  gt: any;
-  gte: any;
-  not: any;
-  _count: any;
-  _avg: any;
-  _sum: any;
-  _min: any;
-  _max: any;
+  equals?: any;
+  in?: any;
+  notIn?: any;
+  lt?: any;
+  lte?: any;
+  gt?: any;
+  gte?: any;
+  not?: any;
+  _count?: any;
+  _avg?: any;
+  _sum?: any;
+  _min?: any;
+  _max?: any;
 }
 
 import { z } from "zod";
 
 export const DecimalWithAggregatesFilterSchema = z.object({
-  equals: z.any(),
-  in: z.array(z.any()),
-  notIn: z.array(z.any()),
-  lt: z.any(),
-  lte: z.any(),
-  gt: z.any(),
-  gte: z.any(),
-  not: z.any(),
-  _count: z.any(),
-  _avg: z.any(),
-  _sum: z.any(),
-  _min: z.any(),
-  _max: z.any(),
+  equals: z.any().optional(),
+  in: z.array(z.any()).optional(),
+  notIn: z.array(z.any()).optional(),
+  lt: z.any().optional(),
+  lte: z.any().optional(),
+  gt: z.any().optional(),
+  gte: z.any().optional(),
+  not: z.any().optional(),
+  _count: z.any().optional(),
+  _avg: z.any().optional(),
+  _sum: z.any().optional(),
+  _min: z.any().optional(),
+  _max: z.any().optional(),
 });

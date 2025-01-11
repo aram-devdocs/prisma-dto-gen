@@ -5,15 +5,15 @@ type Decimal = { valueOf(): string };
 export interface CreateManyUserProfileAndReturnOutputTypeOutput {
   profile_id: string;
   created_timestamp: Date;
-  updated_timestamp?: Date;
-  deactivated?: boolean;
+  updated_timestamp: Date;
+  deactivated: boolean;
   full_name: string;
-  email_address?: string;
-  phone_number?: string;
-  password_hash?: string;
-  account_level?: "BASIC" | "PREMIUM" | "ADMIN";
-  created_by_id?: string;
-  created_by_profile?: {
+  email_address: string;
+  phone_number: string;
+  password_hash: string;
+  account_level: "BASIC" | "PREMIUM" | "ADMIN";
+  created_by_id: string;
+  created_by_profile: {
     profile_id: string;
     created_timestamp: Date;
     updated_timestamp?: Date | null;
@@ -159,14 +159,14 @@ import { z } from "zod";
 export const CreateManyUserProfileAndReturnOutputTypeOutputSchema = z.object({
   profile_id: z.string(),
   created_timestamp: z.date(),
-  updated_timestamp: z.date().optional(),
-  deactivated: z.boolean().optional(),
+  updated_timestamp: z.date().nullable(),
+  deactivated: z.boolean().nullable(),
   full_name: z.string(),
-  email_address: z.string().optional(),
-  phone_number: z.string().optional(),
-  password_hash: z.string().optional(),
-  account_level: z.enum(["BASIC", "PREMIUM", "ADMIN"]).optional(),
-  created_by_id: z.string().optional(),
+  email_address: z.string().nullable(),
+  phone_number: z.string().nullable(),
+  password_hash: z.string().nullable(),
+  account_level: z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable(),
+  created_by_id: z.string().nullable(),
   created_by_profile: z
     .object({
       profile_id: z.string(),
@@ -192,5 +192,5 @@ export const CreateManyUserProfileAndReturnOutputTypeOutputSchema = z.object({
       org_memberships: z.array(z.any()),
       payments: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
 });

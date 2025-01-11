@@ -5,10 +5,10 @@ export interface OrgMembershipGroupByOutputTypeOutput {
   organization_id: string;
   profile_id: string;
   joined_on: Date;
-  is_active?: boolean;
-  _count?: any;
-  _min?: any;
-  _max?: any;
+  is_active: boolean;
+  _count: any;
+  _min: any;
+  _max: any;
 }
 
 import { z } from "zod";
@@ -18,8 +18,8 @@ export const OrgMembershipGroupByOutputTypeOutputSchema = z.object({
   organization_id: z.string(),
   profile_id: z.string(),
   joined_on: z.date(),
-  is_active: z.boolean().optional(),
-  _count: z.any().optional(),
-  _min: z.any().optional(),
-  _max: z.any().optional(),
+  is_active: z.boolean().nullable(),
+  _count: z.any().nullable(),
+  _min: z.any().nullable(),
+  _max: z.any().nullable(),
 });

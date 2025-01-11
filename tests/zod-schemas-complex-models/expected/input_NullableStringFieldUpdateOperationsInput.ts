@@ -7,5 +7,5 @@ export interface NullableStringFieldUpdateOperationsInput {
 import { z } from "zod";
 
 export const NullableStringFieldUpdateOperationsInputSchema = z.object({
-  set: z.string().optional(),
+  set: z.string().nullable().optional(),
 });

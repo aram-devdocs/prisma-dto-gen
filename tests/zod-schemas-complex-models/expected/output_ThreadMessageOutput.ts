@@ -8,8 +8,8 @@ export interface ThreadMessageOutput {
   sender_id: string;
   content: string;
   sent_at: Date;
-  updated_at?: Date;
-  is_archived?: boolean;
+  updated_at: Date;
+  is_archived: boolean;
   discussion_thread: {
     thread_id: string;
     primary_participant: string;
@@ -160,8 +160,8 @@ export const ThreadMessageOutputSchema = z.object({
   sender_id: z.string(),
   content: z.string(),
   sent_at: z.date(),
-  updated_at: z.date().optional(),
-  is_archived: z.boolean().optional(),
+  updated_at: z.date().nullable(),
+  is_archived: z.boolean().nullable(),
   discussion_thread: z.object({
     thread_id: z.string(),
     primary_participant: z.string(),

@@ -6,9 +6,9 @@ export interface UserNotificationOutput {
   notification_id: string;
   recipient_profile_id: string;
   sent_timestamp: Date;
-  read_timestamp?: Date;
+  read_timestamp: Date;
   message: string;
-  notification_refs?: {
+  notification_refs: {
     notification_reference_id: string;
     notification_id: string;
     referenced_entity_id: string;
@@ -157,7 +157,7 @@ export const UserNotificationOutputSchema = z.object({
   notification_id: z.string(),
   recipient_profile_id: z.string(),
   sent_timestamp: z.date(),
-  read_timestamp: z.date().optional(),
+  read_timestamp: z.date().nullable(),
   message: z.string(),
   notification_refs: z
     .array(
@@ -170,7 +170,7 @@ export const UserNotificationOutputSchema = z.object({
         notification: z.any(),
       }),
     )
-    .optional(),
+    .nullable(),
   user_profile: z.object({
     profile_id: z.string(),
     created_timestamp: z.date(),

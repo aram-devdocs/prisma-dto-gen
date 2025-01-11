@@ -4,34 +4,34 @@ export interface NestedStringNullableWithAggregatesFilter {
   equals?: any;
   in?: any;
   notIn?: any;
-  lt: any;
-  lte: any;
-  gt: any;
-  gte: any;
-  contains: any;
-  startsWith: any;
-  endsWith: any;
+  lt?: any;
+  lte?: any;
+  gt?: any;
+  gte?: any;
+  contains?: any;
+  startsWith?: any;
+  endsWith?: any;
   not?: any;
-  _count: any;
-  _min: any;
-  _max: any;
+  _count?: any;
+  _min?: any;
+  _max?: any;
 }
 
 import { z } from "zod";
 
 export const NestedStringNullableWithAggregatesFilterSchema = z.object({
-  equals: z.string().optional(),
-  in: z.array(z.string()).optional(),
-  notIn: z.array(z.string()).optional(),
-  lt: z.string(),
-  lte: z.string(),
-  gt: z.string(),
-  gte: z.string(),
-  contains: z.string(),
-  startsWith: z.string(),
-  endsWith: z.string(),
-  not: z.string().optional(),
-  _count: z.any(),
-  _min: z.any(),
-  _max: z.any(),
+  equals: z.string().nullable().optional(),
+  in: z.array(z.string()).nullable().optional(),
+  notIn: z.array(z.string()).nullable().optional(),
+  lt: z.string().optional(),
+  lte: z.string().optional(),
+  gt: z.string().optional(),
+  gte: z.string().optional(),
+  contains: z.string().optional(),
+  startsWith: z.string().optional(),
+  endsWith: z.string().optional(),
+  not: z.string().nullable().optional(),
+  _count: z.any().optional(),
+  _min: z.any().optional(),
+  _max: z.any().optional(),
 });

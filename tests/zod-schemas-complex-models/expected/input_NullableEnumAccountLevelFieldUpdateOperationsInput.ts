@@ -7,5 +7,5 @@ export interface NullableEnumAccountLevelFieldUpdateOperationsInput {
 import { z } from "zod";
 
 export const NullableEnumAccountLevelFieldUpdateOperationsInputSchema = z.object({
-  set: z.enum(["BASIC", "PREMIUM", "ADMIN"]).optional(),
+  set: z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable().optional(),
 });

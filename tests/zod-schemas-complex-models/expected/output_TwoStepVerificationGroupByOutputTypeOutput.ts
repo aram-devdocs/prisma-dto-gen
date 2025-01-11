@@ -3,13 +3,13 @@
 export interface TwoStepVerificationGroupByOutputTypeOutput {
   verification_id: string;
   profile_id: string;
-  code?: string;
+  code: string;
   is_verified: boolean;
   created_at: Date;
   verification_type: "EMAIL" | "SMS" | "PUSH";
-  _count?: any;
-  _min?: any;
-  _max?: any;
+  _count: any;
+  _min: any;
+  _max: any;
 }
 
 import { z } from "zod";
@@ -17,11 +17,11 @@ import { z } from "zod";
 export const TwoStepVerificationGroupByOutputTypeOutputSchema = z.object({
   verification_id: z.string(),
   profile_id: z.string(),
-  code: z.string().optional(),
+  code: z.string().nullable(),
   is_verified: z.boolean(),
   created_at: z.date(),
   verification_type: z.enum(["EMAIL", "SMS", "PUSH"]),
-  _count: z.any().optional(),
-  _min: z.any().optional(),
-  _max: z.any().optional(),
+  _count: z.any().nullable(),
+  _min: z.any().nullable(),
+  _max: z.any().nullable(),
 });

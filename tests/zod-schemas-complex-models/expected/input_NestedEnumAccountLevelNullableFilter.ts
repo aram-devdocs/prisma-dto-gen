@@ -10,8 +10,14 @@ export interface NestedEnumAccountLevelNullableFilter {
 import { z } from "zod";
 
 export const NestedEnumAccountLevelNullableFilterSchema = z.object({
-  equals: z.enum(["BASIC", "PREMIUM", "ADMIN"]).optional(),
-  in: z.array(z.enum(["BASIC", "PREMIUM", "ADMIN"])).optional(),
-  notIn: z.array(z.enum(["BASIC", "PREMIUM", "ADMIN"])).optional(),
-  not: z.enum(["BASIC", "PREMIUM", "ADMIN"]).optional(),
+  equals: z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable().optional(),
+  in: z
+    .array(z.enum(["BASIC", "PREMIUM", "ADMIN"]))
+    .nullable()
+    .optional(),
+  notIn: z
+    .array(z.enum(["BASIC", "PREMIUM", "ADMIN"]))
+    .nullable()
+    .optional(),
+  not: z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable().optional(),
 });

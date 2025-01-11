@@ -3,29 +3,29 @@
 type Decimal = { valueOf(): string };
 
 export interface PaymentWhereUniqueInput {
-  payment_id: string;
-  AND: any;
-  OR: any;
-  NOT: any;
-  payer_id: any;
-  amount: any;
-  paid_at: any;
-  status: any;
+  payment_id?: string;
+  AND?: any;
+  OR?: any;
+  NOT?: any;
+  payer_id?: any;
+  amount?: any;
+  paid_at?: any;
+  status?: any;
   reference_note?: any;
-  payer: any;
+  payer?: any;
 }
 
 import { z } from "zod";
 
 export const PaymentWhereUniqueInputSchema = z.object({
-  payment_id: z.string(),
-  AND: z.any(),
-  OR: z.array(z.any()),
-  NOT: z.any(),
-  payer_id: z.any(),
-  amount: z.any(),
-  paid_at: z.any(),
-  status: z.any(),
-  reference_note: z.any().optional(),
-  payer: z.any(),
+  payment_id: z.string().optional(),
+  AND: z.any().optional(),
+  OR: z.array(z.any()).optional(),
+  NOT: z.any().optional(),
+  payer_id: z.any().optional(),
+  amount: z.any().optional(),
+  paid_at: z.any().optional(),
+  status: z.any().optional(),
+  reference_note: z.any().nullable().optional(),
+  payer: z.any().optional(),
 });

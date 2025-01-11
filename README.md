@@ -49,6 +49,7 @@ npx prisma generate
 ## Features
 
 • Generates zero-dependency TypeScript definitions for models, enums, composite types, input types, and output types.  
+• Matching isRequired and isNullable to provide verbose type definitions.
 • Offers optional flattening of relationship fields by appending “\_id” instead of deeply nesting.  
 • Provides customizable scalar mappings (Date to string, BigInt to number, etc.)  
 • Creates a structured folder output (by default ./generated) to keep your DTOs organized.  

@@ -3,7 +3,7 @@
 export interface UserProfileUpsertWithoutUser_two_step_codesInput {
   update: any;
   create: any;
-  where: any;
+  where?: any;
 }
 
 import { z } from "zod";
@@ -11,5 +11,5 @@ import { z } from "zod";
 export const UserProfileUpsertWithoutUser_two_step_codesInputSchema = z.object({
   update: z.any(),
   create: z.any(),
-  where: z.any(),
+  where: z.any().optional(),
 });

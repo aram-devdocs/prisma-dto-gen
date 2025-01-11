@@ -4,28 +4,28 @@ export interface NestedStringNullableFilter {
   equals?: any;
   in?: any;
   notIn?: any;
-  lt: any;
-  lte: any;
-  gt: any;
-  gte: any;
-  contains: any;
-  startsWith: any;
-  endsWith: any;
+  lt?: any;
+  lte?: any;
+  gt?: any;
+  gte?: any;
+  contains?: any;
+  startsWith?: any;
+  endsWith?: any;
   not?: any;
 }
 
 import { z } from "zod";
 
 export const NestedStringNullableFilterSchema = z.object({
-  equals: z.string().optional(),
-  in: z.array(z.string()).optional(),
-  notIn: z.array(z.string()).optional(),
-  lt: z.string(),
-  lte: z.string(),
-  gt: z.string(),
-  gte: z.string(),
-  contains: z.string(),
-  startsWith: z.string(),
-  endsWith: z.string(),
-  not: z.string().optional(),
+  equals: z.string().nullable().optional(),
+  in: z.array(z.string()).nullable().optional(),
+  notIn: z.array(z.string()).nullable().optional(),
+  lt: z.string().optional(),
+  lte: z.string().optional(),
+  gt: z.string().optional(),
+  gte: z.string().optional(),
+  contains: z.string().optional(),
+  startsWith: z.string().optional(),
+  endsWith: z.string().optional(),
+  not: z.string().nullable().optional(),
 });

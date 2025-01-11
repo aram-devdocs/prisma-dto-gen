@@ -6,9 +6,9 @@ export interface CreateManyOrgRecordAndReturnOutputTypeOutput {
   record_id: string;
   organization_id: string;
   title: string;
-  details?: string;
+  details: string;
   created_on: Date;
-  updated_on?: Date;
+  updated_on: Date;
   organization: {
     organization_id: string;
     name: string;
@@ -156,9 +156,9 @@ export const CreateManyOrgRecordAndReturnOutputTypeOutputSchema = z.object({
   record_id: z.string(),
   organization_id: z.string(),
   title: z.string(),
-  details: z.string().optional(),
+  details: z.string().nullable(),
   created_on: z.date(),
-  updated_on: z.date().optional(),
+  updated_on: z.date().nullable(),
   organization: z.object({
     organization_id: z.string(),
     name: z.string(),

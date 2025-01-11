@@ -2,12 +2,12 @@
 
 export interface PaymentCreateManyPayerInputEnvelope {
   data: any;
-  skipDuplicates: boolean;
+  skipDuplicates?: boolean;
 }
 
 import { z } from "zod";
 
 export const PaymentCreateManyPayerInputEnvelopeSchema = z.object({
   data: z.any(),
-  skipDuplicates: z.boolean(),
+  skipDuplicates: z.boolean().optional(),
 });

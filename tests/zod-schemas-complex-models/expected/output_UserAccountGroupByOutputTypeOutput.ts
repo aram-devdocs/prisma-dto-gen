@@ -5,11 +5,11 @@ export interface UserAccountGroupByOutputTypeOutput {
   owner_profile_id: string;
   name: string;
   created_at: Date;
-  modified_at?: Date;
+  modified_at: Date;
   is_active: boolean;
-  _count?: any;
-  _min?: any;
-  _max?: any;
+  _count: any;
+  _min: any;
+  _max: any;
 }
 
 import { z } from "zod";
@@ -19,9 +19,9 @@ export const UserAccountGroupByOutputTypeOutputSchema = z.object({
   owner_profile_id: z.string(),
   name: z.string(),
   created_at: z.date(),
-  modified_at: z.date().optional(),
+  modified_at: z.date().nullable(),
   is_active: z.boolean(),
-  _count: z.any().optional(),
-  _min: z.any().optional(),
-  _max: z.any().optional(),
+  _count: z.any().nullable(),
+  _min: z.any().nullable(),
+  _max: z.any().nullable(),
 });

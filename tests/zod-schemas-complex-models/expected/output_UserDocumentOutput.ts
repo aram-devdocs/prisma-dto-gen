@@ -9,8 +9,8 @@ export interface UserDocumentOutput {
   content: string;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
   created_at: Date;
-  updated_at?: Date;
-  archived?: boolean;
+  updated_at: Date;
+  archived: boolean;
   user_profile: {
     profile_id: string;
     created_timestamp: Date;
@@ -150,7 +150,7 @@ export interface UserDocumentOutput {
       payer: any /* circular reference to UserProfile */;
     }[];
   };
-  comments?: any /* circular reference to UserComment */;
+  comments: any /* circular reference to UserComment */;
   _count: any;
 }
 
@@ -163,8 +163,8 @@ export const UserDocumentOutputSchema = z.object({
   content: z.string(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
   created_at: z.date(),
-  updated_at: z.date().optional(),
-  archived: z.boolean().optional(),
+  updated_at: z.date().nullable(),
+  archived: z.boolean().nullable(),
   user_profile: z.object({
     profile_id: z.string(),
     created_timestamp: z.date(),
@@ -203,6 +203,6 @@ export const UserDocumentOutputSchema = z.object({
         user_profile: z.any(),
       }),
     )
-    .optional(),
+    .nullable(),
   _count: z.any(),
 });

@@ -4,11 +4,11 @@ export interface UserNotificationGroupByOutputTypeOutput {
   notification_id: string;
   recipient_profile_id: string;
   sent_timestamp: Date;
-  read_timestamp?: Date;
+  read_timestamp: Date;
   message: string;
-  _count?: any;
-  _min?: any;
-  _max?: any;
+  _count: any;
+  _min: any;
+  _max: any;
 }
 
 import { z } from "zod";
@@ -17,9 +17,9 @@ export const UserNotificationGroupByOutputTypeOutputSchema = z.object({
   notification_id: z.string(),
   recipient_profile_id: z.string(),
   sent_timestamp: z.date(),
-  read_timestamp: z.date().optional(),
+  read_timestamp: z.date().nullable(),
   message: z.string(),
-  _count: z.any().optional(),
-  _min: z.any().optional(),
-  _max: z.any().optional(),
+  _count: z.any().nullable(),
+  _min: z.any().nullable(),
+  _max: z.any().nullable(),
 });

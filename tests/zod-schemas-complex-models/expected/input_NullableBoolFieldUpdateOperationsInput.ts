@@ -7,5 +7,5 @@ export interface NullableBoolFieldUpdateOperationsInput {
 import { z } from "zod";
 
 export const NullableBoolFieldUpdateOperationsInputSchema = z.object({
-  set: z.boolean().optional(),
+  set: z.boolean().nullable().optional(),
 });

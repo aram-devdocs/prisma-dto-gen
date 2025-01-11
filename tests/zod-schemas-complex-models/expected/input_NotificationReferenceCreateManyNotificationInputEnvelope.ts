@@ -2,12 +2,12 @@
 
 export interface NotificationReferenceCreateManyNotificationInputEnvelope {
   data: any;
-  skipDuplicates: boolean;
+  skipDuplicates?: boolean;
 }
 
 import { z } from "zod";
 
 export const NotificationReferenceCreateManyNotificationInputEnvelopeSchema = z.object({
   data: z.any(),
-  skipDuplicates: z.boolean(),
+  skipDuplicates: z.boolean().optional(),
 });

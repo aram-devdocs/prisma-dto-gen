@@ -6,11 +6,11 @@ export interface ThreadMessageGroupByOutputTypeOutput {
   sender_id: string;
   content: string;
   sent_at: Date;
-  updated_at?: Date;
-  is_archived?: boolean;
-  _count?: any;
-  _min?: any;
-  _max?: any;
+  updated_at: Date;
+  is_archived: boolean;
+  _count: any;
+  _min: any;
+  _max: any;
 }
 
 import { z } from "zod";
@@ -21,9 +21,9 @@ export const ThreadMessageGroupByOutputTypeOutputSchema = z.object({
   sender_id: z.string(),
   content: z.string(),
   sent_at: z.date(),
-  updated_at: z.date().optional(),
-  is_archived: z.boolean().optional(),
-  _count: z.any().optional(),
-  _min: z.any().optional(),
-  _max: z.any().optional(),
+  updated_at: z.date().nullable(),
+  is_archived: z.boolean().nullable(),
+  _count: z.any().nullable(),
+  _min: z.any().nullable(),
+  _max: z.any().nullable(),
 });

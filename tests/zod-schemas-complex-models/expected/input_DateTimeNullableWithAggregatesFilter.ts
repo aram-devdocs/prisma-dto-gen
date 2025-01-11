@@ -4,28 +4,28 @@ export interface DateTimeNullableWithAggregatesFilter {
   equals?: any;
   in?: any;
   notIn?: any;
-  lt: any;
-  lte: any;
-  gt: any;
-  gte: any;
+  lt?: any;
+  lte?: any;
+  gt?: any;
+  gte?: any;
   not?: any;
-  _count: any;
-  _min: any;
-  _max: any;
+  _count?: any;
+  _min?: any;
+  _max?: any;
 }
 
 import { z } from "zod";
 
 export const DateTimeNullableWithAggregatesFilterSchema = z.object({
-  equals: z.date().optional(),
-  in: z.array(z.date()).optional(),
-  notIn: z.array(z.date()).optional(),
-  lt: z.date(),
-  lte: z.date(),
-  gt: z.date(),
-  gte: z.date(),
-  not: z.date().optional(),
-  _count: z.any(),
-  _min: z.any(),
-  _max: z.any(),
+  equals: z.date().nullable().optional(),
+  in: z.array(z.date()).nullable().optional(),
+  notIn: z.array(z.date()).nullable().optional(),
+  lt: z.date().optional(),
+  lte: z.date().optional(),
+  gt: z.date().optional(),
+  gte: z.date().optional(),
+  not: z.date().nullable().optional(),
+  _count: z.any().optional(),
+  _min: z.any().optional(),
+  _max: z.any().optional(),
 });

@@ -2,12 +2,12 @@
 
 export interface DiscussionThreadCreateManyParticipant_twoInputEnvelope {
   data: any;
-  skipDuplicates: boolean;
+  skipDuplicates?: boolean;
 }
 
 import { z } from "zod";
 
 export const DiscussionThreadCreateManyParticipant_twoInputEnvelopeSchema = z.object({
   data: z.any(),
-  skipDuplicates: z.boolean(),
+  skipDuplicates: z.boolean().optional(),
 });

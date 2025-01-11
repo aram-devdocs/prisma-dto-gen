@@ -3,19 +3,19 @@
 type Decimal = { valueOf(): string };
 
 export interface DecimalFieldUpdateOperationsInput {
-  set: Decimal;
-  increment: Decimal;
-  decrement: Decimal;
-  multiply: Decimal;
-  divide: Decimal;
+  set?: Decimal;
+  increment?: Decimal;
+  decrement?: Decimal;
+  multiply?: Decimal;
+  divide?: Decimal;
 }
 
 import { z } from "zod";
 
 export const DecimalFieldUpdateOperationsInputSchema = z.object({
-  set: z.any(),
-  increment: z.any(),
-  decrement: z.any(),
-  multiply: z.any(),
-  divide: z.any(),
+  set: z.any().optional(),
+  increment: z.any().optional(),
+  decrement: z.any().optional(),
+  multiply: z.any().optional(),
+  divide: z.any().optional(),
 });

@@ -4,12 +4,12 @@ export interface OrgRecordGroupByOutputTypeOutput {
   record_id: string;
   organization_id: string;
   title: string;
-  details?: string;
+  details: string;
   created_on: Date;
-  updated_on?: Date;
-  _count?: any;
-  _min?: any;
-  _max?: any;
+  updated_on: Date;
+  _count: any;
+  _min: any;
+  _max: any;
 }
 
 import { z } from "zod";
@@ -18,10 +18,10 @@ export const OrgRecordGroupByOutputTypeOutputSchema = z.object({
   record_id: z.string(),
   organization_id: z.string(),
   title: z.string(),
-  details: z.string().optional(),
+  details: z.string().nullable(),
   created_on: z.date(),
-  updated_on: z.date().optional(),
-  _count: z.any().optional(),
-  _min: z.any().optional(),
-  _max: z.any().optional(),
+  updated_on: z.date().nullable(),
+  _count: z.any().nullable(),
+  _min: z.any().nullable(),
+  _max: z.any().nullable(),
 });

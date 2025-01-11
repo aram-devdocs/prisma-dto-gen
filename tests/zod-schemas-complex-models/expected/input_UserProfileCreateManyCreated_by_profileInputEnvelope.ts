@@ -2,12 +2,12 @@
 
 export interface UserProfileCreateManyCreated_by_profileInputEnvelope {
   data: any;
-  skipDuplicates: boolean;
+  skipDuplicates?: boolean;
 }
 
 import { z } from "zod";
 
 export const UserProfileCreateManyCreated_by_profileInputEnvelopeSchema = z.object({
   data: z.any(),
-  skipDuplicates: z.boolean(),
+  skipDuplicates: z.boolean().optional(),
 });

@@ -3,6 +3,8 @@ import { Decimal } from "@prisma/client/runtime/library";
 
 import {
   UserProfile,
+  UserProfileCreateInput,
+  UserProfileCreateInputSchema,
   UserProfileSchema,
   UserDocument,
   UserDocumentSchema,
@@ -24,6 +26,13 @@ const PORT = 3000;
 console.log("Starting server...");
 
 app.get("/", (req: Request, res: Response) => {
+  const mockUserCreateInput: UserProfileCreateInput = {
+    full_name: "John Doe",
+  };
+
+  // Validate mockUserCreateInput
+  const validationResult = UserProfileCreateInputSchema.safeParse(mockUserCreateInput);
+
   // Create mock data
   const mockChangeLog: ChangeLog = {
     change_log_id: "cl1",

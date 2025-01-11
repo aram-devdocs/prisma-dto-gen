@@ -8,6 +8,6 @@ export interface BoolNullableFilter {
 import { z } from "zod";
 
 export const BoolNullableFilterSchema = z.object({
-  equals: z.boolean().optional(),
-  not: z.boolean().optional(),
+  equals: z.boolean().nullable().optional(),
+  not: z.boolean().nullable().optional(),
 });

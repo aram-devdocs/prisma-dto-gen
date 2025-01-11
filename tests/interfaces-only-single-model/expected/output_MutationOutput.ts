@@ -17,8 +17,8 @@ export interface MutationOutput {
   upsertOneUser: any /* circular reference to User */;
   createManyUser: any;
   createManyUserAndReturn: any;
-  deleteOneUser?: any /* circular reference to User */;
-  updateOneUser?: any /* circular reference to User */;
+  deleteOneUser: any /* circular reference to User */;
+  updateOneUser: any /* circular reference to User */;
   updateManyUser: any;
   deleteManyUser: any;
   executeRaw: JsonValue;

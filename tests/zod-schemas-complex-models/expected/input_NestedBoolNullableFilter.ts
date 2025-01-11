@@ -8,6 +8,6 @@ export interface NestedBoolNullableFilter {
 import { z } from "zod";
 
 export const NestedBoolNullableFilterSchema = z.object({
-  equals: z.boolean().optional(),
-  not: z.boolean().optional(),
+  equals: z.boolean().nullable().optional(),
+  not: z.boolean().nullable().optional(),
 });

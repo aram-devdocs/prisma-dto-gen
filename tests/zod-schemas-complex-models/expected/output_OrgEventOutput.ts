@@ -7,8 +7,8 @@ export interface OrgEventOutput {
   organization_id: string;
   event_name: string;
   start_time: Date;
-  end_time?: Date;
-  location?: string;
+  end_time: Date;
+  location: string;
   organization: {
     organization_id: string;
     name: string;
@@ -157,8 +157,8 @@ export const OrgEventOutputSchema = z.object({
   organization_id: z.string(),
   event_name: z.string(),
   start_time: z.date(),
-  end_time: z.date().optional(),
-  location: z.string().optional(),
+  end_time: z.date().nullable(),
+  location: z.string().nullable(),
   organization: z.object({
     organization_id: z.string(),
     name: z.string(),

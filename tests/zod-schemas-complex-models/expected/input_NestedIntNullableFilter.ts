@@ -4,22 +4,22 @@ export interface NestedIntNullableFilter {
   equals?: any;
   in?: any;
   notIn?: any;
-  lt: any;
-  lte: any;
-  gt: any;
-  gte: any;
+  lt?: any;
+  lte?: any;
+  gt?: any;
+  gte?: any;
   not?: any;
 }
 
 import { z } from "zod";
 
 export const NestedIntNullableFilterSchema = z.object({
-  equals: z.number().optional(),
-  in: z.array(z.number()).optional(),
-  notIn: z.array(z.number()).optional(),
-  lt: z.number(),
-  lte: z.number(),
-  gt: z.number(),
-  gte: z.number(),
-  not: z.number().optional(),
+  equals: z.number().nullable().optional(),
+  in: z.array(z.number()).nullable().optional(),
+  notIn: z.array(z.number()).nullable().optional(),
+  lt: z.number().optional(),
+  lte: z.number().optional(),
+  gt: z.number().optional(),
+  gte: z.number().optional(),
+  not: z.number().nullable().optional(),
 });

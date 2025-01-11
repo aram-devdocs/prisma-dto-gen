@@ -3,17 +3,17 @@
 export interface BoolNullableWithAggregatesFilter {
   equals?: any;
   not?: any;
-  _count: any;
-  _min: any;
-  _max: any;
+  _count?: any;
+  _min?: any;
+  _max?: any;
 }
 
 import { z } from "zod";
 
 export const BoolNullableWithAggregatesFilterSchema = z.object({
-  equals: z.boolean().optional(),
-  not: z.boolean().optional(),
-  _count: z.any(),
-  _min: z.any(),
-  _max: z.any(),
+  equals: z.boolean().nullable().optional(),
+  not: z.boolean().nullable().optional(),
+  _count: z.any().optional(),
+  _min: z.any().optional(),
+  _max: z.any().optional(),
 });

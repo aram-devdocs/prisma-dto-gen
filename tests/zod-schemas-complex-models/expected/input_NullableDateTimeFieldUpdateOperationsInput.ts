@@ -7,5 +7,5 @@ export interface NullableDateTimeFieldUpdateOperationsInput {
 import { z } from "zod";
 
 export const NullableDateTimeFieldUpdateOperationsInputSchema = z.object({
-  set: z.date().optional(),
+  set: z.date().nullable().optional(),
 });

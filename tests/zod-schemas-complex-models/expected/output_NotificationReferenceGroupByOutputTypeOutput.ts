@@ -5,10 +5,10 @@ export interface NotificationReferenceGroupByOutputTypeOutput {
   notification_id: string;
   referenced_entity_id: string;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
-  archived?: boolean;
-  _count?: any;
-  _min?: any;
-  _max?: any;
+  archived: boolean;
+  _count: any;
+  _min: any;
+  _max: any;
 }
 
 import { z } from "zod";
@@ -18,8 +18,8 @@ export const NotificationReferenceGroupByOutputTypeOutputSchema = z.object({
   notification_id: z.string(),
   referenced_entity_id: z.string(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
-  archived: z.boolean().optional(),
-  _count: z.any().optional(),
-  _min: z.any().optional(),
-  _max: z.any().optional(),
+  archived: z.boolean().nullable(),
+  _count: z.any().nullable(),
+  _min: z.any().nullable(),
+  _max: z.any().nullable(),
 });

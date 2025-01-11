@@ -3,10 +3,10 @@
 export interface CreateManyOrganizationAndReturnOutputTypeOutput {
   organization_id: string;
   name: string;
-  description?: string;
+  description: string;
   created_on: Date;
-  updated_on?: Date;
-  is_active?: boolean;
+  updated_on: Date;
+  is_active: boolean;
 }
 
 import { z } from "zod";
@@ -14,8 +14,8 @@ import { z } from "zod";
 export const CreateManyOrganizationAndReturnOutputTypeOutputSchema = z.object({
   organization_id: z.string(),
   name: z.string(),
-  description: z.string().optional(),
+  description: z.string().nullable(),
   created_on: z.date(),
-  updated_on: z.date().optional(),
-  is_active: z.boolean().optional(),
+  updated_on: z.date().nullable(),
+  is_active: z.boolean().nullable(),
 });

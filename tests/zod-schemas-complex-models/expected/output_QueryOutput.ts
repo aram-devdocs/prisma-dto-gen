@@ -3,18 +3,18 @@
 type Decimal = { valueOf(): string };
 
 export interface QueryOutput {
-  findFirstChangeLog?: {
+  findFirstChangeLog: {
     change_log_id: string;
     applied_at: Date;
     description: string;
   };
-  findFirstChangeLogOrThrow?: any /* circular reference to ChangeLog */;
+  findFirstChangeLogOrThrow: any /* circular reference to ChangeLog */;
   findManyChangeLog: any /* circular reference to ChangeLog */;
   aggregateChangeLog: any;
   groupByChangeLog: any;
-  findUniqueChangeLog?: any /* circular reference to ChangeLog */;
-  findUniqueChangeLogOrThrow?: any /* circular reference to ChangeLog */;
-  findFirstUserProfile?: {
+  findUniqueChangeLog: any /* circular reference to ChangeLog */;
+  findUniqueChangeLogOrThrow: any /* circular reference to ChangeLog */;
+  findFirstUserProfile: {
     profile_id: string;
     created_timestamp: Date;
     updated_timestamp?: Date | null;
@@ -153,103 +153,103 @@ export interface QueryOutput {
       payer: any /* circular reference to UserProfile */;
     }[];
   };
-  findFirstUserProfileOrThrow?: any /* circular reference to UserProfile */;
+  findFirstUserProfileOrThrow: any /* circular reference to UserProfile */;
   findManyUserProfile: any /* circular reference to UserProfile */;
   aggregateUserProfile: any;
   groupByUserProfile: any;
-  findUniqueUserProfile?: any /* circular reference to UserProfile */;
-  findUniqueUserProfileOrThrow?: any /* circular reference to UserProfile */;
-  findFirstUserAccount?: any /* circular reference to UserAccount */;
-  findFirstUserAccountOrThrow?: any /* circular reference to UserAccount */;
+  findUniqueUserProfile: any /* circular reference to UserProfile */;
+  findUniqueUserProfileOrThrow: any /* circular reference to UserProfile */;
+  findFirstUserAccount: any /* circular reference to UserAccount */;
+  findFirstUserAccountOrThrow: any /* circular reference to UserAccount */;
   findManyUserAccount: any /* circular reference to UserAccount */;
   aggregateUserAccount: any;
   groupByUserAccount: any;
-  findUniqueUserAccount?: any /* circular reference to UserAccount */;
-  findUniqueUserAccountOrThrow?: any /* circular reference to UserAccount */;
-  findFirstUserNotification?: any /* circular reference to UserNotification */;
-  findFirstUserNotificationOrThrow?: any /* circular reference to UserNotification */;
+  findUniqueUserAccount: any /* circular reference to UserAccount */;
+  findUniqueUserAccountOrThrow: any /* circular reference to UserAccount */;
+  findFirstUserNotification: any /* circular reference to UserNotification */;
+  findFirstUserNotificationOrThrow: any /* circular reference to UserNotification */;
   findManyUserNotification: any /* circular reference to UserNotification */;
   aggregateUserNotification: any;
   groupByUserNotification: any;
-  findUniqueUserNotification?: any /* circular reference to UserNotification */;
-  findUniqueUserNotificationOrThrow?: any /* circular reference to UserNotification */;
-  findFirstNotificationReference?: any /* circular reference to NotificationReference */;
-  findFirstNotificationReferenceOrThrow?: any /* circular reference to NotificationReference */;
+  findUniqueUserNotification: any /* circular reference to UserNotification */;
+  findUniqueUserNotificationOrThrow: any /* circular reference to UserNotification */;
+  findFirstNotificationReference: any /* circular reference to NotificationReference */;
+  findFirstNotificationReferenceOrThrow: any /* circular reference to NotificationReference */;
   findManyNotificationReference: any /* circular reference to NotificationReference */;
   aggregateNotificationReference: any;
   groupByNotificationReference: any;
-  findUniqueNotificationReference?: any /* circular reference to NotificationReference */;
-  findUniqueNotificationReferenceOrThrow?: any /* circular reference to NotificationReference */;
-  findFirstUserDocument?: any /* circular reference to UserDocument */;
-  findFirstUserDocumentOrThrow?: any /* circular reference to UserDocument */;
+  findUniqueNotificationReference: any /* circular reference to NotificationReference */;
+  findUniqueNotificationReferenceOrThrow: any /* circular reference to NotificationReference */;
+  findFirstUserDocument: any /* circular reference to UserDocument */;
+  findFirstUserDocumentOrThrow: any /* circular reference to UserDocument */;
   findManyUserDocument: any /* circular reference to UserDocument */;
   aggregateUserDocument: any;
   groupByUserDocument: any;
-  findUniqueUserDocument?: any /* circular reference to UserDocument */;
-  findUniqueUserDocumentOrThrow?: any /* circular reference to UserDocument */;
-  findFirstUserComment?: any /* circular reference to UserComment */;
-  findFirstUserCommentOrThrow?: any /* circular reference to UserComment */;
+  findUniqueUserDocument: any /* circular reference to UserDocument */;
+  findUniqueUserDocumentOrThrow: any /* circular reference to UserDocument */;
+  findFirstUserComment: any /* circular reference to UserComment */;
+  findFirstUserCommentOrThrow: any /* circular reference to UserComment */;
   findManyUserComment: any /* circular reference to UserComment */;
   aggregateUserComment: any;
   groupByUserComment: any;
-  findUniqueUserComment?: any /* circular reference to UserComment */;
-  findUniqueUserCommentOrThrow?: any /* circular reference to UserComment */;
-  findFirstDiscussionThread?: any /* circular reference to DiscussionThread */;
-  findFirstDiscussionThreadOrThrow?: any /* circular reference to DiscussionThread */;
+  findUniqueUserComment: any /* circular reference to UserComment */;
+  findUniqueUserCommentOrThrow: any /* circular reference to UserComment */;
+  findFirstDiscussionThread: any /* circular reference to DiscussionThread */;
+  findFirstDiscussionThreadOrThrow: any /* circular reference to DiscussionThread */;
   findManyDiscussionThread: any /* circular reference to DiscussionThread */;
   aggregateDiscussionThread: any;
   groupByDiscussionThread: any;
-  findUniqueDiscussionThread?: any /* circular reference to DiscussionThread */;
-  findUniqueDiscussionThreadOrThrow?: any /* circular reference to DiscussionThread */;
-  findFirstThreadMessage?: any /* circular reference to ThreadMessage */;
-  findFirstThreadMessageOrThrow?: any /* circular reference to ThreadMessage */;
+  findUniqueDiscussionThread: any /* circular reference to DiscussionThread */;
+  findUniqueDiscussionThreadOrThrow: any /* circular reference to DiscussionThread */;
+  findFirstThreadMessage: any /* circular reference to ThreadMessage */;
+  findFirstThreadMessageOrThrow: any /* circular reference to ThreadMessage */;
   findManyThreadMessage: any /* circular reference to ThreadMessage */;
   aggregateThreadMessage: any;
   groupByThreadMessage: any;
-  findUniqueThreadMessage?: any /* circular reference to ThreadMessage */;
-  findUniqueThreadMessageOrThrow?: any /* circular reference to ThreadMessage */;
-  findFirstTwoStepVerification?: any /* circular reference to TwoStepVerification */;
-  findFirstTwoStepVerificationOrThrow?: any /* circular reference to TwoStepVerification */;
+  findUniqueThreadMessage: any /* circular reference to ThreadMessage */;
+  findUniqueThreadMessageOrThrow: any /* circular reference to ThreadMessage */;
+  findFirstTwoStepVerification: any /* circular reference to TwoStepVerification */;
+  findFirstTwoStepVerificationOrThrow: any /* circular reference to TwoStepVerification */;
   findManyTwoStepVerification: any /* circular reference to TwoStepVerification */;
   aggregateTwoStepVerification: any;
   groupByTwoStepVerification: any;
-  findUniqueTwoStepVerification?: any /* circular reference to TwoStepVerification */;
-  findUniqueTwoStepVerificationOrThrow?: any /* circular reference to TwoStepVerification */;
-  findFirstOrganization?: any /* circular reference to Organization */;
-  findFirstOrganizationOrThrow?: any /* circular reference to Organization */;
+  findUniqueTwoStepVerification: any /* circular reference to TwoStepVerification */;
+  findUniqueTwoStepVerificationOrThrow: any /* circular reference to TwoStepVerification */;
+  findFirstOrganization: any /* circular reference to Organization */;
+  findFirstOrganizationOrThrow: any /* circular reference to Organization */;
   findManyOrganization: any /* circular reference to Organization */;
   aggregateOrganization: any;
   groupByOrganization: any;
-  findUniqueOrganization?: any /* circular reference to Organization */;
-  findUniqueOrganizationOrThrow?: any /* circular reference to Organization */;
-  findFirstOrgEvent?: any /* circular reference to OrgEvent */;
-  findFirstOrgEventOrThrow?: any /* circular reference to OrgEvent */;
+  findUniqueOrganization: any /* circular reference to Organization */;
+  findUniqueOrganizationOrThrow: any /* circular reference to Organization */;
+  findFirstOrgEvent: any /* circular reference to OrgEvent */;
+  findFirstOrgEventOrThrow: any /* circular reference to OrgEvent */;
   findManyOrgEvent: any /* circular reference to OrgEvent */;
   aggregateOrgEvent: any;
   groupByOrgEvent: any;
-  findUniqueOrgEvent?: any /* circular reference to OrgEvent */;
-  findUniqueOrgEventOrThrow?: any /* circular reference to OrgEvent */;
-  findFirstOrgMembership?: any /* circular reference to OrgMembership */;
-  findFirstOrgMembershipOrThrow?: any /* circular reference to OrgMembership */;
+  findUniqueOrgEvent: any /* circular reference to OrgEvent */;
+  findUniqueOrgEventOrThrow: any /* circular reference to OrgEvent */;
+  findFirstOrgMembership: any /* circular reference to OrgMembership */;
+  findFirstOrgMembershipOrThrow: any /* circular reference to OrgMembership */;
   findManyOrgMembership: any /* circular reference to OrgMembership */;
   aggregateOrgMembership: any;
   groupByOrgMembership: any;
-  findUniqueOrgMembership?: any /* circular reference to OrgMembership */;
-  findUniqueOrgMembershipOrThrow?: any /* circular reference to OrgMembership */;
-  findFirstOrgRecord?: any /* circular reference to OrgRecord */;
-  findFirstOrgRecordOrThrow?: any /* circular reference to OrgRecord */;
+  findUniqueOrgMembership: any /* circular reference to OrgMembership */;
+  findUniqueOrgMembershipOrThrow: any /* circular reference to OrgMembership */;
+  findFirstOrgRecord: any /* circular reference to OrgRecord */;
+  findFirstOrgRecordOrThrow: any /* circular reference to OrgRecord */;
   findManyOrgRecord: any /* circular reference to OrgRecord */;
   aggregateOrgRecord: any;
   groupByOrgRecord: any;
-  findUniqueOrgRecord?: any /* circular reference to OrgRecord */;
-  findUniqueOrgRecordOrThrow?: any /* circular reference to OrgRecord */;
-  findFirstPayment?: any /* circular reference to Payment */;
-  findFirstPaymentOrThrow?: any /* circular reference to Payment */;
+  findUniqueOrgRecord: any /* circular reference to OrgRecord */;
+  findUniqueOrgRecordOrThrow: any /* circular reference to OrgRecord */;
+  findFirstPayment: any /* circular reference to Payment */;
+  findFirstPaymentOrThrow: any /* circular reference to Payment */;
   findManyPayment: any /* circular reference to Payment */;
   aggregatePayment: any;
   groupByPayment: any;
-  findUniquePayment?: any /* circular reference to Payment */;
-  findUniquePaymentOrThrow?: any /* circular reference to Payment */;
+  findUniquePayment: any /* circular reference to Payment */;
+  findUniquePaymentOrThrow: any /* circular reference to Payment */;
 }
 
 import { z } from "zod";
@@ -261,14 +261,14 @@ export const QueryOutputSchema = z.object({
       applied_at: z.date(),
       description: z.string(),
     })
-    .optional(),
+    .nullable(),
   findFirstChangeLogOrThrow: z
     .object({
       change_log_id: z.string(),
       applied_at: z.date(),
       description: z.string(),
     })
-    .optional(),
+    .nullable(),
   findManyChangeLog: z.array(
     z.object({
       change_log_id: z.string(),
@@ -284,14 +284,14 @@ export const QueryOutputSchema = z.object({
       applied_at: z.date(),
       description: z.string(),
     })
-    .optional(),
+    .nullable(),
   findUniqueChangeLogOrThrow: z
     .object({
       change_log_id: z.string(),
       applied_at: z.date(),
       description: z.string(),
     })
-    .optional(),
+    .nullable(),
   findFirstUserProfile: z
     .object({
       profile_id: z.string(),
@@ -317,7 +317,7 @@ export const QueryOutputSchema = z.object({
       org_memberships: z.array(z.any()),
       payments: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findFirstUserProfileOrThrow: z
     .object({
       profile_id: z.string(),
@@ -343,7 +343,7 @@ export const QueryOutputSchema = z.object({
       org_memberships: z.array(z.any()),
       payments: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findManyUserProfile: z.array(
     z.object({
       profile_id: z.string(),
@@ -397,7 +397,7 @@ export const QueryOutputSchema = z.object({
       org_memberships: z.array(z.any()),
       payments: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findUniqueUserProfileOrThrow: z
     .object({
       profile_id: z.string(),
@@ -423,7 +423,7 @@ export const QueryOutputSchema = z.object({
       org_memberships: z.array(z.any()),
       payments: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findFirstUserAccount: z
     .object({
       account_id: z.string(),
@@ -434,7 +434,7 @@ export const QueryOutputSchema = z.object({
       is_active: z.boolean(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstUserAccountOrThrow: z
     .object({
       account_id: z.string(),
@@ -445,7 +445,7 @@ export const QueryOutputSchema = z.object({
       is_active: z.boolean(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findManyUserAccount: z.array(
     z.object({
       account_id: z.string(),
@@ -469,7 +469,7 @@ export const QueryOutputSchema = z.object({
       is_active: z.boolean(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findUniqueUserAccountOrThrow: z
     .object({
       account_id: z.string(),
@@ -480,7 +480,7 @@ export const QueryOutputSchema = z.object({
       is_active: z.boolean(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstUserNotification: z
     .object({
       notification_id: z.string(),
@@ -491,7 +491,7 @@ export const QueryOutputSchema = z.object({
       notification_refs: z.array(z.any()),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstUserNotificationOrThrow: z
     .object({
       notification_id: z.string(),
@@ -502,7 +502,7 @@ export const QueryOutputSchema = z.object({
       notification_refs: z.array(z.any()),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findManyUserNotification: z.array(
     z.object({
       notification_id: z.string(),
@@ -526,7 +526,7 @@ export const QueryOutputSchema = z.object({
       notification_refs: z.array(z.any()),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findUniqueUserNotificationOrThrow: z
     .object({
       notification_id: z.string(),
@@ -537,7 +537,7 @@ export const QueryOutputSchema = z.object({
       notification_refs: z.array(z.any()),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstNotificationReference: z
     .object({
       notification_reference_id: z.string(),
@@ -547,7 +547,7 @@ export const QueryOutputSchema = z.object({
       archived: z.boolean().nullable(),
       notification: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstNotificationReferenceOrThrow: z
     .object({
       notification_reference_id: z.string(),
@@ -557,7 +557,7 @@ export const QueryOutputSchema = z.object({
       archived: z.boolean().nullable(),
       notification: z.any(),
     })
-    .optional(),
+    .nullable(),
   findManyNotificationReference: z.array(
     z.object({
       notification_reference_id: z.string(),
@@ -579,7 +579,7 @@ export const QueryOutputSchema = z.object({
       archived: z.boolean().nullable(),
       notification: z.any(),
     })
-    .optional(),
+    .nullable(),
   findUniqueNotificationReferenceOrThrow: z
     .object({
       notification_reference_id: z.string(),
@@ -589,7 +589,7 @@ export const QueryOutputSchema = z.object({
       archived: z.boolean().nullable(),
       notification: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstUserDocument: z
     .object({
       document_id: z.string(),
@@ -603,7 +603,7 @@ export const QueryOutputSchema = z.object({
       user_profile: z.any(),
       comments: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findFirstUserDocumentOrThrow: z
     .object({
       document_id: z.string(),
@@ -617,7 +617,7 @@ export const QueryOutputSchema = z.object({
       user_profile: z.any(),
       comments: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findManyUserDocument: z.array(
     z.object({
       document_id: z.string(),
@@ -647,7 +647,7 @@ export const QueryOutputSchema = z.object({
       user_profile: z.any(),
       comments: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findUniqueUserDocumentOrThrow: z
     .object({
       document_id: z.string(),
@@ -661,7 +661,7 @@ export const QueryOutputSchema = z.object({
       user_profile: z.any(),
       comments: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findFirstUserComment: z
     .object({
       comment_id: z.string(),
@@ -674,7 +674,7 @@ export const QueryOutputSchema = z.object({
       user_document: z.any(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstUserCommentOrThrow: z
     .object({
       comment_id: z.string(),
@@ -687,7 +687,7 @@ export const QueryOutputSchema = z.object({
       user_document: z.any(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findManyUserComment: z.array(
     z.object({
       comment_id: z.string(),
@@ -715,7 +715,7 @@ export const QueryOutputSchema = z.object({
       user_document: z.any(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findUniqueUserCommentOrThrow: z
     .object({
       comment_id: z.string(),
@@ -728,7 +728,7 @@ export const QueryOutputSchema = z.object({
       user_document: z.any(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstDiscussionThread: z
     .object({
       thread_id: z.string(),
@@ -742,7 +742,7 @@ export const QueryOutputSchema = z.object({
       participant_two: z.any().nullable(),
       messages: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findFirstDiscussionThreadOrThrow: z
     .object({
       thread_id: z.string(),
@@ -756,7 +756,7 @@ export const QueryOutputSchema = z.object({
       participant_two: z.any().nullable(),
       messages: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findManyDiscussionThread: z.array(
     z.object({
       thread_id: z.string(),
@@ -786,7 +786,7 @@ export const QueryOutputSchema = z.object({
       participant_two: z.any().nullable(),
       messages: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findUniqueDiscussionThreadOrThrow: z
     .object({
       thread_id: z.string(),
@@ -800,7 +800,7 @@ export const QueryOutputSchema = z.object({
       participant_two: z.any().nullable(),
       messages: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findFirstThreadMessage: z
     .object({
       message_id: z.string(),
@@ -813,7 +813,7 @@ export const QueryOutputSchema = z.object({
       discussion_thread: z.any(),
       sender: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstThreadMessageOrThrow: z
     .object({
       message_id: z.string(),
@@ -826,7 +826,7 @@ export const QueryOutputSchema = z.object({
       discussion_thread: z.any(),
       sender: z.any(),
     })
-    .optional(),
+    .nullable(),
   findManyThreadMessage: z.array(
     z.object({
       message_id: z.string(),
@@ -854,7 +854,7 @@ export const QueryOutputSchema = z.object({
       discussion_thread: z.any(),
       sender: z.any(),
     })
-    .optional(),
+    .nullable(),
   findUniqueThreadMessageOrThrow: z
     .object({
       message_id: z.string(),
@@ -867,7 +867,7 @@ export const QueryOutputSchema = z.object({
       discussion_thread: z.any(),
       sender: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstTwoStepVerification: z
     .object({
       verification_id: z.string(),
@@ -878,7 +878,7 @@ export const QueryOutputSchema = z.object({
       verification_type: z.enum(["EMAIL", "SMS", "PUSH"]),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstTwoStepVerificationOrThrow: z
     .object({
       verification_id: z.string(),
@@ -889,7 +889,7 @@ export const QueryOutputSchema = z.object({
       verification_type: z.enum(["EMAIL", "SMS", "PUSH"]),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findManyTwoStepVerification: z.array(
     z.object({
       verification_id: z.string(),
@@ -913,7 +913,7 @@ export const QueryOutputSchema = z.object({
       verification_type: z.enum(["EMAIL", "SMS", "PUSH"]),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findUniqueTwoStepVerificationOrThrow: z
     .object({
       verification_id: z.string(),
@@ -924,7 +924,7 @@ export const QueryOutputSchema = z.object({
       verification_type: z.enum(["EMAIL", "SMS", "PUSH"]),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstOrganization: z
     .object({
       organization_id: z.string(),
@@ -937,7 +937,7 @@ export const QueryOutputSchema = z.object({
       members: z.array(z.any()),
       records: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findFirstOrganizationOrThrow: z
     .object({
       organization_id: z.string(),
@@ -950,7 +950,7 @@ export const QueryOutputSchema = z.object({
       members: z.array(z.any()),
       records: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findManyOrganization: z.array(
     z.object({
       organization_id: z.string(),
@@ -978,7 +978,7 @@ export const QueryOutputSchema = z.object({
       members: z.array(z.any()),
       records: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findUniqueOrganizationOrThrow: z
     .object({
       organization_id: z.string(),
@@ -991,7 +991,7 @@ export const QueryOutputSchema = z.object({
       members: z.array(z.any()),
       records: z.array(z.any()),
     })
-    .optional(),
+    .nullable(),
   findFirstOrgEvent: z
     .object({
       org_event_id: z.string(),
@@ -1002,7 +1002,7 @@ export const QueryOutputSchema = z.object({
       location: z.string().nullable(),
       organization: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstOrgEventOrThrow: z
     .object({
       org_event_id: z.string(),
@@ -1013,7 +1013,7 @@ export const QueryOutputSchema = z.object({
       location: z.string().nullable(),
       organization: z.any(),
     })
-    .optional(),
+    .nullable(),
   findManyOrgEvent: z.array(
     z.object({
       org_event_id: z.string(),
@@ -1037,7 +1037,7 @@ export const QueryOutputSchema = z.object({
       location: z.string().nullable(),
       organization: z.any(),
     })
-    .optional(),
+    .nullable(),
   findUniqueOrgEventOrThrow: z
     .object({
       org_event_id: z.string(),
@@ -1048,7 +1048,7 @@ export const QueryOutputSchema = z.object({
       location: z.string().nullable(),
       organization: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstOrgMembership: z
     .object({
       membership_id: z.string(),
@@ -1059,7 +1059,7 @@ export const QueryOutputSchema = z.object({
       organization: z.any(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstOrgMembershipOrThrow: z
     .object({
       membership_id: z.string(),
@@ -1070,7 +1070,7 @@ export const QueryOutputSchema = z.object({
       organization: z.any(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findManyOrgMembership: z.array(
     z.object({
       membership_id: z.string(),
@@ -1094,7 +1094,7 @@ export const QueryOutputSchema = z.object({
       organization: z.any(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findUniqueOrgMembershipOrThrow: z
     .object({
       membership_id: z.string(),
@@ -1105,7 +1105,7 @@ export const QueryOutputSchema = z.object({
       organization: z.any(),
       user_profile: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstOrgRecord: z
     .object({
       record_id: z.string(),
@@ -1116,7 +1116,7 @@ export const QueryOutputSchema = z.object({
       updated_on: z.date().nullable(),
       organization: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstOrgRecordOrThrow: z
     .object({
       record_id: z.string(),
@@ -1127,7 +1127,7 @@ export const QueryOutputSchema = z.object({
       updated_on: z.date().nullable(),
       organization: z.any(),
     })
-    .optional(),
+    .nullable(),
   findManyOrgRecord: z.array(
     z.object({
       record_id: z.string(),
@@ -1151,7 +1151,7 @@ export const QueryOutputSchema = z.object({
       updated_on: z.date().nullable(),
       organization: z.any(),
     })
-    .optional(),
+    .nullable(),
   findUniqueOrgRecordOrThrow: z
     .object({
       record_id: z.string(),
@@ -1162,7 +1162,7 @@ export const QueryOutputSchema = z.object({
       updated_on: z.date().nullable(),
       organization: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstPayment: z
     .object({
       payment_id: z.string(),
@@ -1173,7 +1173,7 @@ export const QueryOutputSchema = z.object({
       reference_note: z.string().nullable(),
       payer: z.any(),
     })
-    .optional(),
+    .nullable(),
   findFirstPaymentOrThrow: z
     .object({
       payment_id: z.string(),
@@ -1184,7 +1184,7 @@ export const QueryOutputSchema = z.object({
       reference_note: z.string().nullable(),
       payer: z.any(),
     })
-    .optional(),
+    .nullable(),
   findManyPayment: z.array(
     z.object({
       payment_id: z.string(),
@@ -1208,7 +1208,7 @@ export const QueryOutputSchema = z.object({
       reference_note: z.string().nullable(),
       payer: z.any(),
     })
-    .optional(),
+    .nullable(),
   findUniquePaymentOrThrow: z
     .object({
       payment_id: z.string(),
@@ -1219,5 +1219,5 @@ export const QueryOutputSchema = z.object({
       reference_note: z.string().nullable(),
       payer: z.any(),
     })
-    .optional(),
+    .nullable(),
 });

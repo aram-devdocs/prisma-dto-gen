@@ -3,14 +3,14 @@
 export interface DiscussionThreadGroupByOutputTypeOutput {
   thread_id: string;
   primary_participant: string;
-  secondary_participant?: string;
+  secondary_participant: string;
   created_on: Date;
-  closed_on?: Date;
-  is_flagged?: boolean;
-  flagged_reason?: string;
-  _count?: any;
-  _min?: any;
-  _max?: any;
+  closed_on: Date;
+  is_flagged: boolean;
+  flagged_reason: string;
+  _count: any;
+  _min: any;
+  _max: any;
 }
 
 import { z } from "zod";
@@ -18,12 +18,12 @@ import { z } from "zod";
 export const DiscussionThreadGroupByOutputTypeOutputSchema = z.object({
   thread_id: z.string(),
   primary_participant: z.string(),
-  secondary_participant: z.string().optional(),
+  secondary_participant: z.string().nullable(),
   created_on: z.date(),
-  closed_on: z.date().optional(),
-  is_flagged: z.boolean().optional(),
-  flagged_reason: z.string().optional(),
-  _count: z.any().optional(),
-  _min: z.any().optional(),
-  _max: z.any().optional(),
+  closed_on: z.date().nullable(),
+  is_flagged: z.boolean().nullable(),
+  flagged_reason: z.string().nullable(),
+  _count: z.any().nullable(),
+  _min: z.any().nullable(),
+  _max: z.any().nullable(),
 });

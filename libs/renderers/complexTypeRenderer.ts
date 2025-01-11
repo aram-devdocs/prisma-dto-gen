@@ -34,14 +34,21 @@ export function generateComplexTypeInline(
     let isRequired = true;
     let isNullable = false;
 
-    // Distinguish between input & output "nullable" logic
+    // Handle both input & output fields type-safely
+    if ("isRequired" in field) {
+      isRequired = field.isRequired === true;
+    }
     if ("isNullable" in field) {
-      // Output
       isNullable = field.isNullable === true;
-      isRequired = !isNullable;
-    } else {
-      // Input
-      isNullable = field.isNullable === true;
+    }
+
+    // For input types, also check if any of the input types is Null
+    if ("inputTypes" in field) {
+      const hasNullType = field.inputTypes.some((t) => t.type === "Null");
+      if (hasNullType) {
+        isNullable = true;
+        isRequired = false;
+      }
     }
 
     const linePrefix = isRequired ? ":" : "?:";
@@ -196,9 +203,20 @@ export function generateComplexTypeInline(
       if (fieldIsList) {
         zodField = `z.array(${zodField})`;
       }
-      // If nullable => .optional() instead of .nullable()
-      if (fieldIsNullable) {
-        zodField += `.optional()`;
+
+      const isRequired = "isRequired" in field ? field.isRequired === true : true;
+      const isNullable = "isNullable" in field ? field.isNullable === true : false;
+      // Handle nullable and optional cases
+      if (isRequired) {
+        if (isNullable) {
+          zodField += `.nullable()`;
+        }
+      } else {
+        if (isNullable) {
+          zodField += `.nullable().optional()`;
+        } else {
+          zodField += `.optional()`;
+        }
       }
 
       zodLines.push(`${field.name}: ${zodField},`);

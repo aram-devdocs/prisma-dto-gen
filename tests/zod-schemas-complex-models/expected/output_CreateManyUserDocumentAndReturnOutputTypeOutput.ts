@@ -9,8 +9,8 @@ export interface CreateManyUserDocumentAndReturnOutputTypeOutput {
   content: string;
   status: "DRAFT" | "REVIEW" | "PUBLISHED" | "ARCHIVED";
   created_at: Date;
-  updated_at?: Date;
-  archived?: boolean;
+  updated_at: Date;
+  archived: boolean;
   user_profile: {
     profile_id: string;
     created_timestamp: Date;
@@ -161,8 +161,8 @@ export const CreateManyUserDocumentAndReturnOutputTypeOutputSchema = z.object({
   content: z.string(),
   status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
   created_at: z.date(),
-  updated_at: z.date().optional(),
-  archived: z.boolean().optional(),
+  updated_at: z.date().nullable(),
+  archived: z.boolean().nullable(),
   user_profile: z.object({
     profile_id: z.string(),
     created_timestamp: z.date(),

@@ -8,6 +8,6 @@ export interface UserProfileNullableRelationFilter {
 import { z } from "zod";
 
 export const UserProfileNullableRelationFilterSchema = z.object({
-  is: z.any().optional(),
-  isNot: z.any().optional(),
+  is: z.any().nullable().optional(),
+  isNot: z.any().nullable().optional(),
 });

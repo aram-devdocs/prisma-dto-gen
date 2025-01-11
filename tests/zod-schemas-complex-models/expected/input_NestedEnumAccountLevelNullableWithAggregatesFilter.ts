@@ -5,19 +5,25 @@ export interface NestedEnumAccountLevelNullableWithAggregatesFilter {
   in?: any;
   notIn?: any;
   not?: any;
-  _count: any;
-  _min: any;
-  _max: any;
+  _count?: any;
+  _min?: any;
+  _max?: any;
 }
 
 import { z } from "zod";
 
 export const NestedEnumAccountLevelNullableWithAggregatesFilterSchema = z.object({
-  equals: z.enum(["BASIC", "PREMIUM", "ADMIN"]).optional(),
-  in: z.array(z.enum(["BASIC", "PREMIUM", "ADMIN"])).optional(),
-  notIn: z.array(z.enum(["BASIC", "PREMIUM", "ADMIN"])).optional(),
-  not: z.enum(["BASIC", "PREMIUM", "ADMIN"]).optional(),
-  _count: z.any(),
-  _min: z.any(),
-  _max: z.any(),
+  equals: z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable().optional(),
+  in: z
+    .array(z.enum(["BASIC", "PREMIUM", "ADMIN"]))
+    .nullable()
+    .optional(),
+  notIn: z
+    .array(z.enum(["BASIC", "PREMIUM", "ADMIN"]))
+    .nullable()
+    .optional(),
+  not: z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable().optional(),
+  _count: z.any().optional(),
+  _min: z.any().optional(),
+  _max: z.any().optional(),
 });
