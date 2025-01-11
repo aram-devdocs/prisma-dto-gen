@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
-import type { Config } from "../config/config.ts";
+import type { Config } from "../config/config.js";
 
 export async function writeTsFile({
   filePath,

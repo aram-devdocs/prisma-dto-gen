@@ -17,7 +17,7 @@
     "prisma-generator-typescript-interfaces": "generator.js"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc --project tsconfig.build.json",
     "postbuild": "node -e \"g='dist/generator.js';f=require('fs');f.writeFileSync(g,'#!/usr/bin/env node\\n'+f.readFileSync(g))\"",
     "clean": "rimraf --glob generator.js **/__TEST_TMP__",
     "generate": "prisma generate --schema=prisma/example.prisma",

@@ -1,6 +1,6 @@
 // libs/consts/SCALAR_TYPE_GETTERS.ts
 
-import type { Config } from "../config/config.ts";
+import type { Config } from "../config/config.js";
 
 export const SCALAR_TYPE_GETTERS: Record<string, (config: Config) => string> = {
   String: () => "string",

@@ -1,5 +1,5 @@
-import type { Config } from "../config/config.ts";
-import { CUSTOM_TYPES } from "../consts/CUSTOM_TYPES.ts";
+import type { Config } from "../config/config.js";
+import { CUSTOM_TYPES } from "../consts/CUSTOM_TYPES.js";
 
 export class InlineContext {
   visitedTypes = new Set<string>();

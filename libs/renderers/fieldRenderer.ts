@@ -1,10 +1,10 @@
 import type { DMMF } from "@prisma/generator-helper";
-import { SCALAR_TYPE_GETTERS } from "../consts/SCALAR_TYPE_GETTERS.ts";
-import { ZOD_SCALAR_TYPE_GETTERS } from "../consts/ZOD_SCALAR_TYPE_GETTERS.ts";
-import type { InlineContext } from "../context/InlineContext.ts";
-import { inlineEnum } from "./enumRenderer.ts";
-import { inlineModelDefinition } from "./modelRenderer.ts";
-import type { Config } from "../config/config.ts";
+import { SCALAR_TYPE_GETTERS } from "../consts/SCALAR_TYPE_GETTERS.js";
+import { ZOD_SCALAR_TYPE_GETTERS } from "../consts/ZOD_SCALAR_TYPE_GETTERS.js";
+import type { InlineContext } from "../context/InlineContext.js";
+import { inlineEnum } from "./enumRenderer.js";
+import { inlineModelDefinition } from "./modelRenderer.js";
+import type { Config } from "../config/config.js";
 /**
  * Renders the inline TS type for a Prisma field (scalar, enum, or object).
  */

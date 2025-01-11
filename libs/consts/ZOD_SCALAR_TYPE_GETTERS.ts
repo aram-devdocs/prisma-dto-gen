@@ -1,5 +1,5 @@
-import type { Config } from "../config/config.ts";
-import { SCALAR_TYPE_GETTERS } from "./SCALAR_TYPE_GETTERS.ts";
+import type { Config } from "../config/config.js";
+import { SCALAR_TYPE_GETTERS } from "./SCALAR_TYPE_GETTERS.js";
 
 export const ZOD_SCALAR_TYPE_GETTERS: Record<string, (config: Config) => string> = {
   String: () => "z.string()",

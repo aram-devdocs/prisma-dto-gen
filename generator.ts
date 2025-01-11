@@ -3,14 +3,14 @@ import generatorHelper from "@prisma/generator-helper";
 import { resolve as resolvePath } from "node:path";
 import type { DMMF } from "@prisma/generator-helper";
 
-import { Config } from "./libs/config/config.ts";
-import { DEFAULT_SCHEMA_SUFFIX } from "./libs/config/config.ts";
-import { validateConfig } from "./libs/utils/validateConfig.ts";
-import { writeTsFile } from "./libs/utils/writeTsFile.ts";
+import { Config } from "./libs/config/config.js";
+import { DEFAULT_SCHEMA_SUFFIX } from "./libs/config/config.js";
+import { validateConfig } from "./libs/utils/validateConfig.js";
+import { writeTsFile } from "./libs/utils/writeTsFile.js";
 
-import { generateEnumFileInline } from "./libs/renderers/enumRenderer.ts";
-import { generateModelFileInline } from "./libs/renderers/modelRenderer.ts";
-import { generateComplexTypeInline } from "./libs/renderers/complexTypeRenderer.ts";
+import { generateEnumFileInline } from "./libs/renderers/enumRenderer.js";
+import { generateModelFileInline } from "./libs/renderers/modelRenderer.js";
+import { generateComplexTypeInline } from "./libs/renderers/complexTypeRenderer.js";
 const { generatorHandler } = generatorHelper;
 
 generatorHandler({
@@ -46,7 +46,7 @@ generatorHandler({
       schema: baseConfig.schema === "zod" ? "zod" : null,
       schemaPrefix: String(baseConfig.schemaPrefix || ""),
       schemaSuffix: String(baseConfig.schemaSuffix || DEFAULT_SCHEMA_SUFFIX),
-      removeTsExtension: baseConfig.removeTsExtension === "true", // New config option
+      fileExtension: (baseConfig.fileExtension as Config["fileExtension"]) || ".js",
     };
     validateConfig(config);
 
@@ -132,9 +132,8 @@ generatorHandler({
     const allFiles = [...enumFiles, ...modelFiles, ...inputTypeFiles, ...outputTypeFiles];
     const imports = allFiles.map((filePath) => {
       let relativePath = "./" + filePath.replace(outputDir, "").replace(/^\//, "");
-      if (config.removeTsExtension) {
-        relativePath = relativePath.replace(/\.ts$/, "");
-      }
+      const extension = config.fileExtension === null ? "" : config.fileExtension;
+      relativePath = relativePath.replace(/\.ts$/, extension);
       return `export * from "${relativePath}";`;
     });
     const indexContent = imports.join("\n");

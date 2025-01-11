@@ -25,7 +25,7 @@ export interface Config {
   schema: "zod" | null;
   schemaPrefix: string;
   schemaSuffix: string;
-  removeTsExtension: boolean; // New property
+  fileExtension: ".ts" | ".mts" | ".cts" | ".js" | ".mjs" | ".cjs" | null;
 }
 
 export const DEFAULT_SCHEMA_SUFFIX = "Schema";

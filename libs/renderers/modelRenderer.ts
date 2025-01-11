@@ -1,9 +1,9 @@
 import type { DMMF } from "@prisma/generator-helper";
-import { InlineContext } from "../context/InlineContext.ts";
-import type { Config } from "../config/config.ts";
-import { renderFieldTypeInline } from "./fieldRenderer.ts";
-import { inlineModelZodSchema, inlineCustomTypes } from "./zodHelpers.ts";
-import { indentBlock } from "../utils/indentBlock.ts";
+import { InlineContext } from "../context/InlineContext.js";
+import type { Config } from "../config/config.js";
+import { renderFieldTypeInline } from "./fieldRenderer.js";
+import { inlineModelZodSchema, inlineCustomTypes } from "./zodHelpers.js";
+import { indentBlock } from "../utils/indentBlock.js";
 /**
  * Recursively inlines a model as a TS shape.
  * Avoids infinite recursion by checking InlineContext.visitedTypes.

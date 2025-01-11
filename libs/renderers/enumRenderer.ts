@@ -1,6 +1,6 @@
 import type { DMMF } from "@prisma/generator-helper";
-import type { Config } from "../config/config.ts";
-import { inlineEnumZodSchema } from "./zodHelpers.ts";
+import type { Config } from "../config/config.js";
+import { inlineEnumZodSchema } from "./zodHelpers.js";
 
 /**
  * Renders an inline enum shape (for a single field) as TS.

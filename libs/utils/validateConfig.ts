@@ -1,7 +1,15 @@
-import { Config } from "../config/config.ts";
+import { Config } from "../config/config.js";
 
 export function validateConfig(config: Config) {
   const errors: string[] = [];
+
+  // if config.fileExtension is passed as a string but does not match one of the Config['fileExtension'] values, throw an error
+  if (
+    typeof config.fileExtension === "string" &&
+    ![".ts", ".mts", ".cts", ".js", ".mjs", ".cjs"].includes(config.fileExtension)
+  ) {
+    errors.push(`Invalid fileExtension: ${config.fileExtension}`);
+  }
 
   if (!["interface", "type"].includes(config.modelType)) {
     errors.push(`Invalid modelType: ${config.modelType}`);

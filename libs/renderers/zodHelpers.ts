@@ -1,8 +1,8 @@
-import { indentBlock } from "../utils/indentBlock.ts";
-import { InlineContext } from "../context/InlineContext.ts";
-import { CUSTOM_TYPES } from "../consts/CUSTOM_TYPES.ts";
-import type { Config } from "../config/config.ts";
-import { renderZodFieldInline } from "./fieldRenderer.ts";
+import { indentBlock } from "../utils/indentBlock.js";
+import { InlineContext } from "../context/InlineContext.js";
+import { CUSTOM_TYPES } from "../consts/CUSTOM_TYPES.js";
+import type { Config } from "../config/config.js";
+import { renderZodFieldInline } from "./fieldRenderer.js";
 import { DMMF } from "@prisma/generator-helper";
 
 /**

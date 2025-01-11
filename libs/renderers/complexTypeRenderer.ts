@@ -1,13 +1,13 @@
 import type { DMMF } from "@prisma/generator-helper";
-import { InlineContext } from "../context/InlineContext.ts";
-import type { Config } from "../config/config.ts";
-import { buildUnionType } from "../utils/buildUnionType.ts";
-import { inlineEnum } from "./enumRenderer.ts";
-import { inlineModelDefinition } from "./modelRenderer.ts";
-import { inlineModelZodSchema, inlineCustomTypes } from "./zodHelpers.ts";
-import { indentBlock } from "../utils/indentBlock.ts";
-import { SCALAR_TYPE_GETTERS } from "../consts/SCALAR_TYPE_GETTERS.ts";
-import { ZOD_SCALAR_TYPE_GETTERS } from "../consts/ZOD_SCALAR_TYPE_GETTERS.ts";
+import { InlineContext } from "../context/InlineContext.js";
+import type { Config } from "../config/config.js";
+import { buildUnionType } from "../utils/buildUnionType.js";
+import { inlineEnum } from "./enumRenderer.js";
+import { inlineModelDefinition } from "./modelRenderer.js";
+import { inlineModelZodSchema, inlineCustomTypes } from "./zodHelpers.js";
+import { indentBlock } from "../utils/indentBlock.js";
+import { SCALAR_TYPE_GETTERS } from "../consts/SCALAR_TYPE_GETTERS.js";
+import { ZOD_SCALAR_TYPE_GETTERS } from "../consts/ZOD_SCALAR_TYPE_GETTERS.js";
 
 /**
  * Generates a TS type (or interface) for input/output object types,
