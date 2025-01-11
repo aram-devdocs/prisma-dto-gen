@@ -19,8 +19,8 @@ import { z } from "zod";
 
 export const StringNullableFilterSchema = z.object({
   equals: z.string().nullable(),
-  in: z.array(z.string().nullable()),
-  notIn: z.array(z.string().nullable()),
+  in: z.array(z.string()).nullable(),
+  notIn: z.array(z.string()).nullable(),
   lt: z.string(),
   lte: z.string(),
   gt: z.string(),

@@ -15,8 +15,8 @@ import { z } from "zod";
 
 export const NestedIntNullableFilterSchema = z.object({
   equals: z.number().nullable(),
-  in: z.array(z.number().nullable()),
-  notIn: z.array(z.number().nullable()),
+  in: z.array(z.number()).nullable(),
+  notIn: z.array(z.number()).nullable(),
   lt: z.number(),
   lte: z.number(),
   gt: z.number(),

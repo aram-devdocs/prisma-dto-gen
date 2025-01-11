@@ -18,8 +18,8 @@ import { z } from "zod";
 
 export const DateTimeNullableWithAggregatesFilterSchema = z.object({
   equals: z.date().nullable(),
-  in: z.array(z.date().nullable()),
-  notIn: z.array(z.date().nullable()),
+  in: z.array(z.date()).nullable(),
+  notIn: z.array(z.date()).nullable(),
   lt: z.date(),
   lte: z.date(),
   gt: z.date(),

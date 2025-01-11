@@ -11,7 +11,7 @@ import { z } from "zod";
 
 export const NestedEnumAccountLevelNullableFilterSchema = z.object({
   equals: z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable(),
-  in: z.array(z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable()),
-  notIn: z.array(z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable()),
+  in: z.array(z.enum(["BASIC", "PREMIUM", "ADMIN"])).nullable(),
+  notIn: z.array(z.enum(["BASIC", "PREMIUM", "ADMIN"])).nullable(),
   not: z.enum(["BASIC", "PREMIUM", "ADMIN"]).nullable(),
 });
