@@ -12,6 +12,7 @@ import { generateEnumFileInline } from "./libs/renderers/enumRenderer.js";
 import { generateModelFileInline } from "./libs/renderers/modelRenderer.js";
 import { generateComplexTypeInline } from "./libs/renderers/complexTypeRenderer.js";
 import { modelOperationName } from "./libs/utils/camelCase.js";
+import fs from "node:fs/promises";
 const { generatorHandler } = generatorHelper;
 
 generatorHandler({
@@ -51,8 +52,13 @@ generatorHandler({
     };
     validateConfig(config);
 
-    // 2) Gather data
+    // 2) Gather data and clean output directory
     const outputDir = options.generator.output?.value ?? "./generated";
+
+    // 2.1) Clean output directory
+    await fs.rmdir(outputDir, { recursive: true });
+    await fs.mkdir(outputDir, { recursive: true });
+
     const { datamodel, schema } = options.dmmf;
     const { models = [], enums = [], types = [] } = datamodel;
 
@@ -205,7 +211,10 @@ generatorHandler({
           fullInputTypeMap, // Pass the complete input type map
         );
 
-        const filePath = resolvePath(outputDir, `action_${modelName}${operationName}Args.ts`);
+        const filePath = resolvePath(
+          outputDir,
+          `action_${modelName}${operationName[0].toUpperCase() + operationName.slice(1)}Args.ts`,
+        );
         await writeTsFile({ filePath, content, config });
         actionTypeFiles.push(filePath);
       }
