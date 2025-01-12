@@ -49,6 +49,10 @@ generatorHandler({
       schemaPrefix: String(baseConfig.schemaPrefix || ""),
       schemaSuffix: String(baseConfig.schemaSuffix || DEFAULT_SCHEMA_SUFFIX),
       fileExtension: (baseConfig.fileExtension as Config["fileExtension"]) || ".js",
+      maxDepth:
+        baseConfig.maxDepth && typeof baseConfig.maxDepth === "string"
+          ? parseInt(baseConfig.maxDepth, 10)
+          : undefined,
     };
     validateConfig(config);
 
@@ -206,7 +210,10 @@ generatorHandler({
           [...models, ...types],
           enumMap,
           modelMap,
-          config,
+          {
+            ...config,
+            maxDepth: config.maxDepth ?? 5, // Explicitly set a cap of 5 for action items unless overridden, as they can get quite deep
+          },
           true,
           fullInputTypeMap, // Pass the complete input type map
         );

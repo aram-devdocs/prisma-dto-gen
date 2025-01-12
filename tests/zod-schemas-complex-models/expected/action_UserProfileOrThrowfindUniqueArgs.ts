@@ -83,25 +83,10 @@ export interface UserProfileOrThrowFindUniqueArgs {
               content?: any /* circular reference to StringFilter */ | string;
               status?:
                 | {
-                    equals?: any;
-                    in?: any;
-                    notIn?: any;
-                    not?:
-                      | "DRAFT"
-                      | "REVIEW"
-                      | "PUBLISHED"
-                      | "ARCHIVED"
-                      | {
-                          equals?: any;
-                          in?: any;
-                          notIn?: any;
-                          not?:
-                            | "DRAFT"
-                            | "REVIEW"
-                            | "PUBLISHED"
-                            | "ARCHIVED"
-                            | any /* circular reference to NestedEnumDocumentStatusFilter */;
-                        };
+                    equals?: any /* max depth reached */;
+                    in?: any /* max depth reached */;
+                    notIn?: any /* max depth reached */;
+                    not?: any /* max depth reached */;
                   }
                 | "DRAFT"
                 | "REVIEW"
@@ -112,34 +97,14 @@ export interface UserProfileOrThrowFindUniqueArgs {
               archived?: any;
               user_profile?:
                 | {
-                    is?: any /* circular reference to UserProfileWhereInput */;
-                    isNot?: any /* circular reference to UserProfileWhereInput */;
+                    is?: any /* max depth reached */;
+                    isNot?: any /* max depth reached */;
                   }
                 | any /* circular reference to UserProfileWhereInput */;
               comments?: {
-                every?: {
-                  AND?: any /* circular reference to UserCommentWhereInput */;
-                  OR?: any /* circular reference to UserCommentWhereInput */;
-                  NOT?: any /* circular reference to UserCommentWhereInput */;
-                  comment_id?: any /* circular reference to StringFilter */ | string;
-                  document_id?: any /* circular reference to StringFilter */ | string;
-                  commenter_id?: any /* circular reference to StringFilter */ | string;
-                  text?: any /* circular reference to StringFilter */ | string;
-                  created_at?: any /* circular reference to DateTimeFilter */ | Date;
-                  edited_at?: any;
-                  is_deleted?: any;
-                  user_document?:
-                    | {
-                        is?: any /* circular reference to UserDocumentWhereInput */;
-                        isNot?: any /* circular reference to UserDocumentWhereInput */;
-                      }
-                    | any /* circular reference to UserDocumentWhereInput */;
-                  user_profile?:
-                    | any /* circular reference to UserProfileRelationFilter */
-                    | any /* circular reference to UserProfileWhereInput */;
-                };
-                some?: any /* circular reference to UserCommentWhereInput */;
-                none?: any /* circular reference to UserCommentWhereInput */;
+                every?: any /* max depth reached */;
+                some?: any /* max depth reached */;
+                none?: any /* max depth reached */;
               };
             };
             some?: any /* circular reference to UserDocumentWhereInput */;
@@ -156,29 +121,9 @@ export interface UserProfileOrThrowFindUniqueArgs {
               read_timestamp?: any;
               message?: any /* circular reference to StringFilter */ | string;
               notification_refs?: {
-                every?: {
-                  AND?: any /* circular reference to NotificationReferenceWhereInput */;
-                  OR?: any /* circular reference to NotificationReferenceWhereInput */;
-                  NOT?: any /* circular reference to NotificationReferenceWhereInput */;
-                  notification_reference_id?: any /* circular reference to StringFilter */ | string;
-                  notification_id?: any /* circular reference to StringFilter */ | string;
-                  referenced_entity_id?: any /* circular reference to StringFilter */ | string;
-                  status?:
-                    | any /* circular reference to EnumDocumentStatusFilter */
-                    | "DRAFT"
-                    | "REVIEW"
-                    | "PUBLISHED"
-                    | "ARCHIVED";
-                  archived?: any;
-                  notification?:
-                    | {
-                        is?: any /* circular reference to UserNotificationWhereInput */;
-                        isNot?: any /* circular reference to UserNotificationWhereInput */;
-                      }
-                    | any /* circular reference to UserNotificationWhereInput */;
-                };
-                some?: any /* circular reference to NotificationReferenceWhereInput */;
-                none?: any /* circular reference to NotificationReferenceWhereInput */;
+                every?: any /* max depth reached */;
+                some?: any /* max depth reached */;
+                none?: any /* max depth reached */;
               };
               user_profile?:
                 | any /* circular reference to UserProfileRelationFilter */
@@ -199,13 +144,8 @@ export interface UserProfileOrThrowFindUniqueArgs {
               modified_at?: any;
               is_active?:
                 | {
-                    equals?: any;
-                    not?:
-                      | boolean
-                      | {
-                          equals?: any;
-                          not?: boolean | any /* circular reference to NestedBoolFilter */;
-                        };
+                    equals?: any /* max depth reached */;
+                    not?: any /* max depth reached */;
                   }
                 | boolean;
               user_profile?:
@@ -227,23 +167,10 @@ export interface UserProfileOrThrowFindUniqueArgs {
               created_at?: any /* circular reference to DateTimeFilter */ | Date;
               verification_type?:
                 | {
-                    equals?: any;
-                    in?: any;
-                    notIn?: any;
-                    not?:
-                      | "EMAIL"
-                      | "SMS"
-                      | "PUSH"
-                      | {
-                          equals?: any;
-                          in?: any;
-                          notIn?: any;
-                          not?:
-                            | "EMAIL"
-                            | "SMS"
-                            | "PUSH"
-                            | any /* circular reference to NestedEnumTwoStepVerificationTypeFilter */;
-                        };
+                    equals?: any /* max depth reached */;
+                    in?: any /* max depth reached */;
+                    notIn?: any /* max depth reached */;
+                    not?: any /* max depth reached */;
                   }
                 | "EMAIL"
                 | "SMS"
@@ -279,29 +206,9 @@ export interface UserProfileOrThrowFindUniqueArgs {
                 | any /* circular reference to UserProfileWhereInput */;
               participant_two?: any;
               messages?: {
-                every?: {
-                  AND?: any /* circular reference to ThreadMessageWhereInput */;
-                  OR?: any /* circular reference to ThreadMessageWhereInput */;
-                  NOT?: any /* circular reference to ThreadMessageWhereInput */;
-                  message_id?: any /* circular reference to StringFilter */ | string;
-                  thread_id?: any /* circular reference to StringFilter */ | string;
-                  sender_id?: any /* circular reference to StringFilter */ | string;
-                  content?: any /* circular reference to StringFilter */ | string;
-                  sent_at?: any /* circular reference to DateTimeFilter */ | Date;
-                  updated_at?: any;
-                  is_archived?: any;
-                  discussion_thread?:
-                    | {
-                        is?: any /* circular reference to DiscussionThreadWhereInput */;
-                        isNot?: any /* circular reference to DiscussionThreadWhereInput */;
-                      }
-                    | any /* circular reference to DiscussionThreadWhereInput */;
-                  sender?:
-                    | any /* circular reference to UserProfileRelationFilter */
-                    | any /* circular reference to UserProfileWhereInput */;
-                };
-                some?: any /* circular reference to ThreadMessageWhereInput */;
-                none?: any /* circular reference to ThreadMessageWhereInput */;
+                every?: any /* max depth reached */;
+                some?: any /* max depth reached */;
+                none?: any /* max depth reached */;
               };
             };
             some?: any /* circular reference to DiscussionThreadWhereInput */;
@@ -321,57 +228,23 @@ export interface UserProfileOrThrowFindUniqueArgs {
               is_active?: any;
               organization?:
                 | {
-                    is?: {
-                      AND?: any /* circular reference to OrganizationWhereInput */;
-                      OR?: any /* circular reference to OrganizationWhereInput */;
-                      NOT?: any /* circular reference to OrganizationWhereInput */;
-                      organization_id?: any /* circular reference to StringFilter */ | string;
-                      name?: any /* circular reference to StringFilter */ | string;
-                      description?: any;
-                      created_on?: any /* circular reference to DateTimeFilter */ | Date;
-                      updated_on?: any;
-                      is_active?: any;
-                      events?: {
-                        every?: {
-                          AND?: any /* circular reference to OrgEventWhereInput */;
-                          OR?: any /* circular reference to OrgEventWhereInput */;
-                          NOT?: any /* circular reference to OrgEventWhereInput */;
-                          org_event_id?: any /* circular reference to StringFilter */ | string;
-                          organization_id?: any /* circular reference to StringFilter */ | string;
-                          event_name?: any /* circular reference to StringFilter */ | string;
-                          start_time?: any /* circular reference to DateTimeFilter */ | Date;
-                          end_time?: any;
-                          location?: any;
-                          organization?:
-                            | any /* circular reference to OrganizationRelationFilter */
-                            | any /* circular reference to OrganizationWhereInput */;
-                        };
-                        some?: any /* circular reference to OrgEventWhereInput */;
-                        none?: any /* circular reference to OrgEventWhereInput */;
-                      };
-                      members?: any /* circular reference to OrgMembershipListRelationFilter */;
-                      records?: {
-                        every?: {
-                          AND?: any /* circular reference to OrgRecordWhereInput */;
-                          OR?: any /* circular reference to OrgRecordWhereInput */;
-                          NOT?: any /* circular reference to OrgRecordWhereInput */;
-                          record_id?: any /* circular reference to StringFilter */ | string;
-                          organization_id?: any /* circular reference to StringFilter */ | string;
-                          title?: any /* circular reference to StringFilter */ | string;
-                          details?: any;
-                          created_on?: any /* circular reference to DateTimeFilter */ | Date;
-                          updated_on?: any;
-                          organization?:
-                            | any /* circular reference to OrganizationRelationFilter */
-                            | any /* circular reference to OrganizationWhereInput */;
-                        };
-                        some?: any /* circular reference to OrgRecordWhereInput */;
-                        none?: any /* circular reference to OrgRecordWhereInput */;
-                      };
-                    };
-                    isNot?: any /* circular reference to OrganizationWhereInput */;
+                    is?: any /* max depth reached */;
+                    isNot?: any /* max depth reached */;
                   }
-                | any /* circular reference to OrganizationWhereInput */;
+                | {
+                    AND?: any /* max depth reached */;
+                    OR?: any /* max depth reached */;
+                    NOT?: any /* max depth reached */;
+                    organization_id?: any /* max depth reached */;
+                    name?: any /* max depth reached */;
+                    description?: any /* max depth reached */;
+                    created_on?: any /* max depth reached */;
+                    updated_on?: any /* max depth reached */;
+                    is_active?: any /* max depth reached */;
+                    events?: any /* max depth reached */;
+                    members?: any /* max depth reached */;
+                    records?: any /* max depth reached */;
+                  };
               user_profile?:
                 | any /* circular reference to UserProfileRelationFilter */
                 | any /* circular reference to UserProfileWhereInput */;
@@ -388,25 +261,14 @@ export interface UserProfileOrThrowFindUniqueArgs {
               payer_id?: any /* circular reference to StringFilter */ | string;
               amount?:
                 | {
-                    equals?: any;
-                    in?: any;
-                    notIn?: any;
-                    lt?: any;
-                    lte?: any;
-                    gt?: any;
-                    gte?: any;
-                    not?:
-                      | Decimal
-                      | {
-                          equals?: any;
-                          in?: any;
-                          notIn?: any;
-                          lt?: any;
-                          lte?: any;
-                          gt?: any;
-                          gte?: any;
-                          not?: Decimal | any /* circular reference to NestedDecimalFilter */;
-                        };
+                    equals?: any /* max depth reached */;
+                    in?: any /* max depth reached */;
+                    notIn?: any /* max depth reached */;
+                    lt?: any /* max depth reached */;
+                    lte?: any /* max depth reached */;
+                    gt?: any /* max depth reached */;
+                    gte?: any /* max depth reached */;
+                    not?: any /* max depth reached */;
                   }
                 | Decimal;
               paid_at?: any /* circular reference to DateTimeFilter */ | Date;

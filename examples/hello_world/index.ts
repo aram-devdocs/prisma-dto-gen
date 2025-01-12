@@ -22,6 +22,7 @@ import {
   OneUserProfileCreateArgs,
   UserProfileFindManyArgs,
   OneUserProfileDeleteArgs,
+  OneUserProfileCreateArgsSchema,
 } from "./types";
 
 const app = express();

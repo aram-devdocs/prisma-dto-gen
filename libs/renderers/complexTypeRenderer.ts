@@ -39,6 +39,14 @@ function resolveInputType(
   inputTypeMap: Map<string, DMMF.InputType>,
   context: InlineContext,
 ): string {
+  // Check depth limit
+  if (
+    context.config.maxDepth !== undefined &&
+    context.getCurrentDepth() >= context.config.maxDepth
+  ) {
+    return "any /* max depth reached */";
+  }
+
   if (type.location === "scalar") {
     const getter = SCALAR_TYPE_GETTERS[String(type.type)];
     if (getter) {
@@ -65,6 +73,7 @@ function resolveInputType(
         return `any /* circular reference to ${refType} */`;
       }
       context.markVisited(refType);
+      context.incrementDepth();
 
       const fields = inputType.fields.map((field) => {
         const types = field.inputTypes.map((t) =>
@@ -74,6 +83,7 @@ function resolveInputType(
         return `${field.name}${field.isRequired ? ":" : "?:"} ${typeUnion}`;
       });
 
+      context.decrementDepth();
       const shape = `{\n  ${fields.join(";\n  ")}\n}`;
       return type.isList ? `${shape}[]` : shape;
     }

@@ -26,6 +26,7 @@ export interface Config {
   schemaPrefix: string;
   schemaSuffix: string;
   fileExtension: ".ts" | ".mts" | ".cts" | ".js" | ".mjs" | ".cjs" | null;
+  maxDepth?: number;
 }
 
 export const DEFAULT_SCHEMA_SUFFIX = "Schema";
