@@ -3,9 +3,21 @@
 type Decimal = { valueOf(): string };
 
 export interface PaymentScalarWhereInput {
-  AND?: any;
-  OR?: any;
-  NOT?: any;
+  AND?:
+    | {
+        AND?: any /* circular reference to PaymentScalarWhereInput */;
+        OR?: any /* circular reference to PaymentScalarWhereInput */;
+        NOT?: any /* circular reference to PaymentScalarWhereInput */;
+        payment_id?: any;
+        payer_id?: any;
+        amount?: any;
+        paid_at?: any;
+        status?: any;
+        reference_note?: any;
+      }
+    | any /* circular reference to PaymentScalarWhereInput */;
+  OR?: any /* circular reference to PaymentScalarWhereInput */;
+  NOT?: any /* circular reference to PaymentScalarWhereInput */;
   payment_id?: any;
   payer_id?: any;
   amount?: any;

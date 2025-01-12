@@ -8,7 +8,18 @@ export interface NestedIntFilter {
   lte?: any;
   gt?: any;
   gte?: any;
-  not?: any;
+  not?:
+    | number
+    | {
+        equals?: any;
+        in?: any;
+        notIn?: any;
+        lt?: any;
+        lte?: any;
+        gt?: any;
+        gte?: any;
+        not?: number | any /* circular reference to NestedIntFilter */;
+      };
 }
 
 import { z } from "zod";

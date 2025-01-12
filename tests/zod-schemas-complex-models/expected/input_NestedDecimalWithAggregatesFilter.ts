@@ -10,7 +10,23 @@ export interface NestedDecimalWithAggregatesFilter {
   lte?: any;
   gt?: any;
   gte?: any;
-  not?: any;
+  not?:
+    | Decimal
+    | {
+        equals?: any;
+        in?: any;
+        notIn?: any;
+        lt?: any;
+        lte?: any;
+        gt?: any;
+        gte?: any;
+        not?: Decimal | any /* circular reference to NestedDecimalWithAggregatesFilter */;
+        _count?: any;
+        _avg?: any;
+        _sum?: any;
+        _min?: any;
+        _max?: any;
+      };
   _count?: any;
   _avg?: any;
   _sum?: any;

@@ -2,7 +2,12 @@
 
 export interface NestedBoolFilter {
   equals?: any;
-  not?: any;
+  not?:
+    | boolean
+    | {
+        equals?: any;
+        not?: boolean | any /* circular reference to NestedBoolFilter */;
+      };
 }
 
 import { z } from "zod";

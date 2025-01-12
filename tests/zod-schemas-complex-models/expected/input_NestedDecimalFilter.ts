@@ -10,7 +10,18 @@ export interface NestedDecimalFilter {
   lte?: any;
   gt?: any;
   gte?: any;
-  not?: any;
+  not?:
+    | Decimal
+    | {
+        equals?: any;
+        in?: any;
+        notIn?: any;
+        lt?: any;
+        lte?: any;
+        gt?: any;
+        gte?: any;
+        not?: Decimal | any /* circular reference to NestedDecimalFilter */;
+      };
 }
 
 import { z } from "zod";

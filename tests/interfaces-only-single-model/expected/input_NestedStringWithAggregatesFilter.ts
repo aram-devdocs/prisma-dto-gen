@@ -11,7 +11,22 @@ export interface NestedStringWithAggregatesFilter {
   contains?: any;
   startsWith?: any;
   endsWith?: any;
-  not?: any;
+  not?: (string | {
+  equals?: any;
+  in?: string[];
+  notIn?: string[];
+  lt?: any;
+  lte?: any;
+  gt?: any;
+  gte?: any;
+  contains?: any;
+  startsWith?: any;
+  endsWith?: any;
+  not?: (string | any /* circular reference to NestedStringWithAggregatesFilter */);
+  _count?: any;
+  _min?: any;
+  _max?: any
+});
   _count?: any;
   _min?: any;
   _max?: any;

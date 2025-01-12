@@ -4,7 +4,22 @@ export interface NestedEnumDocumentStatusFilter {
   equals?: any;
   in?: any;
   notIn?: any;
-  not?: any;
+  not?:
+    | "DRAFT"
+    | "REVIEW"
+    | "PUBLISHED"
+    | "ARCHIVED"
+    | {
+        equals?: any;
+        in?: any;
+        notIn?: any;
+        not?:
+          | "DRAFT"
+          | "REVIEW"
+          | "PUBLISHED"
+          | "ARCHIVED"
+          | any /* circular reference to NestedEnumDocumentStatusFilter */;
+      };
 }
 
 import { z } from "zod";
