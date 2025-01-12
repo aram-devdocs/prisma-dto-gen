@@ -9,12 +9,12 @@
     "url": "https://github.com/aram-devdocs/prisma-dto-gen"
   },
   "type": "module",
-  "main": "generator.js",
+  "main": "dist/generator.js",
   "files": [
-    "generator.js"
+    "dist"
   ],
   "bin": {
-    "prisma-generator-typescript-interfaces": "generator.js"
+    "prisma-dto-gen": "dist/generator.js"
   },
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
