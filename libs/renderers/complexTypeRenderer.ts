@@ -31,6 +31,67 @@ function getCustomZodSnippet(documentation?: string): string | undefined {
   return undefined;
 }
 
+function resolveInputType(
+  type: DMMF.InputTypeRef,
+  allModels: DMMF.Model[],
+  enumMap: Map<string, DMMF.DatamodelEnum>,
+  modelMap: Map<string, DMMF.Model>,
+  inputTypeMap: Map<string, DMMF.InputType>,
+  context: InlineContext,
+): string {
+  if (type.location === "scalar") {
+    const getter = SCALAR_TYPE_GETTERS[String(type.type)];
+    if (getter) {
+      let st = getter(context.config);
+      if (st === "JsonValue") context.addCustomTypeUsage("JsonValue");
+      if (st === "Decimal") context.addCustomTypeUsage("Decimal");
+      if (st === "BufferObject") context.addCustomTypeUsage("BufferObject");
+      if (type.isList) st += "[]";
+      return st;
+    }
+  } else if (type.location === "inputObjectTypes") {
+    const refType = String(type.type);
+    // First check if it's a model
+    if (modelMap.has(refType)) {
+      const model = modelMap.get(refType)!;
+      const shape = inlineModelDefinition(model, allModels, enumMap, modelMap, context);
+      return type.isList ? `${shape}[]` : shape;
+    }
+    // Then check if it's an input type
+    if (inputTypeMap.has(refType)) {
+      const inputType = inputTypeMap.get(refType)!;
+      // Prevent infinite recursion
+      if (context.isVisited(refType)) {
+        return `any /* circular reference to ${refType} */`;
+      }
+      context.markVisited(refType);
+
+      const fields = inputType.fields.map((field) => {
+        const types = field.inputTypes.map((t) =>
+          resolveInputType(t, allModels, enumMap, modelMap, inputTypeMap, context),
+        );
+        const typeUnion = buildUnionType(types);
+        return `${field.name}${field.isRequired ? ":" : "?:"} ${typeUnion}`;
+      });
+
+      const shape = `{\n  ${fields.join(";\n  ")}\n}`;
+      return type.isList ? `${shape}[]` : shape;
+    }
+  } else if (type.location === "enumTypes") {
+    const en = enumMap.get(String(type.type));
+    if (en) {
+      const enumType = inlineEnum(en, context.config);
+      return type.isList ? `${enumType}[]` : enumType;
+    }
+  }
+
+  return "any";
+}
+
+function isInputType(type: DMMF.InputType | DMMF.OutputType): type is DMMF.InputType {
+  return "constraints" in type;
+}
+
 export function generateComplexTypeInline(
   io: DMMF.InputType | DMMF.OutputType,
   allModels: DMMF.Model[],
@@ -38,8 +99,15 @@ export function generateComplexTypeInline(
   modelMap: Map<string, DMMF.Model>,
   config: Config,
   isInput: boolean,
+  inputTypeMap: Map<string, DMMF.InputType> = new Map(),
 ): string {
   const context = new InlineContext(config);
+
+  // For nested type resolution, merge the provided input type with any existing ones
+  if (isInput && isInputType(io)) {
+    inputTypeMap.set(io.name, io);
+  }
+
   const typeName =
     `${config.typePrefix}${io.name}${!isInput ? "Output" : ""}${config.typeSuffix}`.replace(
       /\W+/g,
@@ -79,33 +147,9 @@ export function generateComplexTypeInline(
     // For input => check field.inputTypes
     if ("inputTypes" in field) {
       const schemaArg = field as DMMF.SchemaArg;
-      unionTypes = schemaArg.inputTypes.map((t) => {
-        if (t.location === "scalar") {
-          const getter = SCALAR_TYPE_GETTERS[String(t.type)];
-          if (getter) {
-            let st = getter(config);
-            // track usage of custom types
-            if (st === "JsonValue") context.addCustomTypeUsage("JsonValue");
-            if (st === "Decimal") context.addCustomTypeUsage("Decimal");
-            if (st === "BufferObject") context.addCustomTypeUsage("BufferObject");
-            if (t.isList) st += "[]";
-            return st;
-          }
-          return "any";
-        } else if (t.location === "enumTypes") {
-          const en = enumMap.get(String(t.type));
-          if (en) {
-            return inlineEnum(en, config);
-          }
-          return "any";
-        } else if (t.location === "inputObjectTypes") {
-          // If there's a known input object type we can inline it.
-          // But we only have references to them in the DMMF's inputObjectTypes array, not the modelMap.
-          // For now, fallback to "any" or recursively do the same approach.
-          return "any";
-        }
-        return "any";
-      });
+      unionTypes = schemaArg.inputTypes.map((t) =>
+        resolveInputType(t, allModels, enumMap, modelMap, inputTypeMap, context),
+      );
     }
     // For output => check field.outputType
     else if ("outputType" in field) {

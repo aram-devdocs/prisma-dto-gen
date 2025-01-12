@@ -4,7 +4,23 @@ export interface NestedEnumTwoStepVerificationTypeWithAggregatesFilter {
   equals?: any;
   in?: any;
   notIn?: any;
-  not?: any;
+  not?:
+    | "EMAIL"
+    | "SMS"
+    | "PUSH"
+    | {
+        equals?: any;
+        in?: any;
+        notIn?: any;
+        not?:
+          | "EMAIL"
+          | "SMS"
+          | "PUSH"
+          | any /* circular reference to NestedEnumTwoStepVerificationTypeWithAggregatesFilter */;
+        _count?: any;
+        _min?: any;
+        _max?: any;
+      };
   _count?: any;
   _min?: any;
   _max?: any;

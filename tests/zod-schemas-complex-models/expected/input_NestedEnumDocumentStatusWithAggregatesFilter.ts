@@ -4,7 +4,25 @@ export interface NestedEnumDocumentStatusWithAggregatesFilter {
   equals?: any;
   in?: any;
   notIn?: any;
-  not?: any;
+  not?:
+    | "DRAFT"
+    | "REVIEW"
+    | "PUBLISHED"
+    | "ARCHIVED"
+    | {
+        equals?: any;
+        in?: any;
+        notIn?: any;
+        not?:
+          | "DRAFT"
+          | "REVIEW"
+          | "PUBLISHED"
+          | "ARCHIVED"
+          | any /* circular reference to NestedEnumDocumentStatusWithAggregatesFilter */;
+        _count?: any;
+        _min?: any;
+        _max?: any;
+      };
   _count?: any;
   _min?: any;
   _max?: any;

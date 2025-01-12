@@ -8,7 +8,18 @@ export interface NestedDateTimeFilter {
   lte?: any;
   gt?: any;
   gte?: any;
-  not?: any;
+  not?:
+    | Date
+    | {
+        equals?: any;
+        in?: Date[];
+        notIn?: Date[];
+        lt?: any;
+        lte?: any;
+        gt?: any;
+        gte?: any;
+        not?: Date | any /* circular reference to NestedDateTimeFilter */;
+      };
 }
 
 import { z } from "zod";

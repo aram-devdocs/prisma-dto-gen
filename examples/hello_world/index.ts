@@ -19,6 +19,9 @@ import {
   UserNotification,
   UserNotificationSchema,
   OrgMembership,
+  OneUserProfileCreateArgs,
+  UserProfileFindManyArgs,
+  OneUserProfileDeleteArgs,
 } from "./types";
 
 const app = express();

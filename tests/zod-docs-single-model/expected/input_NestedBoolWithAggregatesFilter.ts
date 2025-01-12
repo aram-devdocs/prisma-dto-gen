@@ -2,7 +2,15 @@
 
 export interface NestedBoolWithAggregatesFilter {
   equals?: any;
-  not?: any;
+  not?:
+    | boolean
+    | {
+        equals?: any;
+        not?: boolean | any /* circular reference to NestedBoolWithAggregatesFilter */;
+        _count?: any;
+        _min?: any;
+        _max?: any;
+      };
   _count?: any;
   _min?: any;
   _max?: any;

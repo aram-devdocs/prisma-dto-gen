@@ -11,12 +11,13 @@ import { writeTsFile } from "./libs/utils/writeTsFile.js";
 import { generateEnumFileInline } from "./libs/renderers/enumRenderer.js";
 import { generateModelFileInline } from "./libs/renderers/modelRenderer.js";
 import { generateComplexTypeInline } from "./libs/renderers/complexTypeRenderer.js";
+import { modelOperationName } from "./libs/utils/camelCase.js";
 const { generatorHandler } = generatorHelper;
 
 generatorHandler({
   onManifest() {
     return {
-      prettyName: "Prisma DTO Generator (Refactored Inline)",
+      prettyName: "Prisma DTO Generator",
       defaultOutput: "./generated",
     };
   },
@@ -128,8 +129,96 @@ generatorHandler({
       outputTypeFiles.push(filePath);
     }
 
-    // 7) Create index.ts that re-exports everything
-    const allFiles = [...enumFiles, ...modelFiles, ...inputTypeFiles, ...outputTypeFiles];
+    // 7) Generate model action type files
+    const actionTypeFiles: string[] = [];
+
+    // Build complete input type map
+    const fullInputTypeMap = new Map<string, DMMF.InputType>();
+    for (const it of inputObjectTypes) {
+      fullInputTypeMap.set(it.name, it);
+    }
+
+    // Get mappings between models and their CRUD operations
+    const modelMappings = schema.outputObjectTypes.prisma
+      .filter((type) => type.fields.some((f) => f.args.length > 0))
+      .reduce(
+        (acc, type) => {
+          type.fields.forEach((field) => {
+            if (field.args.length === 0) return;
+
+            const operationMatch = field.name.match(
+              /^(findUnique|findFirst|findMany|create|update|upsert|delete|deleteOne|createMany|updateMany|deleteMany)(.+)$/,
+            );
+            if (!operationMatch) return;
+
+            const [, operation, modelName] = operationMatch;
+
+            if (!acc[modelName]) {
+              acc[modelName] = {};
+            }
+
+            // Map operation name to its argument types, preserving all argument metadata
+            const args = field.args.map((arg) => ({
+              ...arg,
+              inputTypes: [...arg.inputTypes].map((t) => ({ ...t })),
+            }));
+
+            acc[modelName][operation] = args;
+          });
+          return acc;
+        },
+        {} as Record<string, Record<string, DMMF.SchemaArg[]>>,
+      );
+
+    // Generate action types for each model with the complete input type map
+    for (const [modelName, operations] of Object.entries(modelMappings)) {
+      for (const [operation, args] of Object.entries(operations)) {
+        if (args.length === 0) continue;
+
+        const operationName = operation === "deleteOne" ? "delete" : operation;
+        const typeName = modelOperationName(modelName, operationName);
+
+        // Create immutable input type object
+        const inputType: Readonly<DMMF.InputType> = {
+          name: typeName,
+          constraints: {
+            maxNumFields: null,
+            minNumFields: null,
+            fields: [],
+          },
+          fields: args.map((arg) => ({
+            ...arg,
+            inputTypes: [...arg.inputTypes].map((t) => ({ ...t })),
+          })),
+          meta: {
+            source: "prisma",
+          },
+        };
+
+        const content = generateComplexTypeInline(
+          inputType,
+          [...models, ...types],
+          enumMap,
+          modelMap,
+          config,
+          true,
+          fullInputTypeMap, // Pass the complete input type map
+        );
+
+        const filePath = resolvePath(outputDir, `action_${modelName}${operationName}Args.ts`);
+        await writeTsFile({ filePath, content, config });
+        actionTypeFiles.push(filePath);
+      }
+    }
+
+    // 8) Create index.ts that re-exports everything
+    const allFiles = [
+      ...enumFiles,
+      ...modelFiles,
+      ...inputTypeFiles,
+      ...outputTypeFiles,
+      ...actionTypeFiles,
+    ];
     const imports = allFiles.map((filePath) => {
       let relativePath = "./" + filePath.replace(outputDir, "").replace(/^\//, "");
       const extension = config.fileExtension === null ? "" : config.fileExtension;

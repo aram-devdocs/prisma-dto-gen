@@ -25,9 +25,9 @@
     "lint:fix": "prettier --write . && eslint . --fix && echo 'Linting complete.'",
     "test": "node --loader ts-node/esm test.ts",
     "prepare": "node .husky/install.mjs",
-    "hello-world:dev": "cd example/hello_world && npm run dev",
-    "hello-world:generate": "cd example/hello_world && npm run generate",
-    "hello-world:build": "cd example/hello_world && npm run build",
+    "hello-world:dev": "cd examples/hello_world && npm run dev",
+    "hello-world:generate": "cd examples/hello_world && npm run generate",
+    "hello-world:build": "cd examples/hello_world && npm run build",
     "reload-test": "bash reload_test_expected.sh"
   },
   "dependencies": {

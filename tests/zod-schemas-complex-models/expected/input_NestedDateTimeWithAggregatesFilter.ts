@@ -8,7 +8,21 @@ export interface NestedDateTimeWithAggregatesFilter {
   lte?: any;
   gt?: any;
   gte?: any;
-  not?: any;
+  not?:
+    | Date
+    | {
+        equals?: any;
+        in?: any;
+        notIn?: any;
+        lt?: any;
+        lte?: any;
+        gt?: any;
+        gte?: any;
+        not?: Date | any /* circular reference to NestedDateTimeWithAggregatesFilter */;
+        _count?: any;
+        _min?: any;
+        _max?: any;
+      };
   _count?: any;
   _min?: any;
   _max?: any;

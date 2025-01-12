@@ -4,7 +4,20 @@ export interface NestedEnumTwoStepVerificationTypeFilter {
   equals?: any;
   in?: any;
   notIn?: any;
-  not?: any;
+  not?:
+    | "EMAIL"
+    | "SMS"
+    | "PUSH"
+    | {
+        equals?: any;
+        in?: any;
+        notIn?: any;
+        not?:
+          | "EMAIL"
+          | "SMS"
+          | "PUSH"
+          | any /* circular reference to NestedEnumTwoStepVerificationTypeFilter */;
+      };
 }
 
 import { z } from "zod";
