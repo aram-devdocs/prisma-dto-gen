@@ -1,4 +1,3 @@
-// import { generatorHandler } from "@prisma/generator-helper";
 import generatorHelper from "@prisma/generator-helper";
 import { resolve as resolvePath } from "node:path";
 import type { DMMF } from "@prisma/generator-helper";
@@ -9,8 +8,8 @@ import { validateConfig } from "./libs/utils/validateConfig.js";
 import { writeTsFile } from "./libs/utils/writeTsFile.js";
 
 import { generateEnumFileInline } from "./libs/renderers/enumRenderer.js";
-import { generateModelFileInline } from "./libs/renderers/modelRenderer.js";
-import { generateComplexTypeInline } from "./libs/renderers/complexTypeRenderer.js";
+import { generateInterfaceFileInline } from "./libs/renderers/interfaceRenderer.js";
+import { generateZodSchemaFileInline } from "./libs/renderers/zodSchemaRenderer.js";
 import { modelOperationName } from "./libs/utils/camelCase.js";
 import fs from "node:fs/promises";
 const { generatorHandler } = generatorHelper;
@@ -95,13 +94,13 @@ generatorHandler({
     // 4) Generate model files
     const modelFiles: string[] = [];
     for (const m of models) {
-      const content = generateModelFileInline(m, [...models, ...types], enumMap, modelMap, config);
+      const content = generateInterfaceFileInline(m, [...models, ...types], enumMap, modelMap, config);
       const filePath = resolvePath(outputDir, `model_${m.name}.ts`);
       await writeTsFile({ filePath, content, config });
       modelFiles.push(filePath);
     }
     for (const t of types) {
-      const content = generateModelFileInline(t, [...models, ...types], enumMap, modelMap, config);
+      const content = generateInterfaceFileInline(t, [...models, ...types], enumMap, modelMap, config);
       const filePath = resolvePath(outputDir, `type_${t.name}.ts`);
       await writeTsFile({ filePath, content, config });
       modelFiles.push(filePath);
@@ -110,7 +109,7 @@ generatorHandler({
     // 5) Generate input object files
     const inputTypeFiles: string[] = [];
     for (const io of inputObjectTypes) {
-      const content = generateComplexTypeInline(
+      const content = generateInterfaceFileInline(
         io,
         [...models, ...types],
         enumMap,
@@ -126,7 +125,7 @@ generatorHandler({
     // 6) Generate output object files
     const outputTypeFiles: string[] = [];
     for (const oo of outputObjectTypes) {
-      const content = generateComplexTypeInline(
+      const content = generateInterfaceFileInline(
         oo,
         [...models, ...types],
         enumMap,
@@ -205,7 +204,7 @@ generatorHandler({
           },
         };
 
-        const content = generateComplexTypeInline(
+        const content = generateInterfaceFileInline(
           inputType,
           [...models, ...types],
           enumMap,

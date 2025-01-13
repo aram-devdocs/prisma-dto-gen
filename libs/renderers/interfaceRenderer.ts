@@ -2,8 +2,9 @@ import type { DMMF } from "@prisma/generator-helper";
 import { InlineContext } from "../context/InlineContext.js";
 import type { Config } from "../config/config.js";
 import { renderFieldTypeInline } from "./fieldRenderer.js";
-import { inlineModelZodSchema, inlineCustomTypes } from "./zodHelpers.js";
+import { inlineCustomTypes } from "./zodHelpers.js";
 import { indentBlock } from "../utils/indentBlock.js";
+
 /**
  * Recursively inlines a model as a TS shape.
  * Avoids infinite recursion by checking InlineContext.visitedTypes.
@@ -46,9 +47,9 @@ export function inlineModelDefinition(
 }
 
 /**
- * Generates a single file exporting a model type/interface plus optional Zod schema.
+ * Generates a single file exporting a model type/interface.
  */
-export function generateModelFileInline(
+export function generateInterfaceFileInline(
   m: DMMF.Model,
   allModels: DMMF.Model[],
   enumMap: Map<string, DMMF.DatamodelEnum>,
@@ -66,26 +67,8 @@ export function generateModelFileInline(
     tsHeader = `export type ${mappedName} = ${shape};`;
   }
 
-  let zodPart = "";
-  if (config.schema === "zod") {
-    const zodContext = new InlineContext(config);
-    const zodSchema = inlineModelZodSchema(m, allModels, enumMap, modelMap, zodContext);
-
-    // Merge used custom types
-    for (const c of zodContext.usedCustomTypes) {
-      context.addCustomTypeUsage(c);
-    }
-
-    const schemaName = `${config.schemaPrefix}${mappedName}${config.schemaSuffix}`;
-    const zodImport = `import { z } from "zod";\n\n`;
-
-    zodPart = `
-  ${zodImport}export const ${schemaName} = ${zodSchema};
-  `;
-  }
-
   const customTypesBlock = inlineCustomTypes(context);
-  const fileContents = [customTypesBlock, tsHeader, zodPart]
+  const fileContents = [customTypesBlock, tsHeader]
     .filter((x) => x.trim().length > 0)
     .join("\n\n");
 
