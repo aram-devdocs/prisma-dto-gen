@@ -1,7 +1,6 @@
 export function buildUnionType(types: string[]): string {
   const unique = new Set(types);
   if (unique.has("any") && unique.size > 1) {
-    // if any is in the set, everything becomes "any"
     unique.clear();
     unique.add("any");
   }

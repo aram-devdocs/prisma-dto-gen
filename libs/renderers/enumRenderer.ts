@@ -1,6 +1,7 @@
 import type { DMMF } from "@prisma/generator-helper";
 import type { Config } from "../config/config.js";
 import { inlineEnumZodSchema } from "./zodHelpers.js";
+import { InlineContext } from "../context/InlineContext.js";
 
 /**
  * Renders an inline enum shape (for a single field) as TS.
@@ -29,6 +30,7 @@ export function inlineEnum(e: DMMF.DatamodelEnum, config: Config): string {
  * Generates a standalone file for the enum (full `export type` or `export enum` + optional zod).
  */
 export function generateEnumFileInline(e: DMMF.DatamodelEnum, config: Config): string {
+  const context = new InlineContext(config);
   const mappedName = `${config.enumPrefix}${e.name}${config.enumSuffix}`.replace(/\W+/g, "_");
 
   let enumTs = "";
