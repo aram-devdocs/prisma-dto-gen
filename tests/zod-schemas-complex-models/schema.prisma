@@ -8,6 +8,8 @@ generator dtogen {
     schema           = "zod"
     prettier         = true
     appendExtensions = true
+    fileExtension = ".js"
+
 }
 
 datasource db {

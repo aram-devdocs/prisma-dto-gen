@@ -1,6 +1,6 @@
 {
   "name": "prisma-dto-gen",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "description": "Generate performant zero-dependency native TS interfaces and schemas for the client. (Sourced from https://github.com/mogzol/prisma-generator-typescript-interfaces)",
   "author": "Aram Hammoudeh, Morgan Zolob (Source)",
   "license": "MIT",

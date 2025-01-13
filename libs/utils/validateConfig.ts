@@ -6,7 +6,7 @@ export function validateConfig(config: Config) {
   // if config.fileExtension is passed as a string but does not match one of the Config['fileExtension'] values, throw an error
   if (
     typeof config.fileExtension === "string" &&
-    ![".ts", ".mts", ".cts", ".js", ".mjs", ".cjs"].includes(config.fileExtension)
+    ![".ts", ".mts", ".cts", ".js", ".mjs", ".cjs", null].includes(config.fileExtension)
   ) {
     errors.push(`Invalid fileExtension: ${config.fileExtension}`);
   }

@@ -48,7 +48,7 @@ generatorHandler({
       schema: baseConfig.schema === "zod" ? "zod" : null,
       schemaPrefix: String(baseConfig.schemaPrefix || ""),
       schemaSuffix: String(baseConfig.schemaSuffix || DEFAULT_SCHEMA_SUFFIX),
-      fileExtension: (baseConfig.fileExtension as Config["fileExtension"]) || ".js",
+      fileExtension: (baseConfig.fileExtension as Config["fileExtension"]) || null,
       maxDepth:
         baseConfig.maxDepth && typeof baseConfig.maxDepth === "string"
           ? parseInt(baseConfig.maxDepth, 10)

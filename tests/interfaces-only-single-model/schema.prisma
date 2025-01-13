@@ -10,6 +10,7 @@ generator client {
 generator dtogen {
     provider = "node --loader ts-node/esm generator.ts"
     output = "."
+    fileExtension = ".js"
 }
 
 model User {
