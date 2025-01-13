@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema DiscussionThread
+ */
+
 export interface DiscussionThread {
   thread_id: string;
   primary_participant: string;

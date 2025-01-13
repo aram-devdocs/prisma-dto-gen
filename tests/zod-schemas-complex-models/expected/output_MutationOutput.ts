@@ -2,7 +2,13 @@
 
 type Decimal = { valueOf(): string };
 
-type JsonValue = string | number | boolean | { [key: string]: JsonValue } | JsonValue[] | null;
+type JsonValue =
+  | string
+  | number
+  | boolean
+  | { [key: string]: Record<string, unknown> }
+  | Record<string, unknown>[]
+  | null;
 
 export interface MutationOutput {
   createOneChangeLog: {

@@ -7,7 +7,7 @@ export const CUSTOM_TYPES = {
       | string
       | number
       | boolean
-      | { [key: string]: JsonValue }
-      | JsonValue[]
+      | { [key: string]: Record<string, unknown> }
+      | Record<string, unknown>[]
       | null;`,
 } as const;

@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema Payment
+ */
+
 export interface Payment {
   payment_id: string;
   payer_id: string;

@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema NotificationReference
+ */
+
 export interface NotificationReference {
   notification_reference_id: string;
   notification_id: string;

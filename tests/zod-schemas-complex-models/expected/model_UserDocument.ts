@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema UserDocument
+ */
+
 export interface UserDocument {
   document_id: string;
   owner_profile_id: string;

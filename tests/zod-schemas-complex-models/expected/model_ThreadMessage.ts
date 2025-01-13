@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema ThreadMessage
+ */
+
 export interface ThreadMessage {
   message_id: string;
   thread_id: string;

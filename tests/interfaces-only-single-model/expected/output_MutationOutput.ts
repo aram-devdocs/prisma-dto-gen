@@ -4,8 +4,8 @@ type JsonValue =
       | string
       | number
       | boolean
-      | { [key: string]: JsonValue }
-      | JsonValue[]
+      | { [key: string]: Record<string, unknown> }
+      | Record<string, unknown>[]
       | null;
 
 export interface MutationOutput {

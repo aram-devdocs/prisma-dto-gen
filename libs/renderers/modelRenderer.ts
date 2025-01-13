@@ -59,6 +59,8 @@ export function generateModelFileInline(
   const mappedName = (config.modelPrefix + m.name + config.modelSuffix).replace(/\W+/g, "_");
   const shape = inlineModelDefinition(m, allModels, enumMap, modelMap, context);
 
+  // Add JS Docs @schema right above export statement. Used for future Zodify implementation.
+  const jsDocs = `/**\n * @schema ${mappedName}\n */\n`;
   let tsHeader = "";
   if (config.modelType === "interface") {
     tsHeader = `export interface ${mappedName} ${shape}`;
@@ -85,7 +87,8 @@ export function generateModelFileInline(
   }
 
   const customTypesBlock = inlineCustomTypes(context);
-  const fileContents = [customTypesBlock, tsHeader, zodPart]
+  // const fileContents = [customTypesBlock, tsHeader, zodPart]
+  const fileContents = [customTypesBlock, jsDocs, tsHeader, zodPart]
     .filter((x) => x.trim().length > 0)
     .join("\n\n");
 

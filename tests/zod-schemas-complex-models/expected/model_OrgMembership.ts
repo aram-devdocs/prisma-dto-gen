@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema OrgMembership
+ */
+
 export interface OrgMembership {
   membership_id: string;
   organization_id: string;

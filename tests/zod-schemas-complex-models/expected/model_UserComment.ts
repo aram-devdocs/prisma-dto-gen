@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema UserComment
+ */
+
 export interface UserComment {
   comment_id: string;
   document_id: string;

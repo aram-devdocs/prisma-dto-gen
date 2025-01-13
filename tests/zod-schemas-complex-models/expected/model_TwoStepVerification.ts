@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema TwoStepVerification
+ */
+
 export interface TwoStepVerification {
   verification_id: string;
   profile_id: string;

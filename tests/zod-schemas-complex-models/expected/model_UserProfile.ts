@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema UserProfile
+ */
+
 export interface UserProfile {
   profile_id: string;
   created_timestamp: Date;

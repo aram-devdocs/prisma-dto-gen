@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema UserNotification
+ */
+
 export interface UserNotification {
   notification_id: string;
   recipient_profile_id: string;

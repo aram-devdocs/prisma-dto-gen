@@ -2,6 +2,10 @@
 
 type Decimal = { valueOf(): string };
 
+/**
+ * @schema UserAccount
+ */
+
 export interface UserAccount {
   account_id: string;
   owner_profile_id: string;
