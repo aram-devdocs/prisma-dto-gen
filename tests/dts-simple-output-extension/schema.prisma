@@ -1,0 +1,24 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:./dev.db"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator dtogen {
+    provider = "node --loader ts-node/esm generator.ts"
+    output = "."
+    // Test .d.ts output with .js imports
+    fileExtension = ".js"
+    outputFileExtension = ".d.ts"
+    // Disable extra type generation to simplify test
+    optionalRelations = "false"
+    omitRelations = "true"
+}
+
+model User {
+    id    Int     @id @default(autoincrement())
+    name  String
+}

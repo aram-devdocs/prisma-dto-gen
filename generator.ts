@@ -49,6 +49,18 @@ generatorHandler({
       schemaPrefix: String(baseConfig.schemaPrefix || ""),
       schemaSuffix: String(baseConfig.schemaSuffix || DEFAULT_SCHEMA_SUFFIX),
       fileExtension: (baseConfig.fileExtension as Config["fileExtension"]) || null,
+      // outputFileExtension: baseConfig.outputFileExtension
+      outputFileExtension:
+        typeof baseConfig.outputFileExtension === "string"
+          ? (baseConfig.outputFileExtension as
+              | ".ts"
+              | ".mts"
+              | ".cts"
+              | ".js"
+              | ".mjs"
+              | ".cjs"
+              | ".d.ts")
+          : ".ts",
       maxDepth:
         baseConfig.maxDepth && typeof baseConfig.maxDepth === "string"
           ? parseInt(baseConfig.maxDepth, 10)

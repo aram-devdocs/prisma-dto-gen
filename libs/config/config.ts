@@ -26,6 +26,7 @@ export interface Config {
   schemaPrefix: string;
   schemaSuffix: string;
   fileExtension: ".ts" | ".mts" | ".cts" | ".js" | ".mjs" | ".cjs" | null;
+  outputFileExtension: ".ts" | ".d.ts" | ".mts" | ".cts" | ".js" | ".mjs" | ".cjs";
   maxDepth?: number;
 }
 

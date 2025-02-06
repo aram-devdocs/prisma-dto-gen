@@ -3,12 +3,19 @@ import { Config } from "../config/config.js";
 export function validateConfig(config: Config) {
   const errors: string[] = [];
 
-  // if config.fileExtension is passed as a string but does not match one of the Config['fileExtension'] values, throw an error
+  // fileExtension is used for imports, can be null or a supported extension
   if (
     typeof config.fileExtension === "string" &&
     ![".ts", ".mts", ".cts", ".js", ".mjs", ".cjs", null].includes(config.fileExtension)
   ) {
     errors.push(`Invalid fileExtension: ${config.fileExtension}`);
+  }
+
+  // outputFileExtension is used for the actual file extension when saving
+  if (
+    ![".ts", ".d.ts", ".mts", ".cts", ".js", ".mjs", ".cjs"].includes(config.outputFileExtension)
+  ) {
+    errors.push(`Invalid outputFileExtension: ${config.outputFileExtension}`);
   }
 
   if (!["interface", "type"].includes(config.modelType)) {

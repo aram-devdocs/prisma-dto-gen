@@ -26,6 +26,14 @@ export async function writeTsFile({
     finalContent = "// (auto-generated empty file)\nexport {};";
   }
 
+  // Replace .ts extensions in imports with configured fileExtension
+  if (config.fileExtension !== null) {
+    finalContent = finalContent.replace(
+      /from ["']\.\/.*\.ts["']/g,
+      (match) => match.slice(0, -4) + config.fileExtension + '"',
+    );
+  }
+
   // Prettier formatting (if configured)
   if (config.prettier) {
     let prettier: typeof import("prettier");
@@ -42,6 +50,13 @@ export async function writeTsFile({
     });
   }
 
-  await mkdir(dirname(filePath), { recursive: true });
-  await writeFile(filePath, finalContent, "utf-8");
+  // Ensure directory exists
+  const dir = dirname(filePath);
+  await mkdir(dir, { recursive: true });
+
+  // Replace .ts extension with the configured output extension
+  const outputPath = filePath.replace(/\.ts$/, config.outputFileExtension);
+
+  // Write the file
+  await writeFile(outputPath, finalContent);
 }
